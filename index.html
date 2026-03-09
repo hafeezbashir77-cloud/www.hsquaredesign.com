@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>H Square Design | Architecture & Interior Design in Lahore</title>
+  <meta name="description" content="H Square Design provides architecture, interior, elevation, and design services in Lahore. Explore our portfolio and contact us for your next project." />
+  <style>
+    :root {
+      --bg: #f7f5f2;
+      --surface: #ffffff;
+      --text: #1d1d1b;
+      --muted: #666056;
+      --line: #e8e1d8;
+      --brand: #8b6b4a;
+      --brand-dark: #6d5238;
+      --soft: #efe7de;
+      --shadow: 0 16px 40px rgba(28, 25, 21, 0.08);
+      --radius: 20px;
+      --max: 1200px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.6;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+
+    .container {
+      width: min(var(--max), calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      backdrop-filter: blur(12px);
+      background: rgba(247, 245, 242, 0.9);
+      border-bottom: 1px solid rgba(0,0,0,0.05);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      min-height: 76px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 700;
+      letter-spacing: 0.3px;
+    }
+
+    .brand-mark {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, var(--brand), var(--brand-dark));
+      color: #fff;
+      font-size: 14px;
+      box-shadow: var(--shadow);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 22px;
+      flex-wrap: wrap;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .nav-links a:hover { color: var(--brand-dark); }
+
+    .cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      border-radius: 999px;
+      padding: 14px 22px;
+      font-weight: 700;
+      transition: 0.2s ease;
+      cursor: pointer;
+      border: 1px solid transparent;
+    }
+
+    .cta-primary {
+      background: var(--brand);
+      color: #fff;
+      box-shadow: var(--shadow);
+    }
+
+    .cta-primary:hover { background: var(--brand-dark); }
+
+    .cta-secondary {
+      background: transparent;
+      color: var(--text);
+      border-color: #d8cec2;
+    }
+
+    .hero {
+      padding: 74px 0 36px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 28px;
+      align-items: stretch;
+    }
+
+    .hero-card,
+    .info-card,
+    .service-card,
+    .project-card,
+    .contact-card,
+    .stat,
+    .about-card {
+      background: var(--surface);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(0,0,0,0.04);
+    }
+
+    .hero-card {
+      padding: 48px;
+      background: linear-gradient(135deg, #fff 0%, #f6efe7 100%);
+    }
+
+    .eyebrow {
+      display: inline-block;
+      margin-bottom: 14px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: var(--soft);
+      color: var(--brand-dark);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.4px;
+      text-transform: uppercase;
+    }
+
+    h1, h2, h3, h4, p { margin-top: 0; }
+
+    h1 {
+      font-size: clamp(36px, 6vw, 64px);
+      line-height: 1.05;
+      margin-bottom: 18px;
+      letter-spacing: -1.4px;
+    }
+
+    .hero p {
+      color: var(--muted);
+      font-size: 18px;
+      max-width: 60ch;
+      margin-bottom: 28px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-bottom: 28px;
+    }
+
+    .hero-note {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .info-stack {
+      display: grid;
+      grid-template-rows: 1.15fr 0.85fr;
+      gap: 22px;
+    }
+
+    .info-card {
+      padding: 28px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .info-card.large {
+      min-height: 280px;
+      background:
+        radial-gradient(circle at top right, rgba(139,107,74,0.18), transparent 28%),
+        linear-gradient(160deg, #211d1a, #47372a 62%, #86684a);
+      color: white;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+    }
+
+    .info-card.large p,
+    .info-card.large .small-text { color: rgba(255,255,255,0.85); }
+
+    .small-text {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+      margin-top: 28px;
+    }
+
+    .stat {
+      padding: 24px;
+      text-align: center;
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 28px;
+      margin-bottom: 6px;
+      color: var(--brand-dark);
+    }
+
+    section {
+      padding: 38px 0;
+    }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 18px;
+      margin-bottom: 22px;
+    }
+
+    .section-head h2 {
+      font-size: clamp(28px, 4vw, 42px);
+      margin-bottom: 8px;
+      letter-spacing: -0.8px;
+    }
+
+    .section-head p {
+      color: var(--muted);
+      max-width: 62ch;
+      margin: 0;
+    }
+
+    .services-grid,
+    .projects-grid,
+    .contact-grid,
+    .about-grid {
+      display: grid;
+      gap: 20px;
+    }
+
+    .services-grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    .service-card {
+      padding: 26px;
+    }
+
+    .service-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      margin-bottom: 16px;
+      background: var(--soft);
+      color: var(--brand-dark);
+      font-weight: 700;
+    }
+
+    .service-card h3 {
+      margin-bottom: 10px;
+      font-size: 20px;
+    }
+
+    .service-card p { color: var(--muted); margin-bottom: 0; }
+
+    .about-grid {
+      grid-template-columns: 1fr 1fr;
+      align-items: stretch;
+    }
+
+    .about-card {
+      padding: 34px;
+    }
+
+    .about-card ul {
+      padding-left: 18px;
+      color: var(--muted);
+    }
+
+    .projects-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .project-card {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      min-height: 280px;
+      background: linear-gradient(135deg, #fbf7f3 0%, #f0e6db 100%);
+    }
+
+    .project-top {
+      min-height: 170px;
+      display: grid;
+      place-items: center;
+      padding: 22px;
+      background:
+        linear-gradient(135deg, rgba(139,107,74,0.11), rgba(139,107,74,0.02)),
+        repeating-linear-gradient(135deg, rgba(255,255,255,0.28) 0 10px, rgba(255,255,255,0.05) 10px 20px);
+    }
+
+    .project-tag {
+      display: inline-block;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.8);
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--brand-dark);
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+    }
+
+    .project-body {
+      padding: 22px;
+    }
+
+    .project-body h3 { margin-bottom: 8px; }
+    .project-body p { margin-bottom: 0; color: var(--muted); }
+
+    .process {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+
+    .process .service-card strong {
+      display: inline-block;
+      margin-bottom: 14px;
+      color: var(--brand-dark);
+    }
+
+    .contact-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .contact-card {
+      padding: 32px;
+    }
+
+    .contact-list {
+      display: grid;
+      gap: 16px;
+      margin: 24px 0;
+    }
+
+    .contact-item {
+      padding: 16px 18px;
+      border-radius: 16px;
+      background: #faf7f3;
+      border: 1px solid var(--line);
+    }
+
+    .contact-item span {
+      display: block;
+      color: var(--muted);
+      font-size: 13px;
+      margin-bottom: 3px;
+    }
+
+    .contact-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 24px;
+    }
+
+    .footer {
+      padding: 28px 0 44px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .footer-inner {
+      border-top: 1px solid var(--line);
+      padding-top: 18px;
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 1100px) {
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
+      .projects-grid { grid-template-columns: repeat(2, 1fr); }
+      .process { grid-template-columns: repeat(2, 1fr); }
+      .hero-grid, .about-grid, .contact-grid { grid-template-columns: 1fr; }
+      .info-stack { grid-template-rows: auto; }
+      .stats { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 720px) {
+      .nav { align-items: flex-start; flex-direction: column; padding: 14px 0; }
+      .services-grid, .projects-grid, .process, .stats { grid-template-columns: 1fr; }
+      .hero-card, .about-card, .service-card, .contact-card, .info-card, .stat { padding: 22px; }
+      .hero { padding-top: 36px; }
+      .section-head { align-items: flex-start; flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="container nav">
+      <a class="brand" href="#home">
+        <div class="brand-mark">HS</div>
+        <div>
+          <div>H Square Design</div>
+          <div class="small-text">Architecture & Interior Design</div>
+        </div>
+      </a>
+      <nav class="nav-links">
+        <a href="#home">Home</a>
+        <a href="#services">Services</a>
+        <a href="#projects">Projects</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="container hero-grid">
+        <div class="hero-card">
+          <span class="eyebrow">Lahore Based Design Studio</span>
+          <h1>Designing spaces that impress, perform, and endure.</h1>
+          <p>
+            H Square Design delivers thoughtful architecture, elevation, interior, and project design solutions with a clean aesthetic and practical planning approach for residential, commercial, and institutional spaces.
+          </p>
+          <div class="hero-actions">
+            <a class="cta cta-primary" href="#contact">Start Your Project</a>
+            <a class="cta cta-secondary" href="#projects">View Portfolio</a>
+          </div>
+          <div class="hero-note">
+            <span>Architecture Design</span>
+            <span>Interior Solutions</span>
+            <span>Elevation Concepts</span>
+            <span>Project Planning</span>
+          </div>
+        </div>
+
+        <div class="info-stack">
+          <div class="info-card large">
+            <span class="eyebrow" style="background: rgba(255,255,255,0.14); color: #fff;">Professional Studio</span>
+            <h3 style="font-size: 30px; margin-bottom: 10px;">Built for serious clients and modern project presentation.</h3>
+            <p>
+              Clean communication, polished visuals, and category-based project presentation for a strong first impression.
+            </p>
+          </div>
+          <div class="info-card">
+            <h3 style="margin-bottom: 10px;">Location</h3>
+            <p style="margin-bottom: 0; color: var(--muted);">
+              18km, Main Sheikhupura Road, Lahore
+            </p>
+            <div style="height: 1px; background: var(--line); margin: 20px 0;"></div>
+            <h3 style="margin-bottom: 10px;">Quick Contact</h3>
+            <p style="margin: 0; color: var(--muted);">0301-4463492</p>
+            <p style="margin: 0; color: var(--muted);">0300-4848909</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="container stats">
+        <div class="stat"><strong>Residential</strong><span>Apartment, farm house, villa and family-focused design solutions.</span></div>
+        <div class="stat"><strong>Commercial</strong><span>Office interiors, feature walls, facades and work environments.</span></div>
+        <div class="stat"><strong>Institutional</strong><span>School, hospital, university and community project categories.</span></div>
+        <div class="stat"><strong>Client Focused</strong><span>Professional communication, strong visuals and practical layouts.</span></div>
+      </div>
+    </section>
+
+    <section id="services">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">Our Services</span>
+            <h2>Professional design services for modern spaces.</h2>
+          </div>
+          <p>
+            We help clients shape homes, offices, institutions, and branded interiors through structured planning, elegant design language, and presentation-ready outputs.
+          </p>
+        </div>
+
+        <div class="services-grid">
+          <article class="service-card">
+            <div class="service-icon">01</div>
+            <h3>Architecture Design</h3>
+            <p>Functional planning and well-balanced layouts designed for comfort, usability, and long-term value.</p>
+          </article>
+          <article class="service-card">
+            <div class="service-icon">02</div>
+            <h3>Elevation Design</h3>
+            <p>Modern facade concepts that build strong visual identity and improve first impressions.</p>
+          </article>
+          <article class="service-card">
+            <div class="service-icon">03</div>
+            <h3>Interior Design</h3>
+            <p>Smart interior solutions for commercial interiors, executive offices, homes, and feature walls.</p>
+          </article>
+          <article class="service-card">
+            <div class="service-icon">04</div>
+            <h3>Project Presentation</h3>
+            <p>Organized category-based project showcasing for clients, investors, and architectural presentation needs.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">Portfolio Categories</span>
+            <h2>Selected project categories from our design work.</h2>
+          </div>
+          <p>
+            These sections reflect the kinds of residential, commercial, and institutional design work showcased in your current project archive.
+          </p>
+        </div>
+
+        <div class="projects-grid">
+          <article class="project-card">
+            <div class="project-top"><span class="project-tag">Apartments</span></div>
+            <div class="project-body">
+              <h3>Apartment Design</h3>
+              <p>Modern apartment planning and elevation concepts for multi-storey residential development.</p>
+            </div>
+          </article>
+          <article class="project-card">
+            <div class="project-top"><span class="project-tag">Commercial</span></div>
+            <div class="project-body">
+              <h3>Commercial Interior</h3>
+              <p>Elegant spatial concepts for commercial interior presentation and functional workplace design.</p>
+            </div>
+          </article>
+          <article class="project-card">
+            <div class="project-top"><span class="project-tag">Feature Walls</span></div>
+            <div class="project-body">
+              <h3>Feature Wall Concepts</h3>
+              <p>Statement surfaces and design features that add depth, identity, and visual sophistication.</p>
+            </div>
+          </article>
+          <article class="project-card">
+            <div class="project-top"><span class="project-tag">Institutional</span></div>
+            <div class="project-body">
+              <h3>School & University Projects</h3>
+              <p>Category-led architectural presentation for learning spaces and institutional environments.</p>
+            </div>
+          </article>
+          <article class="project-card">
+            <div class="project-top"><span class="project-tag">Healthcare</span></div>
+            <div class="project-body">
+              <h3>Hospital Design</h3>
+              <p>Practical planning principles with clean visual language for medical and healthcare facilities.</p>
+            </div>
+          </article>
+          <article class="project-card">
+            <div class="project-top"><span class="project-tag">Residential</span></div>
+            <div class="project-body">
+              <h3>Farm House & Custom Homes</h3>
+              <p>Comfort-driven design solutions for private homes, farm houses, and client-focused lifestyle spaces.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">Our Process</span>
+            <h2>A simple and professional way of working.</h2>
+          </div>
+          <p>From concept to presentation, our process is built to make design clear, polished, and client-friendly.</p>
+        </div>
+        <div class="process">
+          <article class="service-card">
+            <strong>Step 01</strong>
+            <h3>Client Brief</h3>
+            <p>We understand your space, your goals, and the visual language you want to achieve.</p>
+          </article>
+          <article class="service-card">
+            <strong>Step 02</strong>
+            <h3>Concept Design</h3>
+            <p>We develop a strong architectural or interior direction based on function and aesthetics.</p>
+          </article>
+          <article class="service-card">
+            <strong>Step 03</strong>
+            <h3>Presentation</h3>
+            <p>Layouts, elevations, and visuals are organized into a clear and impressive presentation format.</p>
+          </article>
+          <article class="service-card">
+            <strong>Step 04</strong>
+            <h3>Refinement</h3>
+            <p>Final updates are made to ensure the design feels polished, practical, and ready for approval.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="container about-grid">
+        <div class="about-card">
+          <span class="eyebrow">About H Square Design</span>
+          <h2 style="font-size: clamp(28px, 4vw, 42px);">A studio approach focused on clarity, style, and practical execution.</h2>
+          <p style="color: var(--muted);">
+            H Square Design presents architecture and interior work with a professional, clean, and client-oriented design philosophy. Our goal is to create spaces that look refined, work efficiently, and communicate strong visual identity.
+          </p>
+        </div>
+        <div class="about-card">
+          <h3>Why clients choose us</h3>
+          <ul>
+            <li>Professional project presentation and clean visual communication</li>
+            <li>Category-based experience across residential, commercial, and institutional work</li>
+            <li>Balanced attention to aesthetics, function, and first impression</li>
+            <li>Clear contact flow for fast client inquiry and consultation</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container contact-grid">
+        <div class="contact-card">
+          <span class="eyebrow">Contact Us</span>
+          <h2 style="font-size: clamp(28px, 4vw, 42px); margin-bottom: 10px;">Let’s discuss your next project.</h2>
+          <p style="color: var(--muted); margin-bottom: 0;">
+            Reach out for architecture, interior, elevation, and project presentation services in Lahore and surrounding areas.
+          </p>
+          <div class="contact-list">
+            <div class="contact-item">
+              <span>Phone / WhatsApp</span>
+              <strong>0301-4463492</strong>
+            </div>
+            <div class="contact-item">
+              <span>Phone / WhatsApp</span>
+              <strong>0300-4848909</strong>
+            </div>
+            <div class="contact-item">
+              <span>Email</span>
+              <strong><a href="mailto:hafeezbashir77@gmail.com">hafeezbashir77@gmail.com</a></strong>
+            </div>
+            <div class="contact-item">
+              <span>Address</span>
+              <strong>18km, Main Sheikhupura Road, Lahore</strong>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-card">
+          <h3 style="margin-bottom: 10px;">Quick Actions</h3>
+          <p style="color: var(--muted);">Use the links below so clients can contact you instantly.</p>
+          <div class="contact-actions">
+            <a class="cta cta-primary" href="https://wa.me/923014463492" target="_blank" rel="noopener">WhatsApp 0301-4463492</a>
+            <a class="cta cta-secondary" href="https://wa.me/923004848909" target="_blank" rel="noopener">WhatsApp 0300-4848909</a>
+            <a class="cta cta-secondary" href="mailto:hafeezbashir77@gmail.com">Send Email</a>
+          </div>
+          <div style="margin-top: 28px; padding: 20px; border-radius: 18px; background: #faf7f3; border: 1px solid var(--line);">
+            <h4 style="margin-bottom: 8px;">Recommended next upgrade</h4>
+            <p style="margin: 0; color: var(--muted);">
+              In the next version, add real project thumbnails to each category card and create individual project pages for an even stronger portfolio presentation.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div>© 2026 H Square Design. All rights reserved.</div>
+      <div>Architecture • Interiors • Elevation • Project Presentation</div>
+    </div>
+  </footer>
+</body>
+</html>
