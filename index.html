@@ -3,540 +3,641 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>H Square Design | Architecture & Interior Design in Lahore</title>
-  <meta name="description" content="H Square Design provides architecture, interior, elevation, and design services in Lahore. Explore our portfolio and contact us for your next project." />
+  <title>H Square Design | Architecture & Interior Design</title>
+  <meta name="description" content="H Square Design is a Lahore-based architecture and interior design studio creating refined residential, commercial, and institutional spaces." />
   <style>
-    :root {
-      --bg: #f7f5f2;
-      --surface: #ffffff;
-      --text: #1d1d1b;
-      --muted: #666056;
-      --line: #e8e1d8;
-      --brand: #8b6b4a;
-      --brand-dark: #6d5238;
-      --soft: #efe7de;
-      --shadow: 0 16px 40px rgba(28, 25, 21, 0.08);
-      --radius: 20px;
-      --max: 1200px;
+    :root{
+      --bg:#ece7df;
+      --panel:#f4efe8;
+      --text:#171513;
+      --muted:#6f675f;
+      --line:rgba(23,21,19,.10);
+      --cream:#d7c2a5;
+      --cream-text:#7c6347;
+      --overlay:rgba(0,0,0,.42);
+      --max:1440px;
+      --serif: Georgia, "Times New Roman", serif;
+      --sans: Arial, Helvetica, sans-serif;
     }
 
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-
-    body {
-      margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
-      color: var(--text);
-      background: var(--bg);
-      line-height: 1.6;
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      background:var(--bg);
+      color:var(--text);
+      font-family:var(--sans);
+      line-height:1.55;
     }
 
-    a { color: inherit; text-decoration: none; }
-    img { max-width: 100%; display: block; }
+    a{text-decoration:none;color:inherit}
+    img{display:block;width:100%}
 
-    .container {
-      width: min(var(--max), calc(100% - 32px));
-      margin: 0 auto;
+    .container{
+      width:min(var(--max), calc(100% - 56px));
+      margin:0 auto;
     }
 
-    .topbar {
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      backdrop-filter: blur(12px);
-      background: rgba(247, 245, 242, 0.9);
-      border-bottom: 1px solid rgba(0,0,0,0.05);
+    h1,h2,h3,p{margin-top:0}
+    h1,h2,h3{
+      font-family:var(--serif);
+      font-weight:500;
+      letter-spacing:-.045em;
+      line-height:.93;
     }
 
-    .nav {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px;
-      min-height: 76px;
+    /* Splash */
+    .intro-splash{
+      position:fixed;
+      inset:0;
+      z-index:3000;
+      background:#efefef;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      animation:splashFade 3.2s ease forwards;
     }
 
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      font-weight: 700;
-      letter-spacing: 0.3px;
+    .intro-splash-inner{
+      text-align:center;
+      transform:translateY(36px);
+      opacity:0;
+      animation:splashMove 1.1s ease .15s forwards;
     }
 
-    .brand-mark {
-      width: 42px;
-      height: 42px;
-      border-radius: 12px;
-      display: grid;
-      place-items: center;
-      background: linear-gradient(135deg, var(--brand), var(--brand-dark));
-      color: #fff;
-      font-size: 14px;
-      box-shadow: var(--shadow);
+    .intro-logo{
+      font-family:var(--serif);
+      font-size:clamp(4rem, 10vw, 7rem);
+      letter-spacing:-.08em;
+      line-height:.85;
+      color:#2e2d2a;
+      margin-bottom:10px;
     }
 
-    .nav-links {
-      display: flex;
-      gap: 22px;
-      flex-wrap: wrap;
-      color: var(--muted);
-      font-size: 14px;
+    .intro-name{
+      font-size:clamp(1.2rem, 2.5vw, 2rem);
+      letter-spacing:.18em;
+      text-transform:uppercase;
+      color:#55524d;
     }
 
-    .nav-links a:hover { color: var(--brand-dark); }
-
-    .cta {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      border-radius: 999px;
-      padding: 14px 22px;
-      font-weight: 700;
-      transition: 0.2s ease;
-      cursor: pointer;
-      border: 1px solid transparent;
+    @keyframes splashMove{
+      from{transform:translateY(36px);opacity:0}
+      to{transform:translateY(0);opacity:1}
     }
 
-    .cta-primary {
-      background: var(--brand);
-      color: #fff;
-      box-shadow: var(--shadow);
+    @keyframes splashFade{
+      0%,72%{opacity:1;visibility:visible}
+      100%{opacity:0;visibility:hidden;pointer-events:none}
     }
 
-    .cta-primary:hover { background: var(--brand-dark); }
-
-    .cta-secondary {
-      background: transparent;
-      color: var(--text);
-      border-color: #d8cec2;
+    /* Menu */
+    #menu-toggle{
+      position:absolute;
+      opacity:0;
+      pointer-events:none;
     }
 
-    .hero {
-      padding: 74px 0 36px;
+    .site-header{
+      position:fixed;
+      top:0;
+      left:0;
+      right:0;
+      z-index:2000;
+      padding:28px 0;
+      color:#fff;
     }
 
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1.15fr 0.85fr;
-      gap: 28px;
-      align-items: stretch;
+    .header-inner{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:20px;
     }
 
-    .hero-card,
-    .info-card,
-    .service-card,
-    .project-card,
-    .contact-card,
-    .stat,
-    .about-card {
-      background: var(--surface);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      border: 1px solid rgba(0,0,0,0.04);
+    .site-logo{
+      display:inline-flex;
+      align-items:center;
+      gap:12px;
     }
 
-    .hero-card {
-      padding: 48px;
-      background: linear-gradient(135deg, #fff 0%, #f6efe7 100%);
+    .site-logo-mark{
+      font-family:var(--serif);
+      font-size:2.1rem;
+      line-height:.8;
+      letter-spacing:-.08em;
+      color:#fff;
     }
 
-    .eyebrow {
-      display: inline-block;
-      margin-bottom: 14px;
-      padding: 8px 12px;
-      border-radius: 999px;
-      background: var(--soft);
-      color: var(--brand-dark);
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 0.4px;
-      text-transform: uppercase;
+    .menu-toggle{
+      width:56px;
+      height:42px;
+      position:relative;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      cursor:pointer;
     }
 
-    h1, h2, h3, h4, p { margin-top: 0; }
-
-    h1 {
-      font-size: clamp(36px, 6vw, 64px);
-      line-height: 1.05;
-      margin-bottom: 18px;
-      letter-spacing: -1.4px;
+    .menu-toggle span,
+    .menu-toggle::before,
+    .menu-toggle::after{
+      content:"";
+      position:absolute;
+      width:34px;
+      height:2px;
+      background:#fff;
+      transition:.25s ease;
     }
 
-    .hero p {
-      color: var(--muted);
-      font-size: 18px;
-      max-width: 60ch;
-      margin-bottom: 28px;
+    .menu-toggle::before{transform:translateY(-10px)}
+    .menu-toggle::after{transform:translateY(10px)}
+
+    .menu-panel{
+      position:fixed;
+      top:0;
+      right:0;
+      width:min(360px, 100%);
+      height:100vh;
+      background:rgba(14,14,14,.92);
+      color:rgba(255,255,255,.78);
+      transform:translateX(100%);
+      transition:transform .3s ease;
+      z-index:2100;
+      padding:110px 38px 40px;
+      backdrop-filter:blur(12px);
     }
 
-    .hero-actions {
-      display: flex;
-      gap: 14px;
-      flex-wrap: wrap;
-      margin-bottom: 28px;
+    .menu-nav{
+      display:grid;
+      gap:26px;
     }
 
-    .hero-note {
-      display: flex;
-      gap: 18px;
-      flex-wrap: wrap;
-      color: var(--muted);
-      font-size: 14px;
+    .menu-nav a{
+      font-family:var(--serif);
+      font-size:clamp(2rem, 5vw, 3.2rem);
+      line-height:.95;
     }
 
-    .info-stack {
-      display: grid;
-      grid-template-rows: 1.15fr 0.85fr;
-      gap: 22px;
+    .menu-nav a:hover{color:#fff}
+
+    .menu-close{
+      position:absolute;
+      top:24px;
+      right:24px;
+      width:48px;
+      height:48px;
+      cursor:pointer;
     }
 
-    .info-card {
-      padding: 28px;
-      position: relative;
-      overflow: hidden;
+    .menu-close::before,
+    .menu-close::after{
+      content:"";
+      position:absolute;
+      top:23px;
+      left:6px;
+      width:36px;
+      height:2px;
+      background:#fff;
     }
 
-    .info-card.large {
-      min-height: 280px;
+    .menu-close::before{transform:rotate(45deg)}
+    .menu-close::after{transform:rotate(-45deg)}
+
+    .menu-backdrop{
+      position:fixed;
+      inset:0;
+      background:rgba(0,0,0,.2);
+      opacity:0;
+      pointer-events:none;
+      transition:opacity .25s ease;
+      z-index:2050;
+    }
+
+    #menu-toggle:checked ~ .menu-panel{transform:translateX(0)}
+    #menu-toggle:checked ~ .menu-backdrop{
+      opacity:1;
+      pointer-events:auto;
+    }
+
+    /* Hero */
+    .hero{
+      position:relative;
+      min-height:100vh;
+      display:flex;
+      align-items:flex-end;
+      overflow:hidden;
+      color:#fff;
+      background:#777;
+    }
+
+    .hero::before{
+      content:"";
+      position:absolute;
+      inset:0;
       background:
-        radial-gradient(circle at top right, rgba(139,107,74,0.18), transparent 28%),
-        linear-gradient(160deg, #211d1a, #47372a 62%, #86684a);
-      color: white;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
+        linear-gradient(to top, rgba(0,0,0,.62), rgba(0,0,0,.08) 45%, rgba(0,0,0,.12)),
+        url('./school/school elevation design (1).png') center center / cover no-repeat;
+      transform:scale(1.02);
     }
 
-    .info-card.large p,
-    .info-card.large .small-text { color: rgba(255,255,255,0.85); }
-
-    .small-text {
-      font-size: 13px;
-      color: var(--muted);
+    .hero-inner{
+      position:relative;
+      z-index:2;
+      width:100%;
+      padding:0 0 72px;
     }
 
-    .stats {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 18px;
-      margin-top: 28px;
+    .hero-content{max-width:760px}
+
+    .hero-meta{
+      display:flex;
+      flex-wrap:wrap;
+      gap:18px;
+      align-items:center;
+      margin-bottom:18px;
+      text-transform:uppercase;
+      letter-spacing:.14em;
+      font-size:.76rem;
+      font-weight:700;
+      color:rgba(255,255,255,.74);
     }
 
-    .stat {
-      padding: 24px;
-      text-align: center;
+    .hero-divider{
+      width:1px;
+      height:16px;
+      background:rgba(255,255,255,.28);
     }
 
-    .stat strong {
-      display: block;
-      font-size: 28px;
-      margin-bottom: 6px;
-      color: var(--brand-dark);
+    .hero h1{
+      font-size:clamp(3.2rem, 7vw, 5.8rem);
+      max-width:7.4ch;
+      margin-bottom:18px;
     }
 
-    section {
-      padding: 38px 0;
+    .hero-text{
+      max-width:520px;
+      color:rgba(255,255,255,.84);
+      font-size:1.04rem;
+      line-height:1.7;
+      margin-bottom:0;
     }
 
-    .section-head {
-      display: flex;
-      justify-content: space-between;
-      align-items: end;
-      gap: 18px;
-      margin-bottom: 22px;
+    /* Sections */
+    section{padding:72px 0}
+
+    .section-head{
+      display:grid;
+      grid-template-columns:.95fr 1.05fr;
+      gap:28px;
+      align-items:end;
+      margin-bottom:28px;
     }
 
-    .section-head h2 {
-      font-size: clamp(28px, 4vw, 42px);
-      margin-bottom: 8px;
-      letter-spacing: -0.8px;
+    .eyebrow{
+      display:inline-block;
+      padding:10px 16px;
+      border-radius:999px;
+      background:var(--cream);
+      color:var(--cream-text);
+      text-transform:uppercase;
+      letter-spacing:.14em;
+      font-size:.76rem;
+      font-weight:700;
+      margin-bottom:20px;
     }
 
-    .section-head p {
-      color: var(--muted);
-      max-width: 62ch;
-      margin: 0;
+    .section-head h2{
+      font-size:clamp(2.3rem, 4.4vw, 3.8rem);
+      max-width:8ch;
+      margin-bottom:0;
     }
 
-    .services-grid,
-    .projects-grid,
-    .contact-grid,
-    .about-grid {
-      display: grid;
-      gap: 20px;
+    .section-head p{
+      color:var(--muted);
+      margin-bottom:0;
+      max-width:46rem;
+      font-size:1rem;
+      line-height:1.75;
     }
 
-    .services-grid {
-      grid-template-columns: repeat(4, 1fr);
+    /* Services */
+    .services-list{
+      display:grid;
+      gap:24px;
     }
 
-    .service-card {
-      padding: 26px;
+    .service-row{
+      display:grid;
+      grid-template-columns:.9fr 1.1fr;
+      gap:24px;
+      align-items:stretch;
     }
 
-    .service-icon {
-      width: 48px;
-      height: 48px;
-      border-radius: 14px;
-      display: grid;
-      place-items: center;
-      margin-bottom: 16px;
-      background: var(--soft);
-      color: var(--brand-dark);
-      font-weight: 700;
+    .service-image,
+    .service-copy,
+    .studio-panel,
+    .contact-panel{
+      border-radius:28px;
+      overflow:hidden;
     }
 
-    .service-card h3 {
-      margin-bottom: 10px;
-      font-size: 20px;
+    .service-image{
+      min-height:430px;
+      background:#d7cec2;
     }
 
-    .service-card p { color: var(--muted); margin-bottom: 0; }
-
-    .about-grid {
-      grid-template-columns: 1fr 1fr;
-      align-items: stretch;
+    .service-image img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
     }
 
-    .about-card {
-      padding: 34px;
+    .service-copy,
+    .studio-panel,
+    .contact-panel{
+      background:var(--panel);
+      padding:36px;
     }
 
-    .about-card ul {
-      padding-left: 18px;
-      color: var(--muted);
+    .tag{
+      display:inline-block;
+      margin-bottom:16px;
+      color:var(--cream-text);
+      text-transform:uppercase;
+      letter-spacing:.12em;
+      font-size:.8rem;
+      font-weight:700;
     }
 
-    .projects-grid {
-      grid-template-columns: repeat(3, 1fr);
+    .service-copy h3,
+    .studio-panel h2,
+    .contact-panel h2{
+      font-size:clamp(2rem, 3.5vw, 3rem);
+      max-width:8ch;
+      margin-bottom:16px;
     }
 
-    .project-card {
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      min-height: 280px;
-      background: linear-gradient(135deg, #fbf7f3 0%, #f0e6db 100%);
+    .service-copy p,
+    .studio-panel p,
+    .contact-panel p{
+      color:var(--muted);
+      font-size:1rem;
+      line-height:1.72;
+      margin-bottom:18px;
     }
 
-    .project-top {
-      min-height: 170px;
-      overflow: hidden;
-      padding: 0;
+    .service-link{
+      font-weight:700;
     }
 
-    .project-top img {
-      width: 100%;
-      height: 170px;
-      object-fit: cover;
-      display: block;
+    /* Portfolio */
+    .portfolio-grid{
+      display:grid;
+      grid-template-columns:repeat(2, 1fr);
+      gap:24px;
     }
 
-    .project-body {
-      padding: 22px;
+    .portfolio-card{
+      position:relative;
+      min-height:620px;
+      border-radius:28px;
+      overflow:hidden;
+      background:#d2cabf;
     }
 
-    .project-body h3 {
-      margin-bottom: 8px;
+    .portfolio-card img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
     }
 
-    .project-body p {
-      margin-bottom: 0;
-      color: var(--muted);
+    .portfolio-card::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(to top, rgba(0,0,0,.64), rgba(0,0,0,.12));
     }
 
-    .process {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 18px;
+    .portfolio-body{
+      position:absolute;
+      left:28px;
+      right:28px;
+      bottom:28px;
+      z-index:2;
+      color:#fff;
     }
 
-    .process .service-card strong {
-      display: inline-block;
-      margin-bottom: 14px;
-      color: var(--brand-dark);
+    .portfolio-body .tag{
+      color:rgba(255,255,255,.8);
+      margin-bottom:10px;
     }
 
-    .contact-grid {
-      grid-template-columns: 1fr 1fr;
+    .portfolio-body h3{
+      font-size:clamp(1.9rem, 3vw, 2.7rem);
+      margin-bottom:10px;
+      max-width:8ch;
     }
 
-    .contact-card {
-      padding: 32px;
+    .portfolio-body p{
+      color:rgba(255,255,255,.86);
+      margin-bottom:0;
+      font-size:.98rem;
+      line-height:1.65;
+      max-width:30rem;
     }
 
-    .contact-list {
-      display: grid;
-      gap: 16px;
-      margin: 24px 0;
+    /* Studio / Contact */
+    .studio-grid{
+      display:grid;
+      grid-template-columns:.9fr 1.1fr;
+      gap:24px;
+      align-items:stretch;
     }
 
-    .contact-item {
-      padding: 16px 18px;
-      border-radius: 16px;
-      background: #faf7f3;
-      border: 1px solid var(--line);
+    .studio-points{
+      display:grid;
+      gap:16px;
+      margin-top:24px;
     }
 
-    .contact-item span {
-      display: block;
-      color: var(--muted);
-      font-size: 13px;
-      margin-bottom: 3px;
+    .studio-point{
+      padding-top:16px;
+      border-top:1px solid var(--line);
     }
 
-    .contact-actions {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-      margin-top: 24px;
+    .studio-point strong{
+      display:block;
+      margin-bottom:6px;
+      font-size:.98rem;
     }
 
-    .footer {
-      padding: 28px 0 44px;
-      color: var(--muted);
-      font-size: 14px;
+    .contact-grid{
+      display:grid;
+      grid-template-columns:repeat(2, 1fr);
+      gap:14px;
+      margin-top:24px;
     }
 
-    .footer-inner {
-      border-top: 1px solid var(--line);
-      padding-top: 18px;
-      display: flex;
-      justify-content: space-between;
-      gap: 14px;
-      flex-wrap: wrap;
+    .contact-box{
+      border:1px solid var(--line);
+      border-radius:18px;
+      padding:18px;
+      background:rgba(255,255,255,.28);
     }
 
-    @media (max-width: 1100px) {
-      .services-grid { grid-template-columns: repeat(2, 1fr); }
-      .projects-grid { grid-template-columns: repeat(2, 1fr); }
-      .process { grid-template-columns: repeat(2, 1fr); }
-      .hero-grid, .about-grid, .contact-grid { grid-template-columns: 1fr; }
-      .info-stack { grid-template-rows: auto; }
-      .stats { grid-template-columns: repeat(2, 1fr); }
+    .contact-box span{
+      display:block;
+      color:var(--muted);
+      font-size:.85rem;
+      margin-bottom:4px;
     }
 
-    @media (max-width: 720px) {
-      .nav { align-items: flex-start; flex-direction: column; padding: 14px 0; }
-      .services-grid, .projects-grid, .process, .stats { grid-template-columns: 1fr; }
-      .hero-card, .about-card, .service-card, .contact-card, .info-card, .stat { padding: 22px; }
-      .hero { padding-top: 36px; }
-      .section-head { align-items: flex-start; flex-direction: column; }
+    .hero-actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:14px;
+      margin-top:24px;
     }
-    .gallery-section {
-  padding: 30px 0 10px;
-}
 
-.gallery-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
-  margin-top: 20px;
-}
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:50px;
+      padding:0 20px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      font-size:.95rem;
+      font-weight:700;
+      transition:.2s ease;
+    }
 
-.gallery-card {
-  background: var(--surface);
-  border-radius: var(--radius);
-  overflow: hidden;
-  box-shadow: var(--shadow);
-  border: 1px solid rgba(0,0,0,0.04);
-}
+    .btn-dark{
+      background:var(--text);
+      color:#fff;
+      border-color:var(--text);
+    }
 
-.gallery-card img {
-  width: 100%;
-  height: 240px;
-  object-fit: cover;
-  display: block;
-}
+    .btn-light{
+      background:transparent;
+      color:var(--text);
+    }
 
-.gallery-card h4 {
-  margin: 0;
-  padding: 16px 18px;
-  font-size: 18px;
-}
+    .footer{
+      padding:22px 0 40px;
+      color:var(--muted);
+      font-size:.94rem;
+    }
 
-@media (max-width: 1100px) {
-  .gallery-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
+    .footer-inner{
+      border-top:1px solid var(--line);
+      padding-top:18px;
+      display:flex;
+      justify-content:space-between;
+      gap:18px;
+      flex-wrap:wrap;
+    }
 
-@media (max-width: 720px) {
-  .gallery-grid {
-    grid-template-columns: 1fr;
-  }
-}
+    @media (max-width:1180px){
+      .section-head,
+      .service-row,
+      .portfolio-grid,
+      .studio-grid{
+        grid-template-columns:1fr;
+      }
+    }
+
+    @media (max-width:760px){
+      .container{
+        width:min(var(--max), calc(100% - 24px));
+      }
+
+      .site-header{
+        padding:18px 0;
+      }
+
+      .hero-inner{
+        padding-bottom:42px;
+      }
+
+      .hero h1{
+        font-size:2.8rem;
+        max-width:7ch;
+      }
+
+      .hero-text{
+        font-size:.98rem;
+      }
+
+      .service-copy,
+      .studio-panel,
+      .contact-panel{
+        padding:26px;
+      }
+
+      .contact-grid{
+        grid-template-columns:1fr;
+      }
+
+      .portfolio-card{
+        min-height:460px;
+      }
+
+      .menu-panel{
+        width:100%;
+      }
+    }
   </style>
 </head>
 <body>
-  <header class="topbar">
-    <div class="container nav">
-      <a class="brand" href="#home">
-        <div class="brand-mark">HS</div>
-        <div>
-          <div>H Square Design</div>
-          <div class="small-text">Architecture & Interior Design</div>
-        </div>
+  <div class="intro-splash" aria-hidden="true">
+    <div class="intro-splash-inner">
+      <div class="intro-logo">HS</div>
+      <div class="intro-name">H Square Design</div>
+    </div>
+  </div>
+
+  <input type="checkbox" id="menu-toggle" />
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="site-logo" href="#home" aria-label="H Square Design home">
+        <div class="site-logo-mark">HS</div>
       </a>
-      <nav class="nav-links">
-        <a href="#home">Home</a>
-        <a href="#services">Services</a>
-        <a href="#projects">Projects</a>
-        <a href="#about">About</a>
-        <a href="#contact">Contact</a>
-      </nav>
+
+      <label class="menu-toggle" for="menu-toggle" aria-label="Open menu">
+        <span></span>
+      </label>
     </div>
   </header>
 
+  <aside class="menu-panel">
+    <label class="menu-close" for="menu-toggle" aria-label="Close menu"></label>
+    <nav class="menu-nav">
+      <a href="#services" onclick="document.getElementById('menu-toggle').checked=false;">Services</a>
+      <a href="#portfolio" onclick="document.getElementById('menu-toggle').checked=false;">Portfolio</a>
+      <a href="#studio" onclick="document.getElementById('menu-toggle').checked=false;">About</a>
+      <a href="#contact" onclick="document.getElementById('menu-toggle').checked=false;">Contact</a>
+    </nav>
+  </aside>
+
+  <label class="menu-backdrop" for="menu-toggle"></label>
+
   <main>
     <section class="hero" id="home">
-      <div class="container hero-grid">
-        <div class="hero-card">
-          <span class="eyebrow">Lahore Based Design Studio</span>
-          <h1>Designing spaces that impress, perform, and endure.</h1>
-          <p>
-            H Square Design delivers thoughtful architecture, elevation, interior, and project design solutions with a clean aesthetic and practical planning approach for residential, commercial, and institutional spaces.
+      <div class="container hero-inner">
+        <div class="hero-content">
+          <div class="hero-meta">
+            <span>Lahore design studio</span>
+            <span class="hero-divider"></span>
+            <span>Architecture and interior design studio</span>
+          </div>
+          <h1>Design matters</h1>
+          <p class="hero-text">
+            H Square Design is a design-focused architecture and interior studio creating refined residential, commercial, and institutional spaces in Lahore.
           </p>
-          <div class="hero-actions">
-            <a class="cta cta-primary" href="#contact">Start Your Project</a>
-            <a class="cta cta-secondary" href="#projects">View Portfolio</a>
-          </div>
-          <div class="hero-note">
-            <span>Architecture Design</span>
-            <span>Interior Solutions</span>
-            <span>Elevation Concepts</span>
-            <span>Project Planning</span>
-          </div>
         </div>
-
-        <div class="info-stack">
-          <div class="info-card large">
-            <span class="eyebrow" style="background: rgba(255,255,255,0.14); color: #fff;">Professional Studio</span>
-            <h3 style="font-size: 30px; margin-bottom: 10px;">Built for serious clients and modern project presentation.</h3>
-            <p>
-              Clean communication, polished visuals, and category-based project presentation for a strong first impression.
-            </p>
-          </div>
-          <div class="info-card">
-            <h3 style="margin-bottom: 10px;">Location</h3>
-            <p style="margin-bottom: 0; color: var(--muted);">
-              18km, Main Sheikhupura Road, Lahore
-            </p>
-            <div style="height: 1px; background: var(--line); margin: 20px 0;"></div>
-            <h3 style="margin-bottom: 10px;">Quick Contact</h3>
-            <p style="margin: 0; color: var(--muted);">0301-4463492</p>
-            <p style="margin: 0; color: var(--muted);">0300-4848909</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="container stats">
-        <div class="stat"><strong>Residential</strong><span>Apartment, farm house, villa and family-focused design solutions.</span></div>
-        <div class="stat"><strong>Commercial</strong><span>Office interiors, feature walls, facades and work environments.</span></div>
-        <div class="stat"><strong>Institutional</strong><span>School, hospital, university and community project categories.</span></div>
-        <div class="stat"><strong>Client Focused</strong><span>Professional communication, strong visuals and practical layouts.</span></div>
       </div>
     </section>
 
@@ -544,323 +645,162 @@
       <div class="container">
         <div class="section-head">
           <div>
-            <span class="eyebrow">Our Services</span>
-            <h2>Professional design services for modern spaces.</h2>
+            <span class="eyebrow">Services</span>
+            <h2>Studio services with calm visual direction.</h2>
           </div>
           <p>
-            We help clients shape homes, offices, institutions, and branded interiors through structured planning, elegant design language, and presentation-ready outputs.
+            A more image-led, quieter website direction inspired by the reference style, while still presenting your studio name, your work, and your contact details clearly.
           </p>
         </div>
 
-        <div class="services-grid">
-          <article class="service-card">
-            <div class="service-icon">01</div>
-            <h3>Architecture Design</h3>
-            <p>Functional planning and well-balanced layouts designed for comfort, usability, and long-term value.</p>
+        <div class="services-list">
+          <article class="service-row">
+            <div class="service-image">
+              <img src="./Appartments/apartment elevation design (1).jpg" alt="Architectural design">
+            </div>
+            <div class="service-copy">
+              <span class="tag">Residential</span>
+              <h3>Architectural design for homes.</h3>
+              <p>
+                Thoughtful planning, modern elevation development, and facade composition for residential projects that need proportion, clarity, and presence.
+              </p>
+              <a class="service-link" href="#portfolio">Read more</a>
+            </div>
           </article>
-          <article class="service-card">
-            <div class="service-icon">02</div>
-            <h3>Elevation Design</h3>
-            <p>Modern facade concepts that build strong visual identity and improve first impressions.</p>
-          </article>
-          <article class="service-card">
-            <div class="service-icon">03</div>
-            <h3>Interior Design</h3>
-            <p>Smart interior solutions for commercial interiors, executive offices, homes, and feature walls.</p>
-          </article>
-          <article class="service-card">
-            <div class="service-icon">04</div>
-            <h3>Project Presentation</h3>
-            <p>Organized category-based project showcasing for clients, investors, and architectural presentation needs.</p>
+
+          <article class="service-row">
+            <div class="service-image">
+              <img src="./commercial elevation design (1).jpeg" alt="Commercial interior design">
+            </div>
+            <div class="service-copy">
+              <span class="tag">Commercial</span>
+              <h3>Interior design for business spaces.</h3>
+              <p>
+                Commercial interiors, feature walls, and presentation-focused concepts for office, retail, and branded spaces with stronger identity.
+              </p>
+              <a class="service-link" href="#portfolio">Read more</a>
+            </div>
           </article>
         </div>
       </div>
     </section>
 
-    <section id="projects">
+    <section id="portfolio">
       <div class="container">
         <div class="section-head">
           <div>
-            <span class="eyebrow">Portfolio Categories</span>
-            <h2>Our Portfolio</h2>
+            <span class="eyebrow">Portfolio</span>
+            <h2>Selected projects and featured work.</h2>
           </div>
           <p>
-            Explore selected project categories including apartments, commercial interiors,
-            feature walls, schools, hospitals, and farm houses.
+            Larger image panels keep the presentation smoother and more premium, closer to the reference landing-page feel you liked.
           </p>
         </div>
 
-  <div class="projects-grid">
-  <a href="#apartments-gallery" class="project-card">
-    <div class="project-top">
-      <img src="./Appartments/apartment elevation design (1).jpg" alt="Apartments">
-    </div>
-    <div class="project-body">
-      <h3>Apartments</h3>
-    </div>
-  </a>
+        <div class="portfolio-grid">
+          <a class="portfolio-card" href="#contact">
+            <img src="./Appartments/apartment elevation design (1).jpg" alt="Apartment project">
+            <div class="portfolio-body">
+              <span class="tag">Residential</span>
+              <h3>Apartment design.</h3>
+              <p>Multi-storey elevation shaped through symmetry, rhythm, and a balanced facade language.</p>
+            </div>
+          </a>
 
-  <a href="#commercial-gallery" class="project-card">
-    <div class="project-top">
-      <img src="./commercial elevation design (1).jpeg" alt="Commercial Interior">
-    </div>
-    <div class="project-body">
-      <h3>Commercial Interior</h3>
-    </div>
-  </a>
+          <a class="portfolio-card" href="#contact">
+            <img src="./commercial elevation design (1).jpeg" alt="Commercial project">
+            <div class="portfolio-body">
+              <span class="tag">Commercial</span>
+              <h3>Commercial interior.</h3>
+              <p>Contemporary identity developed through geometry, material contrast, and presentation-ready composition.</p>
+            </div>
+          </a>
 
-  <a href="#feature-walls-gallery" class="project-card">
-    <div class="project-top">
-      <img src="./Feature Walls/feature wall elevation design (1).jpg" alt="Feature Walls">
-    </div>
-    <div class="project-body">
-      <h3>Feature Walls</h3>
-    </div>
-  </a>
+          <a class="portfolio-card" href="#contact">
+            <img src="./Feature Walls/feature wall elevation design (1).jpg" alt="Feature walls project">
+            <div class="portfolio-body">
+              <span class="tag">Statement Design</span>
+              <h3>Feature walls and details.</h3>
+              <p>Architectural statement pieces designed to add presence, branding, and focal character.</p>
+            </div>
+          </a>
 
-  <a href="#school-gallery" class="project-card">
-    <div class="project-top">
-      <img src="./school/school elevation design (1).png" alt="School Projects">
-    </div>
-    <div class="project-body">
-      <h3>School Projects</h3>
-    </div>
-  </a>
-
-  <a href="#hospital-gallery" class="project-card">
-    <div class="project-top">
-      <img src="./hospital/hospital elevation design (1).png" alt="Hospital Design">
-    </div>
-    <div class="project-body">
-      <h3>Hospital Design</h3>
-    </div>
-  </a>
-
-  <a href="#farmhouse-gallery" class="project-card">
-    <div class="project-top">
-      <img src="./farm house/farmhouse elevation design (1).jpg" alt="Farm House">
-    </div>
-    <div class="project-body">
-      <h3>Farm House</h3>
-    </div>
-  </a>
-</div>
+          <a class="portfolio-card" href="#contact">
+            <img src="./farm house/farmhouse elevation design (1).jpg" alt="Farm house project">
+            <div class="portfolio-body">
+              <span class="tag">Residential</span>
+              <h3>Farm house exterior concept.</h3>
+              <p>Large-format residential work built around openness, luxury, and a calmer exterior expression.</p>
+            </div>
+          </a>
+        </div>
       </div>
     </section>
 
-    <section>
-      <div class="container">
-        <div class="section-head">
-          <div>
-            <span class="eyebrow">Our Process</span>
-            <h2>A simple and professional way of working.</h2>
+    <section id="studio">
+      <div class="container studio-grid">
+        <div class="studio-panel">
+          <span class="eyebrow">About</span>
+          <h2>Design with clarity and restraint.</h2>
+          <p>
+            This version follows the reference direction much more closely in structure: full-screen landing image, minimal top controls, and a right-side menu reveal.
+          </p>
+
+          <div class="studio-points">
+            <div class="studio-point">
+              <strong>Smoother landing</strong>
+              <span>Full-screen hero presentation with text overlay and less clutter.</span>
+            </div>
+            <div class="studio-point">
+              <strong>Minimal navigation</strong>
+              <span>Hamburger menu opens a cleaner, larger navigation panel.</span>
+            </div>
+            <div class="studio-point">
+              <strong>Premium tone</strong>
+              <span>Calmer palette, larger imagery, and lighter content rhythm.</span>
+            </div>
           </div>
-          <p>From concept to presentation, our process is built to make design clear, polished, and client-friendly.</p>
         </div>
-        <div class="process">
-          <article class="service-card">
-            <strong>Step 01</strong>
-            <h3>Client Brief</h3>
-            <p>We understand your space, your goals, and the visual language you want to achieve.</p>
-          </article>
-          <article class="service-card">
-            <strong>Step 02</strong>
-            <h3>Concept Design</h3>
-            <p>We develop a strong architectural or interior direction based on function and aesthetics.</p>
-          </article>
-          <article class="service-card">
-            <strong>Step 03</strong>
-            <h3>Presentation</h3>
-            <p>Layouts, elevations, and visuals are organized into a clear and impressive presentation format.</p>
-          </article>
-          <article class="service-card">
-            <strong>Step 04</strong>
-            <h3>Refinement</h3>
-            <p>Final updates are made to ensure the design feels polished, practical, and ready for approval.</p>
-          </article>
-        </div>
-      </div>
-    </section>
 
-    <section id="about">
-      <div class="container about-grid">
-        <div class="about-card">
-          <span class="eyebrow">About H Square Design</span>
-          <h2 style="font-size: clamp(28px, 4vw, 42px);">A studio approach focused on clarity, style, and practical execution.</h2>
-          <p style="color: var(--muted);">
-            H Square Design presents architecture and interior work with a professional, clean, and client-oriented design philosophy. Our goal is to create spaces that look refined, work efficiently, and communicate strong visual identity.
+        <div class="contact-panel" id="contact">
+          <span class="eyebrow">Contact</span>
+          <h2>Let’s discuss your next project.</h2>
+          <p>
+            Reach out for architecture, interior, elevation, and design presentation services in Lahore and surrounding areas.
           </p>
-        </div>
-        <div class="about-card">
-          <h3>Why clients choose us</h3>
-          <ul>
-            <li>Professional project presentation and clean visual communication</li>
-            <li>Category-based experience across residential, commercial, and institutional work</li>
-            <li>Balanced attention to aesthetics, function, and first impression</li>
-            <li>Clear contact flow for fast client inquiry and consultation</li>
-          </ul>
-        </div>
-      </div>
-    </section>
 
-    <section id="contact">
-      <div class="container contact-grid">
-        <div class="contact-card">
-          <span class="eyebrow">Contact Us</span>
-          <h2 style="font-size: clamp(28px, 4vw, 42px); margin-bottom: 10px;">Let’s discuss your next project.</h2>
-          <p style="color: var(--muted); margin-bottom: 0;">
-            Reach out for architecture, interior, elevation, and project presentation services in Lahore and surrounding areas.
-          </p>
-          <div class="contact-list">
-            <div class="contact-item">
+          <div class="contact-grid">
+            <div class="contact-box">
               <span>Phone / WhatsApp</span>
               <strong>0301-4463492</strong>
             </div>
-            <div class="contact-item">
+            <div class="contact-box">
               <span>Phone / WhatsApp</span>
               <strong>0300-4848909</strong>
             </div>
-            <div class="contact-item">
+            <div class="contact-box">
               <span>Email</span>
               <strong><a href="mailto:hafeezbashir77@gmail.com">hafeezbashir77@gmail.com</a></strong>
             </div>
-            <div class="contact-item">
-              <span>Address</span>
+            <div class="contact-box">
+              <span>Location</span>
               <strong>18km, Main Sheikhupura Road, Lahore</strong>
             </div>
           </div>
-        </div>
 
-        <div class="contact-card">
-          <h3 style="margin-bottom: 10px;">Quick Actions</h3>
-          <p style="color: var(--muted);">Use the links below so clients can contact you instantly.</p>
-          <div class="contact-actions">
-            <a class="cta cta-primary" href="https://wa.me/923014463492" target="_blank" rel="noopener">WhatsApp 0301-4463492</a>
-            <a class="cta cta-secondary" href="https://wa.me/923004848909" target="_blank" rel="noopener">WhatsApp 0300-4848909</a>
-            <a class="cta cta-secondary" href="mailto:hafeezbashir77@gmail.com">Send Email</a>
-          </div>
-          <div style="margin-top: 28px; padding: 20px; border-radius: 18px; background: #faf7f3; border: 1px solid var(--line);">
-            <h4 style="margin-bottom: 8px;">Recommended next upgrade</h4>
-            <p style="margin: 0; color: var(--muted);">
-              In the next version, add real project thumbnails to each category card and create individual project pages for an even stronger portfolio presentation.
-            </p>
+          <div class="hero-actions">
+            <a class="btn btn-dark" href="https://wa.me/923014463492" target="_blank" rel="noopener">WhatsApp Us</a>
+            <a class="btn btn-light" href="mailto:hafeezbashir77@gmail.com">Send Email</a>
           </div>
         </div>
       </div>
     </section>
-    <section class="gallery-section" id="apartments-gallery">
-  <div class="container">
-    <div class="section-head">
-      <div>
-        <span class="eyebrow">Apartments</span>
-        <h2>Apartment Projects</h2>
-      </div>
-      <p>Apartment elevations and residential design work.</p>
-    </div>
-    <div class="gallery-grid">
-      <div class="gallery-card">
-        <img src="./Appartments/apartment elevation design (1).jpg" alt="Apartment Project 1">
-        <h4>Apartment Project 1</h4>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="gallery-section" id="commercial-gallery">
-  <div class="container">
-    <div class="section-head">
-      <div>
-        <span class="eyebrow">Commercial Interior</span>
-        <h2>Commercial Interior Projects</h2>
-      </div>
-      <p>Browse all commercial interior and elevation work.</p>
-    </div>
-    <div class="gallery-grid">
-      <div class="gallery-card">
-        <img src="./commercial elevation design (1).jpeg" alt="Commercial Project 1">
-        <h4>Commercial Project 1</h4>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="gallery-section" id="feature-walls-gallery">
-  <div class="container">
-    <div class="section-head">
-      <div>
-        <span class="eyebrow">Feature Walls</span>
-        <h2>Feature Wall Projects</h2>
-      </div>
-      <p>Selected feature wall concepts and design visuals.</p>
-    </div>
-    <div class="gallery-grid">
-      <div class="gallery-card">
-        <img src="./Feature Walls/feature wall elevation design (1).jpg" alt="Feature Wall 1">
-        <h4>Feature Wall 1</h4>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="gallery-section" id="school-gallery">
-  <div class="container">
-    <div class="section-head">
-      <div>
-        <span class="eyebrow">School Projects</span>
-        <h2>School Projects</h2>
-      </div>
-      <p>Institutional and school design work.</p>
-    </div>
-    <div class="gallery-grid">
-      <div class="gallery-card">
-        <img src="./school/school elevation design (1).png" alt="School Project 1">
-        <h4>School Project 1</h4>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="gallery-section" id="hospital-gallery">
-  <div class="container">
-    <div class="section-head">
-      <div>
-        <span class="eyebrow">Hospital Design</span>
-        <h2>Hospital Projects</h2>
-      </div>
-      <p>Hospital elevations and healthcare design work.</p>
-    </div>
-    <div class="gallery-grid">
-      <div class="gallery-card">
-        <img src="./hospital/hospital elevation design (1).png" alt="Hospital Project 1">
-        <h4>Hospital Project 1</h4>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="gallery-section" id="farmhouse-gallery">
-  <div class="container">
-    <div class="section-head">
-      <div>
-        <span class="eyebrow">Farm House</span>
-        <h2>Farm House Projects</h2>
-      </div>
-      <p>Farm house elevation and exterior concepts.</p>
-    </div>
-    <div class="gallery-grid">
-      <div class="gallery-card">
-        <img src="./farm house/farmhouse elevation design (1).jpg" alt="Farm House Project 1">
-        <h4>Farm House Project 1</h4>
-      </div>
-    </div>
-  </div>
-</section>
   </main>
 
   <footer class="footer">
     <div class="container footer-inner">
       <div>© 2026 H Square Design. All rights reserved.</div>
-      <div>Architecture • Interiors • Elevation • Project Presentation</div>
+      <div>Architecture • Interiors • Elevation • Presentation</div>
     </div>
   </footer>
 </body>
