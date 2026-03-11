@@ -1,1 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio | H Square Design</title>
+  <meta name="description" content="View residential, commercial, interior, and institutional work by H Square Design." />
+  <style>
+    :root{
+      --bg:#ece7df;
+      --panel:#f4efe8;
+      --text:#171513;
+      --muted:#6f675f;
+      --soft-line:rgba(23,21,19,.10);
+      --cream:#d7c2a5;
+      --cream-text:#7c6347;
+      --max:1440px;
+      --serif: Georgia, "Times New Roman", serif;
+      --sans: "Helvetica Neue", Arial, Helvetica, sans-serif;
+    }
 
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      background:var(--bg);
+      color:var(--text);
+      font-family:var(--sans);
+      line-height:1.55;
+    }
+
+    a{text-decoration:none;color:inherit}
+    img{display:block;width:100%}
+    button{font:inherit}
+
+    .container{
+      width:min(var(--max), calc(100% - 56px));
+      margin:0 auto;
+    }
+
+    h1,h2,h3,p{margin-top:0}
+    h1,h2,h3{
+      font-family:var(--serif);
+      font-weight:500;
+      letter-spacing:-.045em;
+      line-height:.93;
+    }
+
+    .site-header{
+      position:fixed;
+      top:0;
+      left:0;
+      right:0;
+      z-index:1000;
+      padding:24px 0;
+      mix-blend-mode:difference;
+    }
+
+    .header-inner{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:24px;
+    }
+
+    .site-logo img{
+      width:68px;
+      height:auto;
+      display:block;
+    }
+
+    .menu-toggle{
+      width:82px;
+      height:50px;
+      position:relative;
+      background:none;
+      border:0;
+      padding:0;
+      cursor:pointer;
+      transform:translateX(28px);
+    }
+
+    .menu-toggle span{
+      position:absolute;
+      right:0;
+      height:2px;
+      background:#fff;
+      border-radius:999px;
+      transition:width .3s ease;
+    }
+
+    .menu-toggle span:nth-child(1){top:12px;width:52px;}
+    .menu-toggle span:nth-child(2){top:24px;width:68px;}
+    .menu-toggle span:nth-child(3){top:36px;width:58px;}
+
+    .menu-toggle:hover span:nth-child(1){width:60px;}
+    .menu-toggle:hover span:nth-child(2){width:74px;}
+    .menu-toggle:hover span:nth-child(3){width:66px;}
+
+    .page-hero{
+      padding:150px 0 60px;
+    }
+
+    .hero-grid{
+      display:grid;
+      grid-template-columns:.9fr 1.1fr;
+      gap:32px;
+      align-items:end;
+    }
+
+    .eyebrow{
+      display:inline-block;
+      padding:10px 16px;
+      border-radius:999px;
+      background:var(--cream);
+      color:var(--cream-text);
+      text-transform:uppercase;
+      letter-spacing:.14em;
+      font-size:.76rem;
+      font-weight:700;
+      margin-bottom:22px;
+    }
+
+    .hero-grid h1{
+      font-size:clamp(3rem, 6vw, 5.2rem);
+      max-width:7ch;
+      margin-bottom:0;
+    }
+
+    .hero-grid p{
+      color:var(--muted);
+      font-size:1rem;
+      line-height:1.75;
+      max-width:48rem;
+      margin-bottom:0;
+    }
+
+    .filter-row{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      margin-bottom:30px;
+    }
+
+    .filter-pill{
+      padding:10px 16px;
+      border-radius:999px;
+      background:var(--panel);
+      border:1px solid var(--soft-line);
+      color:var(--muted);
+      font-size:.9rem;
+      font-weight:700;
+    }
+
+    .portfolio-grid{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:24px;
+      padding-bottom:72px;
+    }
+
+    .card{
+      position:relative;
+      min-height:620px;
+      border-radius:28px;
+      overflow:hidden;
+      background:#d7cec3;
+    }
+
+    .card img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      filter:grayscale(100%);
+      transition:filter .6s ease, transform .6s ease;
+    }
+
+    .card:hover img{
+      filter:grayscale(0%);
+      transform:scale(1.05);
+    }
+
+    .card::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(to top, rgba(0,0,0,.64), rgba(0,0,0,.10));
+      pointer-events:none;
+    }
+
+    .card-body{
+      position:absolute;
+      left:28px;
+      right:28px;
+      bottom:28px;
+      z-index:2;
+      color:#fff;
+    }
+
+    .tag{
+      display:inline-block;
+      margin-bottom:12px;
+      color:rgba(255,255,255,.82);
+      text-transform:uppercase;
+      letter-spacing:.12em;
+      font-size:.76rem;
+      font-weight:700;
+    }
+
+    .card-body h2{
+      font-size:clamp(2rem, 3vw, 2.8rem);
+      max-width:8ch;
+      margin-bottom:10px;
+    }
+
+    .card-body p{
+      margin-bottom:0;
+      color:rgba(255,255,255,.88);
+      line-height:1.7;
+      max-width:30rem;
+    }
+
+    .footer{
+      padding:24px 0 40px;
+      color:var(--muted);
+      font-size:.94rem;
+    }
+
+    .footer-inner{
+      border-top:1px solid var(--soft-line);
+      padding-top:18px;
+      display:flex;
+      justify-content:space-between;
+      gap:18px;
+      flex-wrap:wrap;
+    }
+
+    @media (max-width:980px){
+      .hero-grid,
+      .portfolio-grid{
+        grid-template-columns:1fr;
+      }
+    }
+
+    @media (max-width:760px){
+      .container{width:min(var(--max), calc(100% - 24px));}
+      .page-hero{padding:120px 0 40px;}
+      .card{min-height:460px;}
+      .site-logo img{width:58px;}
+      .menu-toggle{transform:translateX(14px);}
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="site-logo" href="index.html" aria-label="H Square Design home">
+        <img src="./logo.png" alt="H Square Design logo">
+      </a>
+      <button class="menu-toggle" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-hero">
+      <div class="container hero-grid">
+        <div>
+          <span class="eyebrow">Portfolio</span>
+          <h1>Selected projects and visual studies.</h1>
+        </div>
+        <p>
+          A broader view of H Square Design’s residential, commercial, and institutional work — presented through large image-led layouts and a calm premium tone.
+        </p>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="filter-row">
+          <span class="filter-pill">All</span>
+          <span class="filter-pill">Residential</span>
+          <span class="filter-pill">Commercial</span>
+          <span class="filter-pill">Institutional</span>
+          <span class="filter-pill">Interiors</span>
+        </div>
+
+        <div class="portfolio-grid">
+          <a class="card" href="contact.html">
+            <img src="./Appartments/apartment elevation design (1).jpg" alt="Apartment design">
+            <div class="card-body">
+              <span class="tag">Residential</span>
+              <h2>Apartment design.</h2>
+              <p>Multi-storey elevation shaped through rhythm, symmetry, and a balanced facade language.</p>
+            </div>
+          </a>
+
+          <a class="card" href="contact.html">
+            <img src="./commercial elevation design (1).jpeg" alt="Commercial concept">
+            <div class="card-body">
+              <span class="tag">Commercial</span>
+              <h2>Commercial concept.</h2>
+              <p>Contemporary identity developed through geometry, material contrast, and clear presentation.</p>
+            </div>
+          </a>
+
+          <a class="card" href="contact.html">
+            <img src="./Feature Walls/feature wall elevation design (1).jpg" alt="Feature wall study">
+            <div class="card-body">
+              <span class="tag">Interior Detail</span>
+              <h2>Feature wall studies.</h2>
+              <p>Statement compositions designed to create presence, focal value, and branded character.</p>
+            </div>
+          </a>
+
+          <a class="card" href="contact.html">
+            <img src="./farm house/farmhouse elevation design (1).jpg" alt="Farm house exterior">
+            <div class="card-body">
+              <span class="tag">Residential</span>
+              <h2>Farm house exterior.</h2>
+              <p>Large-format residential work shaped around openness, calm expression, and luxury.</p>
+            </div>
+          </a>
+
+          <a class="card" href="contact.html">
+            <img src="./school/school elevation design (1).png" alt="School project">
+            <div class="card-body">
+              <span class="tag">Institutional</span>
+              <h2>School project.</h2>
+              <p>Educational planning developed through entrance focus, symmetry, and organized massing.</p>
+            </div>
+          </a>
+
+          <a class="card" href="contact.html">
+            <img src="./hospital/hospital elevation design (1).png" alt="Hospital project">
+            <div class="card-body">
+              <span class="tag">Institutional</span>
+              <h2>Hospital concept.</h2>
+              <p>Institutional elevation explored through access clarity, scale control, and visual order.</p>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div>© 2026 H Square Design. All rights reserved.</div>
+      <div>
+        <a href="index.html">Home</a> •
+        <a href="services.html">Services</a> •
+        <a href="about.html">About</a> •
+        <a href="contact.html">Contact</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
