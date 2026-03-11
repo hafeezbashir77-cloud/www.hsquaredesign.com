@@ -1260,5 +1260,18 @@
       });
     });
   </script>
+  <script>
+document.querySelectorAll('.menu-item').forEach(item => {
+  item.addEventListener('click', function(e) {
+
+    const link = item.getAttribute('data-link');
+
+    if(link){
+      window.location.href = link;
+    }
+
+  });
+});
+</script>
 </body>
 </html>
