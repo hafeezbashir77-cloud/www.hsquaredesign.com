@@ -1,1 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact | H Square Design</title>
+  <meta name="description" content="Contact H Square Design for architecture, interiors, planning, and presentation services." />
+  <style>
+    :root{
+      --bg:#ece7df;
+      --panel:#f4efe8;
+      --text:#171513;
+      --muted:#6f675f;
+      --soft-line:rgba(23,21,19,.10);
+      --cream:#d7c2a5;
+      --cream-text:#7c6347;
+      --max:1440px;
+      --serif: Georgia, "Times New Roman", serif;
+      --sans: "Helvetica Neue", Arial, Helvetica, sans-serif;
+    }
 
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      background:var(--bg);
+      color:var(--text);
+      font-family:var(--sans);
+      line-height:1.55;
+    }
+
+    a{text-decoration:none;color:inherit}
+    img{display:block;width:100%}
+    button{font:inherit}
+    input, textarea{font:inherit}
+
+    .container{
+      width:min(var(--max), calc(100% - 56px));
+      margin:0 auto;
+    }
+
+    h1,h2,h3,p{margin-top:0}
+    h1,h2,h3{
+      font-family:var(--serif);
+      font-weight:500;
+      letter-spacing:-.045em;
+      line-height:.93;
+    }
+
+    .site-header{
+      position:fixed;
+      top:0;
+      left:0;
+      right:0;
+      z-index:1000;
+      padding:24px 0;
+      mix-blend-mode:difference;
+    }
+
+    .header-inner{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:24px;
+    }
+
+    .site-logo img{
+      width:68px;
+      height:auto;
+      display:block;
+    }
+
+    .menu-toggle{
+      width:82px;
+      height:50px;
+      position:relative;
+      background:none;
+      border:0;
+      padding:0;
+      cursor:pointer;
+      transform:translateX(28px);
+    }
+
+    .menu-toggle span{
+      position:absolute;
+      right:0;
+      height:2px;
+      background:#fff;
+      border-radius:999px;
+      transition:width .3s ease;
+    }
+
+    .menu-toggle span:nth-child(1){top:12px;width:52px;}
+    .menu-toggle span:nth-child(2){top:24px;width:68px;}
+    .menu-toggle span:nth-child(3){top:36px;width:58px;}
+
+    .menu-toggle:hover span:nth-child(1){width:60px;}
+    .menu-toggle:hover span:nth-child(2){width:74px;}
+    .menu-toggle:hover span:nth-child(3){width:66px;}
+
+    .page-hero{
+      padding:150px 0 60px;
+    }
+
+    .hero-grid{
+      display:grid;
+      grid-template-columns:.9fr 1.1fr;
+      gap:32px;
+      align-items:end;
+    }
+
+    .eyebrow{
+      display:inline-block;
+      padding:10px 16px;
+      border-radius:999px;
+      background:var(--cream);
+      color:var(--cream-text);
+      text-transform:uppercase;
+      letter-spacing:.14em;
+      font-size:.76rem;
+      font-weight:700;
+      margin-bottom:22px;
+    }
+
+    .hero-grid h1{
+      font-size:clamp(3rem, 6vw, 5.2rem);
+      max-width:8ch;
+      margin-bottom:0;
+    }
+
+    .hero-grid p{
+      color:var(--muted);
+      line-height:1.75;
+      font-size:1rem;
+      margin-bottom:0;
+      max-width:48rem;
+    }
+
+    .contact-wrap{
+      display:grid;
+      grid-template-columns:.9fr 1.1fr;
+      gap:24px;
+      padding-bottom:72px;
+    }
+
+    .contact-panel,
+    .form-panel{
+      background:var(--panel);
+      border:1px solid var(--soft-line);
+      border-radius:28px;
+      padding:38px;
+    }
+
+    .contact-panel h2,
+    .form-panel h2{
+      font-size:clamp(2rem, 3.5vw, 3rem);
+      margin-bottom:14px;
+    }
+
+    .contact-panel p,
+    .form-panel p{
+      color:var(--muted);
+      line-height:1.75;
+      font-size:1rem;
+    }
+
+    .contact-grid{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:14px;
+      margin-top:24px;
+    }
+
+    .contact-box{
+      border:1px solid var(--soft-line);
+      border-radius:18px;
+      padding:18px;
+      background:rgba(255,255,255,.28);
+    }
+
+    .contact-box span{
+      display:block;
+      color:var(--muted);
+      font-size:.85rem;
+      margin-bottom:4px;
+    }
+
+    .form-grid{
+      display:grid;
+      gap:14px;
+      margin-top:22px;
+    }
+
+    input, textarea{
+      width:100%;
+      border:1px solid var(--soft-line);
+      background:#fff;
+      border-radius:18px;
+      padding:16px 18px;
+      color:var(--text);
+      outline:none;
+    }
+
+    textarea{
+      min-height:160px;
+      resize:vertical;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:52px;
+      padding:0 22px;
+      border-radius:999px;
+      border:1px solid var(--text);
+      background:var(--text);
+      color:#fff;
+      font-weight:700;
+      width:max-content;
+      cursor:pointer;
+    }
+
+    .footer{
+      padding:24px 0 40px;
+      color:var(--muted);
+      font-size:.94rem;
+    }
+
+    .footer-inner{
+      border-top:1px solid var(--soft-line);
+      padding-top:18px;
+      display:flex;
+      justify-content:space-between;
+      gap:18px;
+      flex-wrap:wrap;
+    }
+
+    @media (max-width:980px){
+      .hero-grid,
+      .contact-wrap,
+      .contact-grid{
+        grid-template-columns:1fr;
+      }
+    }
+
+    @media (max-width:760px){
+      .container{width:min(var(--max), calc(100% - 24px));}
+      .page-hero{padding:120px 0 40px;}
+      .contact-panel,.form-panel{padding:26px;}
+      .site-logo img{width:58px;}
+      .menu-toggle{transform:translateX(14px);}
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="site-logo" href="index.html" aria-label="H Square Design home">
+        <img src="./logo.png" alt="H Square Design logo">
+      </a>
+      <button class="menu-toggle" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-hero">
+      <div class="container hero-grid">
+        <div>
+          <span class="eyebrow">Contact</span>
+          <h1>Let’s discuss your next project.</h1>
+        </div>
+        <p>
+          Reach out for architecture, interior, elevation, planning, and presentation services in Lahore and surrounding areas.
+        </p>
+      </div>
+    </section>
+
+    <section>
+      <div class="container contact-wrap">
+        <div class="contact-panel">
+          <h2>Direct contact details.</h2>
+          <p>
+            You can contact H Square Design directly through phone, WhatsApp, or email for residential, commercial, and institutional design work.
+          </p>
+
+          <div class="contact-grid">
+            <div class="contact-box">
+              <span>Phone / WhatsApp</span>
+              <strong>0301-4463492</strong>
+            </div>
+            <div class="contact-box">
+              <span>Phone / WhatsApp</span>
+              <strong>0300-4848909</strong>
+            </div>
+            <div class="contact-box">
+              <span>Email</span>
+              <strong><a href="mailto:hafeezbashir77@gmail.com">hafeezbashir77@gmail.com</a></strong>
+            </div>
+            <div class="contact-box">
+              <span>Location</span>
+              <strong>18km, Main Sheikhupura Road, Lahore</strong>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-panel">
+          <h2>Send an enquiry.</h2>
+          <p>
+            Share your project type, site details, or requirements and we’ll get back to you with the next step.
+          </p>
+
+          <form class="form-grid">
+            <input type="text" placeholder="Your name">
+            <input type="email" placeholder="Your email">
+            <input type="text" placeholder="Project type">
+            <textarea placeholder="Tell us about your project"></textarea>
+            <button type="submit" class="btn">Send enquiry</button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div>© 2026 H Square Design. All rights reserved.</div>
+      <div>
+        <a href="index.html">Home</a> •
+        <a href="services.html">Services</a> •
+        <a href="portfolio.html">Portfolio</a> •
+        <a href="about.html">About</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
