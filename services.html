@@ -1,1 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Services | H Square Design</title>
+  <style>
+    :root{
+      --bg:#ece7df;
+      --panel:#f4efe8;
+      --text:#171513;
+      --muted:#6f675f;
+      --soft-line:rgba(23,21,19,.10);
+      --cream:#d7c2a5;
+      --cream-text:#7c6347;
+      --max:1440px;
+      --serif: Georgia, "Times New Roman", serif;
+      --sans: "Helvetica Neue", Arial, Helvetica, sans-serif;
+    }
 
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      background:var(--bg);
+      color:var(--text);
+      font-family:var(--sans);
+    }
+
+    a{text-decoration:none;color:inherit}
+    img{display:block;width:100%}
+
+    .container{
+      width:min(var(--max), calc(100% - 56px));
+      margin:0 auto;
+    }
+
+    .site-header{
+      position:fixed;
+      top:0; left:0; right:0;
+      z-index:1000;
+      padding:24px 0;
+      mix-blend-mode:difference;
+    }
+
+    .header-inner{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+    }
+
+    .site-logo img{
+      width:68px;
+      display:block;
+    }
+
+    .menu-toggle{
+      width:82px;
+      height:50px;
+      position:relative;
+      background:none;
+      border:0;
+      cursor:pointer;
+      transform:translateX(28px);
+    }
+
+    .menu-toggle span{
+      position:absolute;
+      right:0;
+      height:2px;
+      background:#fff;
+      border-radius:999px;
+      transition:.3s ease;
+    }
+
+    .menu-toggle span:nth-child(1){top:12px;width:52px;}
+    .menu-toggle span:nth-child(2){top:24px;width:68px;}
+    .menu-toggle span:nth-child(3){top:36px;width:58px;}
+
+    .menu-toggle:hover span:nth-child(1){width:60px;}
+    .menu-toggle:hover span:nth-child(2){width:74px;}
+    .menu-toggle:hover span:nth-child(3){width:66px;}
+
+    .page-hero{
+      padding:150px 0 70px;
+    }
+
+    .eyebrow{
+      display:inline-block;
+      padding:10px 16px;
+      border-radius:999px;
+      background:var(--cream);
+      color:var(--cream-text);
+      text-transform:uppercase;
+      letter-spacing:.14em;
+      font-size:.76rem;
+      font-weight:700;
+      margin-bottom:22px;
+    }
+
+    .hero-grid{
+      display:grid;
+      grid-template-columns:.9fr 1.1fr;
+      gap:32px;
+      align-items:end;
+    }
+
+    h1,h2,h3{
+      font-family:var(--serif);
+      font-weight:500;
+      letter-spacing:-.045em;
+      line-height:.92;
+      margin:0 0 16px;
+    }
+
+    .hero-grid h1{
+      font-size:clamp(3rem, 6vw, 5.4rem);
+      max-width:7ch;
+    }
+
+    .hero-grid p{
+      color:var(--muted);
+      font-size:1.02rem;
+      line-height:1.75;
+      max-width:48rem;
+    }
+
+    section{padding:20px 0 70px}
+
+    .services-list{
+      display:grid;
+      gap:26px;
+    }
+
+    .service-row{
+      display:grid;
+      grid-template-columns:.85fr 1.15fr;
+      gap:24px;
+      align-items:stretch;
+    }
+
+    .service-image,
+    .service-copy{
+      border-radius:28px;
+      overflow:hidden;
+    }
+
+    .service-image{
+      min-height:430px;
+      background:#ddd;
+    }
+
+    .service-image img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+    }
+
+    .service-copy{
+      background:var(--panel);
+      padding:38px;
+      border:1px solid var(--soft-line);
+    }
+
+    .tag{
+      display:inline-block;
+      margin-bottom:14px;
+      color:var(--cream-text);
+      text-transform:uppercase;
+      letter-spacing:.12em;
+      font-size:.78rem;
+      font-weight:700;
+    }
+
+    .service-copy h2{
+      font-size:clamp(2rem, 3.5vw, 3.2rem);
+      max-width:9ch;
+    }
+
+    .service-copy p{
+      color:var(--muted);
+      line-height:1.75;
+      font-size:1rem;
+      max-width:46rem;
+    }
+
+    .service-points{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:14px;
+      margin-top:24px;
+    }
+
+    .point{
+      padding:16px 18px;
+      border:1px solid var(--soft-line);
+      border-radius:18px;
+      background:rgba(255,255,255,.3);
+      color:var(--muted);
+      line-height:1.6;
+    }
+
+    .footer{
+      padding:24px 0 40px;
+      color:var(--muted);
+      font-size:.94rem;
+    }
+
+    .footer-inner{
+      border-top:1px solid var(--soft-line);
+      padding-top:18px;
+      display:flex;
+      justify-content:space-between;
+      gap:18px;
+      flex-wrap:wrap;
+    }
+
+    @media (max-width:980px){
+      .hero-grid,
+      .service-row,
+      .service-points{
+        grid-template-columns:1fr;
+      }
+    }
+
+    @media (max-width:760px){
+      .container{width:min(var(--max), calc(100% - 24px));}
+      .page-hero{padding:120px 0 40px;}
+      .menu-toggle{transform:translateX(14px);}
+      .service-copy{padding:26px;}
+      .site-logo img{width:58px;}
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="site-logo" href="index.html">
+        <img src="./logo.png" alt="H Square Design logo">
+      </a>
+      <button class="menu-toggle" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-hero">
+      <div class="container hero-grid">
+        <div>
+          <span class="eyebrow">Services</span>
+          <h1>Studio services shaped with clarity.</h1>
+        </div>
+        <p>
+          H Square Design offers architectural design, interiors, planning, presentation, and build support with a refined visual direction that matches the identity of your project.
+        </p>
+      </div>
+    </section>
+
+    <section>
+      <div class="container services-list">
+
+        <article class="service-row">
+          <div class="service-image">
+            <img src="./Appartments/apartment elevation design (1).jpg" alt="Architectural design">
+          </div>
+          <div class="service-copy">
+            <span class="tag">Residential Architecture</span>
+            <h2>Architectural design for homes and villas.</h2>
+            <p>
+              We develop residential concepts with stronger elevation language, balanced proportions, practical planning, and clear façade identity for apartments, villas, and farm houses.
+            </p>
+            <div class="service-points">
+              <div class="point">Concept planning</div>
+              <div class="point">Elevation design</div>
+              <div class="point">Facade development</div>
+              <div class="point">Presentation drawings</div>
+            </div>
+          </div>
+        </article>
+
+        <article class="service-row">
+          <div class="service-image">
+            <img src="./commercial elevation design (1).jpeg" alt="Interior design">
+          </div>
+          <div class="service-copy">
+            <span class="tag">Interior Design</span>
+            <h2>Interior design for offices and commercial spaces.</h2>
+            <p>
+              We design interiors with a stronger visual identity through material contrast, feature walls, ceiling composition, furniture zoning, and presentation-focused detailing.
+            </p>
+            <div class="service-points">
+              <div class="point">Office interiors</div>
+              <div class="point">Retail concepts</div>
+              <div class="point">Feature walls</div>
+              <div class="point">Brand presentation</div>
+            </div>
+          </div>
+        </article>
+
+        <article class="service-row">
+          <div class="service-image">
+            <img src="./school/school elevation design (1).png" alt="Planning and institutional design">
+          </div>
+          <div class="service-copy">
+            <span class="tag">Planning & Institutional</span>
+            <h2>Planning support for schools, hospitals, and larger schemes.</h2>
+            <p>
+              We prepare organized layouts, concept schemes, submission drawings, and institutional design directions that respond to function, movement, access, and site logic.
+            </p>
+            <div class="service-points">
+              <div class="point">Concept layouts</div>
+              <div class="point">Submission sets</div>
+              <div class="point">Institutional planning</div>
+              <div class="point">Site response</div>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div>© 2026 H Square Design. All rights reserved.</div>
+      <div>
+        <a href="index.html">Home</a> •
+        <a href="portfolio.html">Portfolio</a> •
+        <a href="about.html">About</a> •
+        <a href="contact.html">Contact</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
