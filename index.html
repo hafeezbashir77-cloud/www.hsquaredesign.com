@@ -5,6 +5,69 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>H Square Design | Architecture & Interior Design</title>
   <meta name="description" content="H Square Design is a Lahore-based architecture and interior design studio creating refined residential, commercial, and institutional spaces." />
+  .service-detail-card{
+  width:100%;
+  max-width:420px;
+  margin:0 auto;
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:24px;
+  overflow:hidden;
+  text-align:left;
+  backdrop-filter:blur(6px);
+}
+
+.service-detail-image{
+  width:100%;
+  height:220px;
+  overflow:hidden;
+}
+
+.service-detail-image img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.service-detail-copy{
+  padding:20px;
+}
+
+.detail-tag{
+  display:inline-block;
+  margin-bottom:10px;
+  color:rgba(255,255,255,.7);
+  text-transform:uppercase;
+  letter-spacing:.12em;
+  font-size:.72rem;
+  font-weight:700;
+}
+
+.service-detail-copy h3{
+  font-size:2rem;
+  margin-bottom:10px;
+  color:#fff;
+}
+
+.service-detail-copy p{
+  color:rgba(255,255,255,.82);
+  font-size:.95rem;
+  line-height:1.6;
+  margin-bottom:16px;
+}
+
+.detail-cta{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-height:42px;
+  padding:0 16px;
+  border-radius:999px;
+  border:1px solid rgba(255,255,255,.18);
+  color:#fff;
+  font-size:.9rem;
+  font-weight:700;
+}
   <style>
     :root{
       --bg:#ece7df;
@@ -1066,87 +1129,111 @@
     const siteHeader = document.getElementById('siteHeader');
 
     const menuData = {
-      services: {
-        image: './commercial elevation design (1).jpeg',
-        submenu: ['Architectural Design', 'Planning Applications', 'Interior Design', 'Conservation & Heritage Design', 'Create & Construct'],
-        details: {
-          'Architectural Design': {
-            image: './Appartments/apartment elevation design (1).jpg',
-            items: ['Residential', 'Commercial', 'Institutional']
-          },
-          'Planning Applications': {
-            image: './school/school elevation design (1).png',
-            items: ['Concept Layouts', 'Submission Drawings', 'Approval Support']
-          },
-          'Interior Design': {
-            image: './commercial elevation design (1).jpeg',
-            items: ['Office Interiors', 'Feature Walls', 'Branded Environments']
-          },
-          'Conservation & Heritage Design': {
-            image: './Feature Walls/feature wall elevation design (1).jpg',
-            items: ['Restoration', 'Facade Study', 'Context Design']
-          },
-          'Create & Construct': {
-            image: './farm house/farmhouse elevation design (1).jpg',
-            items: ['Execution Support', 'Site Coordination', 'Presentation Sets']
-          }
-        }
-      },
-      portfolio: {
-        image: './Appartments/apartment elevation design (1).jpg',
-        submenu: ['Residential Projects', 'Commercial Projects', 'Institutional Projects'],
-        details: {
-          'Residential Projects': {
-            image: './farm house/farmhouse elevation design (1).jpg',
-            items: ['Apartments', 'Farm House', 'Villas']
-          },
-          'Commercial Projects': {
-            image: './commercial elevation design (1).jpeg',
-            items: ['Commercial Interior', 'Feature Walls', 'Facade Concepts']
-          },
-          'Institutional Projects': {
-            image: './hospital/hospital elevation design (1).png',
-            items: ['School', 'Hospital', 'University']
-          }
-        }
-      },
-      about: {
-        image: './school/school elevation design (1).png',
-        submenu: ['Studio Approach', 'Design Philosophy', 'Client Experience'],
-        details: {
-          'Studio Approach': {
-            image: './Appartments/apartment elevation design (1).jpg',
-            items: ['Calm Visual Direction', 'Strong Presentation', 'Detail Focus']
-          },
-          'Design Philosophy': {
-            image: './Feature Walls/feature wall elevation design (1).jpg',
-            items: ['Clarity', 'Restraint', 'Identity']
-          },
-          'Client Experience': {
-            image: './commercial elevation design (1).jpeg',
-            items: ['Consultation', 'Refinement', 'Delivery']
-          }
-        }
-      },
-      contact: {
-        image: './hospital/hospital elevation design (1).png',
-        submenu: ['Phone', 'Email', 'Location'],
-        details: {
-          'Phone': {
-            image: './commercial elevation design (1).jpeg',
-            items: ['0301-4463492', '0300-4848909']
-          },
-          'Email': {
-            image: './Feature Walls/feature wall elevation design (1).jpg',
-            items: ['hafeezbashir77@gmail.com']
-          },
-          'Location': {
-            image: './school/school elevation design (1).png',
-            items: ['18km, Main Sheikhupura Road', 'Lahore']
-          }
-        }
-      }
-    };
+
+services: {
+  image: './commercial elevation design (1).jpeg',
+
+  submenu: [
+    'Architecture',
+    'Interior Design',
+    'Town Planning',
+    'Landscaping',
+    'Construction'
+  ],
+
+  details: {
+
+    'Architecture': {
+      image: './Appartments/apartment elevation design (1).jpg',
+      title: 'Architecture',
+      text: 'Thoughtful architectural design focused on planning, elevation development, facade composition, and spatial clarity for residential, commercial, and institutional projects.'
+    },
+
+    'Interior Design': {
+      image: './commercial elevation design (1).jpeg',
+      title: 'Interior Design',
+      text: 'Interior design solutions for offices, homes, and branded spaces with attention to material balance, feature walls, ceiling composition, and a refined visual identity.'
+    },
+
+    'Town Planning': {
+      image: './school/school elevation design (1).png',
+      title: 'Town Planning',
+      text: 'Town planning services shaped around site organization, movement, land use, zoning response, and structured development layouts for larger schemes.'
+    },
+
+    'Landscaping': {
+      image: './farm house/farmhouse elevation design (1).jpg',
+      title: 'Landscaping',
+      text: 'Landscape concepts that strengthen the visual atmosphere of a project through greenery, circulation, outdoor balance, and a calmer environmental expression.'
+    },
+
+    'Construction': {
+      image: './Feature Walls/feature wall elevation design (1).jpg',
+      title: 'Construction',
+      text: 'Construction support and execution guidance with attention to design accuracy, coordination, detailing, and practical translation from concept to built form.'
+    }
+
+  }
+},
+
+portfolio: {
+  image: './Appartments/apartment elevation design (1).jpg',
+  submenu: ['Residential Projects', 'Commercial Projects', 'Institutional Projects'],
+  details: {
+    'Residential Projects': {
+      image: './farm house/farmhouse elevation design (1).jpg',
+      items: ['Apartments', 'Farm House', 'Villas']
+    },
+    'Commercial Projects': {
+      image: './commercial elevation design (1).jpeg',
+      items: ['Commercial Interior', 'Feature Walls', 'Facade Concepts']
+    },
+    'Institutional Projects': {
+      image: './hospital/hospital elevation design (1).png',
+      items: ['School', 'Hospital', 'University']
+    }
+  }
+},
+
+about: {
+  image: './school/school elevation design (1).png',
+  submenu: ['Studio Approach', 'Design Philosophy', 'Client Experience'],
+  details: {
+    'Studio Approach': {
+      image: './Appartments/apartment elevation design (1).jpg',
+      items: ['Calm Visual Direction', 'Strong Presentation', 'Detail Focus']
+    },
+    'Design Philosophy': {
+      image: './Feature Walls/feature wall elevation design (1).jpg',
+      items: ['Clarity', 'Restraint', 'Identity']
+    },
+    'Client Experience': {
+      image: './commercial elevation design (1).jpeg',
+      items: ['Consultation', 'Refinement', 'Delivery']
+    }
+  }
+},
+
+contact: {
+  image: './hospital/hospital elevation design (1).png',
+  submenu: ['Phone', 'Email', 'Location'],
+  details: {
+    'Phone': {
+      image: './commercial elevation design (1).jpeg',
+      items: ['0301-4463492','0300-4848909']
+    },
+    'Email': {
+      image: './Feature Walls/feature wall elevation design (1).jpg',
+      items: ['hafeezbashir77@gmail.com']
+    },
+    'Location': {
+      image: './school/school elevation design (1).png',
+      items: ['18km Main Sheikhupura Road','Lahore']
+    }
+  }
+}
+
+};
 
     const pageLinks = {
       'Residential': 'services.html',
@@ -1223,45 +1310,82 @@
       siteHeader.classList.remove('hidden');
     }
 
-    function renderDetails(mainKey, subKey){
-      const detailData = menuData[mainKey].details[subKey] || { items: [] };
+function renderDetails(mainKey, subKey){
+
+  const detailData = menuData[mainKey].details[subKey] || {};
+
+  rightCol.classList.remove('show');
+  detailPanel.classList.remove('show');
+
+  if (detailData.image) {
+    updateMenuBackground(detailData.image);
+  }
+
+  setTimeout(() => {
+
+    if (mainKey === 'services') {
+
+      detailList.innerHTML = `
+      <div class="service-detail-card">
+
+        <div class="service-detail-image">
+          <img src="${detailData.image}">
+        </div>
+
+        <div class="service-detail-copy">
+
+          <span class="detail-tag">Service</span>
+
+          <h3>${detailData.title || subKey}</h3>
+
+          <p>${detailData.text || ''}</p>
+
+          <a class="detail-cta" href="services.html">
+          Open Service Page
+          </a>
+
+        </div>
+
+      </div>
+      `;
+
+    } else {
+
       const items = detailData.items || [];
 
-      rightCol.classList.remove('show');
-      detailPanel.classList.remove('show');
+      detailList.innerHTML = items.map((item,index)=>{
 
-      if (detailData.image) {
-        updateMenuBackground(detailData.image);
-      }
+        const link = pageLinks[item] || '#';
 
-      setTimeout(() => {
-        detailList.innerHTML = items.map((item, index) => {
-          const link = pageLinks[item] || '#';
-          return `
-            <button
-              class="detail-item ${index === 0 ? 'active' : ''}"
-              data-link="${link}">
-              ${item}
-            </button>
-          `;
-        }).join('');
+        return `
+        <button
+        class="detail-item ${index===0?'active':''}"
+        data-link="${link}">
+        ${item}
+        </button>
+        `;
 
-        rightCol.classList.add('show');
+      }).join('');
 
-        setTimeout(() => {
-          detailPanel.classList.add('show');
-        }, 60);
-
-        document.querySelectorAll('.detail-item').forEach(btn => {
-          btn.addEventListener('click', () => {
-            const link = btn.getAttribute('data-link');
-            if (link && link !== '#') {
-              window.location.href = link;
-            }
-          });
+      document.querySelectorAll('.detail-item').forEach(btn=>{
+        btn.addEventListener('click',()=>{
+          const link=btn.getAttribute('data-link');
+          if(link && link!=='#'){
+            window.location.href=link;
+          }
         });
-      }, 90);
+      });
+
     }
+
+    rightCol.classList.add('show');
+
+    setTimeout(()=>{
+      detailPanel.classList.add('show');
+    },60);
+
+  },90);
+}
 
     function renderSubmenu(mainKey){
       const items = menuData[mainKey].submenu || [];
