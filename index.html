@@ -755,6 +755,84 @@
       .menu-toggle-line:nth-child(2){width:58px}
       .menu-toggle-line:nth-child(3){width:50px}
     }
+    .service-detail-panel-full{
+  width:100%;
+  max-width:460px;
+  margin:0 auto;
+  text-align:left;
+}
+
+.service-detail-panel-full h3{
+  font-size:clamp(1.8rem, 2.5vw, 2.4rem);
+  margin-bottom:8px;
+  color:#fff;
+  max-width:none;
+}
+
+.service-detail-tagline{
+  color:rgba(255,255,255,.68);
+  font-size:.82rem;
+  text-transform:uppercase;
+  letter-spacing:.12em;
+  margin-bottom:14px;
+  font-weight:700;
+}
+
+.service-detail-panel-full p{
+  color:rgba(255,255,255,.84);
+  font-size:.98rem;
+  line-height:1.7;
+  margin-bottom:18px;
+}
+
+.service-gallery-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+  margin-bottom:18px;
+}
+
+.service-gallery-item{
+  border-radius:18px;
+  overflow:hidden;
+  min-height:120px;
+  background:rgba(255,255,255,.06);
+}
+
+.service-gallery-item.large{
+  grid-column:1 / -1;
+  min-height:220px;
+}
+
+.service-gallery-item img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+
+.detail-cta{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-height:44px;
+  padding:0 18px;
+  border-radius:999px;
+  border:1px solid rgba(255,255,255,.18);
+  color:#fff;
+  font-size:.92rem;
+  font-weight:700;
+}
+
+@media (max-width:1180px){
+  .service-detail-panel-full{
+    max-width:100%;
+  }
+
+  .service-gallery-item.large{
+    min-height:180px;
+  }
+}
   </style>
 </head>
 <body>
@@ -1019,31 +1097,67 @@
 
     const menuData = {
       services: {
-        image: './commercial elevation design (1).jpeg',
-        submenu: ['Architectural Design', 'Planning Applications', 'Interior Design', 'Conservation & Heritage Design', 'Create & Construct'],
-        details: {
-          'Architectural Design': {
-            image: './Appartments/apartment elevation design (1).jpg',
-            items: ['Residential', 'Commercial', 'Institutional']
-          },
-          'Planning Applications': {
-            image: './school/school elevation design (1).png',
-            items: ['Concept Layouts', 'Submission Drawings', 'Approval Support']
-          },
-          'Interior Design': {
-            image: './commercial elevation design (1).jpeg',
-            items: ['Office Interiors', 'Feature Walls', 'Branded Environments']
-          },
-          'Conservation & Heritage Design': {
-            image: './Feature Walls/feature wall elevation design (1).jpg',
-            items: ['Restoration', 'Facade Study', 'Context Design']
-          },
-          'Create & Construct': {
-            image: './farm house/farmhouse elevation design (1).jpg',
-            items: ['Execution Support', 'Site Coordination', 'Presentation Sets']
-          }
-        }
-      },
+  image: './commercial elevation design (1).jpeg',
+  submenu: [
+    'Architecture',
+    'Interior Design',
+    'Town Planning',
+    'Landscaping',
+    'Construction'
+  ],
+  details: {
+    'Architecture': {
+      title: 'Architecture',
+      tagline: 'Residential • Commercial • Institutional',
+      text: 'Thoughtful architectural design focused on planning, elevation development, facade composition, and spatial clarity. We develop architectural concepts for homes, apartments, commercial buildings, and institutional projects with stronger proportion, identity, and buildable direction.',
+      gallery: [
+        './Appartments/apartment elevation design (1).jpg',
+        './farm house/farmhouse elevation design (1).jpg',
+        './school/school elevation design (1).png'
+      ]
+    },
+    'Interior Design': {
+      title: 'Interior Design',
+      tagline: 'Spaces with identity and atmosphere',
+      text: 'Interior design solutions for offices, homes, and branded environments with attention to furniture zoning, ceiling composition, feature walls, finishes, and a refined visual character that feels professional and complete.',
+      gallery: [
+        './commercial elevation design (1).jpeg',
+        './Feature Walls/feature wall elevation design (1).jpg',
+        './commercial elevation design (1).jpeg'
+      ]
+    },
+    'Town Planning': {
+      title: 'Town Planning',
+      tagline: 'Layout, movement, zoning, development',
+      text: 'Town planning services shaped around site organization, movement systems, land use response, circulation logic, and structured development layouts for larger schemes that need clarity and long-term planning value.',
+      gallery: [
+        './school/school elevation design (1).png',
+        './hospital/hospital elevation design (1).png',
+        './farm house/farmhouse elevation design (1).jpg'
+      ]
+    },
+    'Landscaping': {
+      title: 'Landscaping',
+      tagline: 'Outdoor balance and environmental expression',
+      text: 'Landscape concepts that strengthen the atmosphere of a project through greenery, circulation, visual layering, and outdoor planning that supports architecture while giving the space a calmer and more premium experience.',
+      gallery: [
+        './farm house/farmhouse elevation design (1).jpg',
+        './school/school elevation design (1).png',
+        './commercial elevation design (1).jpeg'
+      ]
+    },
+    'Construction': {
+      title: 'Construction',
+      tagline: 'From concept to built execution',
+      text: 'Construction support and execution guidance with attention to coordination, detailing, build accuracy, and practical implementation so that the project stays aligned with the design vision from drawing stage to site delivery.',
+      gallery: [
+        './Feature Walls/feature wall elevation design (1).jpg',
+        './Appartments/apartment elevation design (1).jpg',
+        './commercial elevation design (1).jpeg'
+      ]
+    }
+  }
+},
       portfolio: {
         image: './Appartments/apartment elevation design (1).jpg',
         submenu: ['Residential', 'Commercial', 'Majids', 'Institutions', 'Offices', 'Society Gates', 'Monuments', 'Landscaping', 'Town Planning', 'Construction'],
@@ -1183,88 +1297,76 @@
     }
 
     function renderDetails(mainKey, subKey){
-      const detailData = menuData[mainKey].details[subKey] || { items: [] };
+  const detailData = menuData[mainKey].details[subKey] || {};
+
+  rightCol.classList.remove('show');
+  detailPanel.classList.remove('show');
+
+  if (mainKey === 'services') {
+    const heroImage = detailData.gallery && detailData.gallery.length
+      ? detailData.gallery[0]
+      : menuData[mainKey].image;
+
+    if (heroImage) {
+      updateMenuBackground(heroImage);
+    }
+  } else if (detailData.image) {
+    updateMenuBackground(detailData.image);
+  }
+
+  setTimeout(() => {
+
+    if (mainKey === 'services') {
+      const gallery = detailData.gallery || [];
+
+      detailList.innerHTML = `
+        <div class="service-detail-panel-full">
+          <span class="detail-tag">Service</span>
+          <h3>${detailData.title || subKey}</h3>
+          <div class="service-detail-tagline">${detailData.tagline || ''}</div>
+          <p>${detailData.text || ''}</p>
+          <div class="service-gallery-grid">
+            ${gallery.map((img, index) => `
+              <div class="service-gallery-item ${index === 0 ? 'large' : ''}">
+                <img src="${img}" alt="${detailData.title || subKey}">
+              </div>
+            `).join('')}
+          </div>
+          <a class="detail-cta" href="services.html">Open Service Page</a>
+        </div>
+      `;
+    } else {
       const items = detailData.items || [];
 
-      rightCol.classList.remove('show');
-      detailPanel.classList.remove('show');
+      detailList.innerHTML = items.map((item, index) => {
+        const link = pageLinks[item] || '#';
+        return `
+          <button
+            class="detail-item ${index === 0 ? 'active' : ''}"
+            data-link="${link}">
+            ${item}
+          </button>
+        `;
+      }).join('');
 
-      if (detailData.image) {
-        updateMenuBackground(detailData.image);
-      }
-
-      setTimeout(() => {
-        detailList.innerHTML = items.map((item, index) => {
-          const link = pageLinks[item] || '#';
-          return `
-            <button
-              class="detail-item ${index === 0 ? 'active' : ''}"
-              data-link="${link}">
-              ${item}
-            </button>
-          `;
-        }).join('');
-
-        rightCol.classList.add('show');
-
-        setTimeout(() => {
-          detailPanel.classList.add('show');
-        }, 60);
-
-        document.querySelectorAll('.detail-item').forEach(btn => {
-          btn.addEventListener('click', () => {
-            const link = btn.getAttribute('data-link');
-            if (link && link !== '#') {
-              window.location.href = link;
-            }
-          });
+      document.querySelectorAll('.detail-item').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const link = btn.getAttribute('data-link');
+          if (link && link !== '#') {
+            window.location.href = link;
+          }
         });
-      }, 90);
+      });
     }
 
-    function renderSubmenu(mainKey){
-      const section = menuData[mainKey];
+    rightCol.classList.add('show');
 
-      if (!section.submenu || !section.details) {
-        if (mainKey === 'about') {
-          window.location.href = 'about.html';
-          return;
-        }
-        return;
-      }
+    setTimeout(() => {
+      detailPanel.classList.add('show');
+    }, 60);
 
-      const items = section.submenu || [];
-
-      centerCol.classList.remove('show');
-      rightCol.classList.remove('show');
-      submenuPanel.classList.remove('show');
-      detailPanel.classList.remove('show');
-      detailList.innerHTML = '';
-
-      if (section.image) {
-        updateMenuBackground(section.image);
-      }
-
-      setTimeout(() => {
-        submenuList.innerHTML = items.map((item) => `
-          <button class="submenu-item" data-sub="${item}">${item}</button>
-        `).join('');
-
-        centerCol.classList.add('show');
-
-        setTimeout(() => {
-          submenuPanel.classList.add('show');
-        }, 60);
-
-        document.querySelectorAll('.submenu-item').forEach(btn => {
-          btn.addEventListener('click', () => {
-            document.querySelectorAll('.submenu-item').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            renderDetails(mainKey, btn.dataset.sub);
-          });
-        });
-      }, 90);
-    }
+  }, 90);
+}
 
     menuToggle.addEventListener('click', () => {
       if (megaMenu.classList.contains('is-open')) {
