@@ -1343,26 +1343,10 @@
 
       setTimeout(() => {
 
-        if (mainKey === 'services') {
-          const gallery = detailData.gallery || [];
-
-          detailList.innerHTML = `
-            <div class="service-detail-panel-full">
-              <span class="detail-tag">Service</span>
-              <h3>${detailData.title || subKey}</h3>
-              <div class="service-detail-tagline">${detailData.tagline || ''}</div>
-              <p>${detailData.text || ''}</p>
-              <div class="service-gallery-grid">
-                ${gallery.map((img, index) => `
-                  <div class="service-gallery-item ${index === 0 ? 'large' : ''}">
-                    <img src="${img}" alt="${detailData.title || subKey}">
-                  </div>
-                `).join('')}
-              </div>
-              <a class="detail-cta" href="services.html">Open Service Page</a>
-            </div>
-          `;
-        } else {
+      if (mainKey === 'services') {
+  window.location.href = 'services.html';
+  return;
+} else {
           const items = detailData.items || [];
 
           detailList.innerHTML = items.map((item, index) => {
