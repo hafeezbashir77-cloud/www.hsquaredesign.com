@@ -838,6 +838,116 @@
       .menu-toggle-line:nth-child(2){width:58px}
       .menu-toggle-line:nth-child(3){width:50px}
     }
+    .home-links-preview{
+  padding:72px 0 84px;
+  background:var(--bg);
+}
+
+.preview-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:24px;
+}
+
+.preview-card{
+  display:grid;
+  grid-template-columns:1fr;
+  background:var(--panel);
+  border-radius:28px;
+  overflow:hidden;
+  border:1px solid var(--soft-line);
+  transition:transform .28s ease, box-shadow .28s ease;
+}
+
+.preview-card:hover{
+  transform:translateY(-4px);
+  box-shadow:0 20px 40px rgba(0,0,0,.08);
+}
+
+.preview-card-large{
+  grid-column:1 / -1;
+  grid-template-columns:1.02fr .98fr;
+  align-items:stretch;
+}
+
+.preview-image{
+  min-height:320px;
+  background:#d7cec2;
+  overflow:hidden;
+}
+
+.preview-card-large .preview-image{
+  min-height:420px;
+}
+
+.preview-image img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  transition:transform .5s ease, filter .5s ease;
+}
+
+.preview-card:hover .preview-image img{
+  transform:scale(1.04);
+}
+
+.preview-copy{
+  padding:34px;
+}
+
+.preview-copy h2{
+  font-size:clamp(2rem, 3vw, 3rem);
+  margin-bottom:14px;
+  max-width:10ch;
+}
+
+.preview-copy p{
+  color:var(--muted);
+  line-height:1.75;
+  margin-bottom:20px;
+  max-width:38rem;
+}
+
+.preview-link{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-height:46px;
+  padding:0 18px;
+  border-radius:999px;
+  border:1px solid var(--soft-line);
+  font-size:.92rem;
+  font-weight:700;
+}
+
+@media (max-width:980px){
+  .preview-grid{
+    grid-template-columns:1fr;
+  }
+
+  .preview-card-large{
+    grid-column:auto;
+    grid-template-columns:1fr;
+  }
+
+  .preview-card-large .preview-image{
+    min-height:320px;
+  }
+}
+
+@media (max-width:760px){
+  .preview-copy{
+    padding:24px;
+  }
+
+  .preview-image{
+    min-height:260px;
+  }
+
+  .preview-card-large .preview-image{
+    min-height:260px;
+  }
+}
   </style>
 </head>
 <body>
@@ -923,159 +1033,71 @@
       </div>
     </section>
 
-    <section id="services">
-      <div class="container">
-        <div class="section-head">
-          <div>
-            <span class="eyebrow">Services</span>
-            <h2>Studio services with calm visual direction.</h2>
-          </div>
+    <section class="home-links-preview">
+  <div class="container">
+
+    <div class="preview-grid">
+
+      <a class="preview-card preview-card-large" href="services.html">
+        <div class="preview-image">
+          <img src="./Appartments/apartment elevation design (1).jpg" alt="Services preview">
+        </div>
+        <div class="preview-copy">
+          <span class="eyebrow">Services</span>
+          <h2>Explore our design services.</h2>
           <p>
-            A more image-led, quieter website direction inspired by the reference style, while still presenting your studio name, your work, and your contact details clearly.
+            Architecture, interior design, town planning, landscaping, and construction support shaped with clarity and stronger presentation.
           </p>
+          <span class="preview-link">Open Services</span>
         </div>
+      </a>
 
-        <div class="services-list">
-          <article class="service-row">
-            <div class="service-image">
-              <img src="./Appartments/apartment elevation design (1).jpg" alt="Architectural design">
-            </div>
-            <div class="service-copy">
-              <span class="tag">Residential</span>
-              <h3>Architectural design for homes.</h3>
-              <p>
-                Thoughtful planning, modern elevation development, and facade composition for residential projects that need proportion, clarity, and presence.
-              </p>
-              <a class="service-link" href="services.html">Read more</a>
-            </div>
-          </article>
-
-          <article class="service-row">
-            <div class="service-image">
-              <img src="./commercial elevation design (1).jpeg" alt="Commercial interior design">
-            </div>
-            <div class="service-copy">
-              <span class="tag">Commercial</span>
-              <h3>Interior design for business spaces.</h3>
-              <p>
-                Commercial interiors, feature walls, and presentation-focused concepts for office, retail, and branded spaces with stronger identity.
-              </p>
-              <a class="service-link" href="services.html">Read more</a>
-            </div>
-          </article>
+      <a class="preview-card" href="portfolio.html">
+        <div class="preview-image">
+          <img src="./commercial elevation design (1).jpeg" alt="Portfolio preview">
         </div>
-      </div>
-    </section>
-
-    <section id="portfolio">
-      <div class="container">
-        <div class="section-head">
-          <div>
-            <span class="eyebrow">Portfolio</span>
-            <h2>Selected projects and featured work.</h2>
-          </div>
+        <div class="preview-copy">
+          <span class="eyebrow">Portfolio</span>
+          <h2>Selected work and project studies.</h2>
           <p>
-            Larger image panels keep the presentation smoother and more premium, closer to the reference landing-page feel you liked.
+            Residential, commercial, office, institutional, and landscape work presented through a more premium visual direction.
           </p>
+          <span class="preview-link">Open Portfolio</span>
         </div>
+      </a>
 
-        <div class="portfolio-grid">
-          <a class="portfolio-card" href="portfolio.html">
-            <img src="./Appartments/apartment elevation design (1).jpg" alt="Apartment project">
-            <div class="portfolio-body">
-              <span class="tag">Residential</span>
-              <h3>Apartment design.</h3>
-              <p>Multi-storey elevation shaped through symmetry, rhythm, and a balanced facade language.</p>
-            </div>
-          </a>
-
-          <a class="portfolio-card" href="portfolio.html">
-            <img src="./commercial elevation design (1).jpeg" alt="Commercial project">
-            <div class="portfolio-body">
-              <span class="tag">Commercial</span>
-              <h3>Commercial interior.</h3>
-              <p>Contemporary identity developed through geometry, material contrast, and presentation-ready composition.</p>
-            </div>
-          </a>
-
-          <a class="portfolio-card" href="portfolio.html">
-            <img src="./Feature Walls/feature wall elevation design (1).jpg" alt="Feature walls project">
-            <div class="portfolio-body">
-              <span class="tag">Statement Design</span>
-              <h3>Feature walls and details.</h3>
-              <p>Architectural statement pieces designed to add presence, branding, and focal character.</p>
-            </div>
-          </a>
-
-          <a class="portfolio-card" href="portfolio.html">
-            <img src="./farm house/farmhouse elevation design (1).jpg" alt="Farm house project">
-            <div class="portfolio-body">
-              <span class="tag">Residential</span>
-              <h3>Farm house exterior concept.</h3>
-              <p>Large-format residential work built around openness, luxury, and a calmer exterior expression.</p>
-            </div>
-          </a>
+      <a class="preview-card" href="about.html">
+        <div class="preview-image">
+          <img src="./farm house/farmhouse elevation design (1).jpg" alt="About Us preview">
         </div>
-      </div>
-    </section>
-
-    <section id="studio">
-      <div class="container studio-grid">
-        <div class="studio-panel">
-          <span class="eyebrow">About</span>
-          <h2>Design with clarity and restraint.</h2>
+        <div class="preview-copy">
+          <span class="eyebrow">About Us</span>
+          <h2>Learn more about our studio.</h2>
           <p>
-            This version now includes a centered sliding menu experience closer to the reference style you shared, with nested levels for services and further details.
+            Discover our design philosophy, studio approach, and why clients choose H Square Design for thoughtful and refined work.
           </p>
-          <div class="studio-points">
-            <div class="studio-point">
-              <strong>Smoother landing</strong>
-              <span>Full-screen hero presentation with text overlay and less clutter.</span>
-            </div>
-            <div class="studio-point">
-              <strong>Layered menu flow</strong>
-              <span>Main item, submenu, and further details open in a centered progressive layout.</span>
-            </div>
-            <div class="studio-point">
-              <strong>Premium tone</strong>
-              <span>Calmer palette, larger imagery, and lighter content rhythm.</span>
-            </div>
-          </div>
+          <span class="preview-link">Open About Us</span>
         </div>
+      </a>
 
-        <div class="contact-panel" id="contact">
+      <a class="preview-card" href="contact.html">
+        <div class="preview-image">
+          <img src="./school/school elevation design (1).png" alt="Contact preview">
+        </div>
+        <div class="preview-copy">
           <span class="eyebrow">Contact</span>
           <h2>Let’s discuss your next project.</h2>
           <p>
-            Reach out for architecture, interior, elevation, and design presentation services in Lahore and surrounding areas.
+            Reach out for architecture, interiors, elevation design, and project presentation services in Lahore and surrounding areas.
           </p>
-
-          <div class="contact-grid">
-            <div class="contact-box">
-              <span>Phone / WhatsApp</span>
-              <strong>0301-4463492</strong>
-            </div>
-            <div class="contact-box">
-              <span>Phone / WhatsApp</span>
-              <strong>0300-4848909</strong>
-            </div>
-            <div class="contact-box">
-              <span>Email</span>
-              <strong><a href="mailto:hafeezbashir77@gmail.com">hafeezbashir77@gmail.com</a></strong>
-            </div>
-            <div class="contact-box">
-              <span>Location</span>
-              <strong>18km, Main Sheikhupura Road, Lahore</strong>
-            </div>
-          </div>
-
-          <div class="hero-actions">
-            <a class="btn btn-dark" href="https://wa.me/923014463492" target="_blank" rel="noopener">WhatsApp Us</a>
-            <a class="btn btn-light" href="mailto:hafeezbashir77@gmail.com">Send Email</a>
-          </div>
+          <span class="preview-link">Open Contact</span>
         </div>
-      </div>
-    </section>
+      </a>
+
+    </div>
+
+  </div>
+</section>
   </main>
 
   <footer class="footer">
