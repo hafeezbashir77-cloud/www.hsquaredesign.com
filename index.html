@@ -1433,14 +1433,22 @@
     btn.classList.add('active');
 
     if (mainKey === 'services') {
-      window.location.href = 'services.html';
+      const serviceMap = {
+        'Architecture': 'architecture',
+        'Interior Design': 'interior-design',
+        'Town Planning': 'town-planning',
+        'Landscaping': 'landscaping',
+        'Construction': 'construction'
+      };
+
+      const target = serviceMap[btn.dataset.sub] || 'architecture';
+      window.location.href = `services.html#${target}`;
       return;
     }
 
     renderDetails(mainKey, btn.dataset.sub);
   });
 });
-
       }, 90);
     }
 
