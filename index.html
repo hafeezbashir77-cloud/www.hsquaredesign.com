@@ -1324,61 +1324,75 @@
     }
 
     function renderDetails(mainKey, subKey){
-      const detailData = menuData[mainKey].details[subKey] || {};
+  const detailData = menuData[mainKey].details[subKey] || {};
 
-      rightCol.classList.remove('show');
-      detailPanel.classList.remove('show');
+  rightCol.classList.remove('show');
+  detailPanel.classList.remove('show');
 
-      if (mainKey === 'services') {
-        const heroImage = detailData.gallery && detailData.gallery.length
-          ? detailData.gallery[0]
-          : menuData[mainKey].image;
+  if (mainKey === 'services') {
+    const heroImage = detailData.gallery && detailData.gallery.length
+      ? detailData.gallery[0]
+      : menuData[mainKey].image;
 
-        if (heroImage) {
-          updateMenuBackground(heroImage);
-        }
-      } else if (detailData.image) {
-        updateMenuBackground(detailData.image);
-      }
+    if (heroImage) {
+      updateMenuBackground(heroImage);
+    }
+  } else if (detailData.image) {
+    updateMenuBackground(detailData.image);
+  }
 
-      setTimeout(() => {
+  setTimeout(() => {
 
-      if (mainKey === 'services') {
-  window.location.href = 'services.html';
-  return;
-} else {
-          const items = detailData.items || [];
+    if (mainKey === 'services') {
+      const gallery = detailData.gallery || [];
 
-          detailList.innerHTML = items.map((item, index) => {
-            const link = pageLinks[item] || '#';
-            return `
-              <button
-                class="detail-item ${index === 0 ? 'active' : ''}"
-                data-link="${link}">
-                ${item}
-              </button>
-            `;
-          }).join('');
+      detailList.innerHTML = `
+        <div class="service-detail-panel-full">
+          <span class="detail-tag">Service</span>
+          <h3>${detailData.title || subKey}</h3>
+          <div class="service-detail-tagline">${detailData.tagline || ''}</div>
+          <p>${detailData.text || ''}</p>
+          <div class="service-gallery-grid">
+            ${gallery.map((img, index) => `
+              <div class="service-gallery-item ${index === 0 ? 'large' : ''}">
+                <img src="${img}" alt="${detailData.title || subKey}">
+              </div>
+            `).join('')}
+          </div>
+        </div>
+      `;
+    } else {
+      const items = detailData.items || [];
 
-          document.querySelectorAll('.detail-item').forEach(btn => {
-            btn.addEventListener('click', () => {
-              const link = btn.getAttribute('data-link');
-              if (link && link !== '#') {
-                window.location.href = link;
-              }
-            });
-          });
-        }
+      detailList.innerHTML = items.map((item, index) => {
+        const link = pageLinks[item] || '#';
+        return `
+          <button
+            class="detail-item ${index === 0 ? 'active' : ''}"
+            data-link="${link}">
+            ${item}
+          </button>
+        `;
+      }).join('');
 
-        rightCol.classList.add('show');
-
-        setTimeout(() => {
-          detailPanel.classList.add('show');
-        }, 60);
-
-      }, 90);
+      document.querySelectorAll('.detail-item').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const link = btn.getAttribute('data-link');
+          if (link && link !== '#') {
+            window.location.href = link;
+          }
+        });
+      });
     }
 
+    rightCol.classList.add('show');
+
+    setTimeout(() => {
+      detailPanel.classList.add('show');
+    }, 60);
+
+  }, 90);
+}
     function renderSubmenu(mainKey){
       const section = menuData[mainKey];
 
@@ -1414,20 +1428,19 @@
         }, 60);
 
         document.querySelectorAll('.submenu-item').forEach(btn => {
-          btn.addEventListener('click', () => {
-            document.querySelectorAll('.submenu-item').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            renderDetails(mainKey, btn.dataset.sub);
-          });
-        });
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.submenu-item').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
 
-        if (mainKey === 'services' && items.length > 0) {
-          const firstBtn = document.querySelector('.submenu-item');
-          if (firstBtn) {
-            firstBtn.classList.add('active');
-            renderDetails(mainKey, items[0]);
-          }
-        }
+    if (mainKey === 'services') {
+      window.location.href = 'services.html';
+      return;
+    }
+
+    renderDetails(mainKey, btn.dataset.sub);
+  });
+});
+
       }, 90);
     }
 
