@@ -1441,8 +1441,8 @@
         'Construction': 'construction'
       };
 
-      const target = serviceMap[btn.dataset.sub] || 'architecture';
-      window.location.href = `services.html#${target}`;
+      const targetId = serviceMap[btn.dataset.sub] || 'architecture';
+      window.location.href = `services.html#${targetId}`;
       return;
     }
 
