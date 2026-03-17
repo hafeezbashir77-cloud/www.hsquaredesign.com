@@ -948,8 +948,168 @@
     min-height:260px;
   }
 }
+    .hero-slider{
+  position:relative;
+  width:100%;
+  height:100vh;
+  overflow:hidden;
+  background:#000;
+}
+
+.hero-slide{
+  position:absolute;
+  inset:0;
+  opacity:0;
+  visibility:hidden;
+  transition:opacity 1s ease, visibility 1s ease;
+}
+
+.hero-slide.active{
+  opacity:1;
+  visibility:visible;
+  z-index:2;
+}
+
+.hero-slide img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+  transform:scale(1);
+  animation:heroZoom 7s ease-in-out infinite alternate;
+}
+
+.hero-overlay{
+  position:absolute;
+  inset:0;
+  background:linear-gradient(to bottom, rgba(0,0,0,.18), rgba(0,0,0,.34), rgba(0,0,0,.56));
+}
+
+.hero-inner{
+  position:relative;
+  z-index:3;
+  height:100%;
+  display:flex;
+  align-items:flex-end;
+  padding-bottom:72px;
+}
+
+.hero-content{
+  max-width:720px;
+  color:#fff;
+}
+
+.hero-meta span{
+  display:inline-block;
+  font-size:14px;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  color:rgba(255,255,255,.85);
+  margin-bottom:14px;
+}
+
+.hero-title-single{
+  margin:0 0 14px;
+  font-size:clamp(44px, 8vw, 92px);
+  line-height:.95;
+  color:#fff;
+}
+
+.hero-text{
+  margin:0;
+  max-width:620px;
+  font-size:16px;
+  line-height:1.7;
+  color:rgba(255,255,255,.88);
+}
+
+.hero-dots{
+  position:absolute;
+  left:50%;
+  bottom:26px;
+  transform:translateX(-50%);
+  display:flex;
+  gap:10px;
+  z-index:5;
+}
+
+.hero-dots .dot{
+  width:12px;
+  height:12px;
+  border-radius:50%;
+  border:1px solid rgba(255,255,255,.7);
+  background:transparent;
+  padding:0;
+  cursor:pointer;
+}
+
+.hero-dots .dot.active{
+  background:#fff;
+}
+
+@keyframes heroZoom{
+  from{transform:scale(1);}
+  to{transform:scale(1.08);}
+}
+
+@media (max-width:768px){
+  .hero-slider{
+    height:85vh;
+  }
+
+  .hero-inner{
+    align-items:flex-end;
+    padding-bottom:88px;
+  }
+
+  .hero-text{
+    font-size:14px;
+  }
+}
   </style>
 </head>
+  <script>
+  const slides = document.querySelectorAll('.hero-slide');
+  const dots = document.querySelectorAll('.hero-dots .dot');
+  let currentSlide = 0;
+  let sliderInterval;
+
+  function showSlide(index){
+    slides.forEach((slide, i) => {
+      slide.classList.toggle('active', i === index);
+    });
+
+    dots.forEach((dot, i) => {
+      dot.classList.toggle('active', i === index);
+    });
+
+    currentSlide = index;
+  }
+
+  function nextSlide(){
+    const next = (currentSlide + 1) % slides.length;
+    showSlide(next);
+  }
+
+  function startSlider(){
+    sliderInterval = setInterval(nextSlide, 4500);
+  }
+
+  function resetSlider(){
+    clearInterval(sliderInterval);
+    startSlider();
+  }
+
+  dots.forEach((dot, index) => {
+    dot.addEventListener('click', () => {
+      showSlide(index);
+      resetSlider();
+    });
+  });
+
+  showSlide(0);
+  startSlider();
+</script>
 <body>
   <div class="intro-splash" aria-hidden="true">
     <div class="intro-splash-inner">
@@ -1019,19 +1179,78 @@
   </div>
 
   <main>
-    <section class="hero" id="heroSection">
-      <div class="container hero-inner">
-        <div class="hero-content">
-          <div class="hero-meta">
-            <span>Architecture, Interior Design, Town Planning, Landscaping, Construction</span>
-          </div>
-          <h1 class="hero-title-single">Spaces With Purpose</h1>
-          <p class="hero-text">
-            H Square Design creates elegant, well-planned spaces that balance beauty, function, and build quality—giving every client confidence through clear design thinking, reliable delivery, and a professional presentation from start to finish.
-          </p>
+    <section class="hero-slider" id="heroSection">
+  <div class="hero-slide active">
+    <img src="./new-hero-1.jpg" alt="Modern architectural exterior">
+    <div class="hero-overlay"></div>
+    <div class="container hero-inner">
+      <div class="hero-content">
+        <div class="hero-meta">
+          <span>Architecture, Interior Design, Town Planning, Landscaping, Construction</span>
         </div>
+        <h1 class="hero-title-single">Spaces With Purpose</h1>
+        <p class="hero-text">
+          Elegant spaces that balance beauty, function, and premium visual identity.
+        </p>
       </div>
-    </section>
+    </div>
+  </div>
+
+  <div class="hero-slide">
+    <img src="./new-hero-2.jpg" alt="Luxury house elevation">
+    <div class="hero-overlay"></div>
+    <div class="container hero-inner">
+      <div class="hero-content">
+        <div class="hero-meta">
+          <span>Residential Design</span>
+        </div>
+        <h1 class="hero-title-single">Designed For Modern Living</h1>
+        <p class="hero-text">
+          Refined residential concepts shaped with clarity, comfort, and character.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-slide">
+    <img src="./new-hero-3.jpg" alt="Commercial architecture">
+    <div class="hero-overlay"></div>
+    <div class="container hero-inner">
+      <div class="hero-content">
+        <div class="hero-meta">
+          <span>Commercial & Institutional Design</span>
+        </div>
+        <h1 class="hero-title-single">Built Around Vision</h1>
+        <p class="hero-text">
+          Strong architectural presentation for commercial and institutional spaces.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-slide">
+    <img src="./new-hero-4.jpg" alt="Premium exterior facade">
+    <div class="hero-overlay"></div>
+    <div class="container hero-inner">
+      <div class="hero-content">
+        <div class="hero-meta">
+          <span>Presentation & Planning</span>
+        </div>
+        <h1 class="hero-title-single">Architecture With Identity</h1>
+        <p class="hero-text">
+          Thoughtful concepts, polished visuals, and premium design direction.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-dots">
+    <button class="dot active" data-slide="0"></button>
+    <button class="dot" data-slide="1"></button>
+    <button class="dot" data-slide="2"></button>
+    <button class="dot" data-slide="3"></button>
+  </div>
+</section>
 
     </main>
 
