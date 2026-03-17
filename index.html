@@ -1068,47 +1068,46 @@
 }
   </style>
 </head>
-  <script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
   const slides = document.querySelectorAll('.hero-slide');
   const dots = document.querySelectorAll('.hero-dots .dot');
   let currentSlide = 0;
-  let sliderInterval;
 
-  function showSlide(index){
+  function showSlide(index) {
     slides.forEach((slide, i) => {
-      slide.classList.toggle('active', i === index);
+      if (i === index) {
+        slide.classList.add('active');
+      } else {
+        slide.classList.remove('active');
+      }
     });
 
     dots.forEach((dot, i) => {
-      dot.classList.toggle('active', i === index);
+      if (i === index) {
+        dot.classList.add('active');
+      } else {
+        dot.classList.remove('active');
+      }
     });
 
     currentSlide = index;
   }
 
-  function nextSlide(){
-    const next = (currentSlide + 1) % slides.length;
-    showSlide(next);
-  }
-
-  function startSlider(){
-    sliderInterval = setInterval(nextSlide, 4500);
-  }
-
-  function resetSlider(){
-    clearInterval(sliderInterval);
-    startSlider();
+  function nextSlide() {
+    currentSlide = (currentSlide + 1) % slides.length;
+    showSlide(currentSlide);
   }
 
   dots.forEach((dot, index) => {
-    dot.addEventListener('click', () => {
+    dot.addEventListener('click', function () {
       showSlide(index);
-      resetSlider();
     });
   });
 
   showSlide(0);
-  startSlider();
+  setInterval(nextSlide, 4500);
+});
 </script>
 <body>
   <div class="intro-splash" aria-hidden="true">
