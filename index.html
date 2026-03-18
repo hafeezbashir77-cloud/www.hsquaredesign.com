@@ -495,20 +495,7 @@
       flex-wrap:wrap;
     }
 
-    .mega-menu{
-      position:fixed;
-      inset:0;
-      z-index:2500;
-      background:var(--overlay);
-      color:rgba(255,255,255,.76);
-      opacity:0;
-      visibility:hidden;
-      pointer-events:none;
-      transition:opacity .35s ease, visibility .35s ease;
-      overflow:hidden;
-    }
-
-    .mega-menu.is-open{
+        .mega-menu.is-open{
       opacity:1;
       visibility:visible;
       pointer-events:auto;
@@ -1088,49 +1075,61 @@
 .hero-dots{
   z-index: 1 !important;
 }
+    .mega-top,
+.mega-content,
+.mega-grid{
+  position: relative;
+  z-index: 40001 !important;
+  background: rgba(0,0,0,0.55) !important;
+}
+
+.mega-col.left,
+.mega-col.center,
+.mega-col.right{
+  position: relative;
+  z-index: 40002 !important;
+  background: rgba(0,0,0,0.72) !important;
+}
+
+.menu-list,
+.submenu-panel,
+.detail-panel{
+  position: relative;
+  z-index: 40003 !important;
+  background: rgba(0,0,0,0.78) !important;
+}
+
+.menu-item,
+.submenu-list,
+.detail-panel *{
+  position: relative;
+  z-index: 40004 !important;
+}
+
+.hero-slider,
+.hero-slide,
+.hero-slide img,
+.hero-overlay,
+.hero-dots{
+  z-index: 1 !important;
+}
+    .hidden{
+  opacity:0 !important;
+  visibility:hidden !important;
+  pointer-events:none !important;
+}
+
+#heroSection.hidden{
+  display:none !important;
+}
+
+#siteHeader.hidden{
+  opacity:0 !important;
+  visibility:hidden !important;
+}
   </style>
 </head>
-<script>
-document.addEventListener('DOMContentLoaded', function () {
-  const slides = document.querySelectorAll('.hero-slide');
-  const dots = document.querySelectorAll('.hero-dots .dot');
-  let currentSlide = 0;
 
-  function showSlide(index) {
-    slides.forEach((slide, i) => {
-      if (i === index) {
-        slide.classList.add('active');
-      } else {
-        slide.classList.remove('active');
-      }
-    });
-
-    dots.forEach((dot, i) => {
-      if (i === index) {
-        dot.classList.add('active');
-      } else {
-        dot.classList.remove('active');
-      }
-    });
-
-    currentSlide = index;
-  }
-
-  function nextSlide() {
-    currentSlide = (currentSlide + 1) % slides.length;
-    showSlide(currentSlide);
-  }
-
-  dots.forEach((dot, index) => {
-    dot.addEventListener('click', function () {
-      showSlide(index);
-    });
-  });
-
-  showSlide(0);
-  setInterval(nextSlide, 4500);
-});
-</script>
 <body>
   <div class="intro-splash" aria-hidden="true">
     <div class="intro-splash-inner">
@@ -1690,5 +1689,47 @@ document.addEventListener('DOMContentLoaded', function () {
       });
     });
   </script>
+  
+  <script>
+document.addEventListener('DOMContentLoaded', function () {
+  const slides = document.querySelectorAll('.hero-slide');
+  const dots = document.querySelectorAll('.hero-dots .dot');
+  let currentSlide = 0;
+
+  function showSlide(index) {
+    slides.forEach((slide, i) => {
+      if (i === index) {
+        slide.classList.add('active');
+      } else {
+        slide.classList.remove('active');
+      }
+    });
+
+    dots.forEach((dot, i) => {
+      if (i === index) {
+        dot.classList.add('active');
+      } else {
+        dot.classList.remove('active');
+      }
+    });
+
+    currentSlide = index;
+  }
+
+  function nextSlide() {
+    currentSlide = (currentSlide + 1) % slides.length;
+    showSlide(currentSlide);
+  }
+
+  dots.forEach((dot, index) => {
+    dot.addEventListener('click', function () {
+      showSlide(index);
+    });
+  });
+
+  showSlide(0);
+  setInterval(nextSlide, 4500);
+});
+</script>
 </body>
 </html>
