@@ -1074,36 +1074,38 @@
   z-index:1 !important;
 }
 
-.menu-overlay,
-.nav-overlay,
-.fullscreen-menu,
-.menu-panel,
-.nav-panel,
-.menu-drawer{
-  z-index:30000 !important;
+.mega-menu{
+  position: fixed;
+  inset: 0;
+  z-index: 40000 !important;
+  background: rgba(0,0,0,0.92) !important;
+  backdrop-filter: blur(8px) !important;
 }
 
-.menu-overlay *,
-.nav-overlay *,
-.fullscreen-menu *,
-.menu-panel *,
-.nav-panel *,
-.menu-drawer *{
-  position:relative;
-  z-index:30001 !important;
+.mega-menu::before{
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.88);
+  z-index: 39999;
 }
-    .menu-panel,
-.nav-panel,
-.fullscreen-menu{
-  background: rgba(0,0,0,0.78) !important;
+
+.mega-top,
+.mega-content,
+.mega-grid,
+.mega-col,
+.submenu-panel,
+.detail-panel{
+  position: relative;
+  z-index: 40001 !important;
 }
-    body.menu-open .hero-slider,
-body.nav-open .hero-slider,
-body.overlay-open .hero-slider,
-html.menu-open .hero-slider,
-html.nav-open .hero-slider,
-html.overlay-open .hero-slider{
-  opacity:0.15 !important;
+
+.hero-slider,
+.hero-slide,
+.hero-slide img,
+.hero-overlay,
+.hero-dots{
+  z-index: 1 !important;
 }
   </style>
 </head>
