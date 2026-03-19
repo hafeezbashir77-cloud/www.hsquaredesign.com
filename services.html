@@ -75,28 +75,67 @@ scroll-behavior:smooth;
       display:block;
     }
 
-    .menu-lines{
-      width:78px;
-      height:42px;
-      position:relative;
-    }
+    .site-header{
+  padding:22px 0;
+  border-bottom:1px solid var(--soft-line);
+  position:sticky;
+  top:0;
+  z-index:1000;
+  background:rgba(11,11,11,.92);
+  backdrop-filter:blur(10px);
+}
 
-    .menu-lines span{
-      position:absolute;
-      right:0;
-      height:2px;
-      background:#fff;
-      border-radius:999px;
-      transition:.3s ease;
-    }
+.header-inner{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
+}
 
-    .menu-lines span:nth-child(1){top:6px;width:52px;}
-    .menu-lines span:nth-child(2){top:18px;width:68px;}
-    .menu-lines span:nth-child(3){top:30px;width:58px;}
+.logo img{
+  width:70px;
+  height:auto;
+  display:block;
+}
 
-    .menu-lines:hover span:nth-child(1){width:60px;}
-    .menu-lines:hover span:nth-child(2){width:74px;}
-    .menu-lines:hover span:nth-child(3){width:66px;}
+.main-nav{
+  display:flex;
+  align-items:center;
+  gap:30px;
+}
+
+.main-nav a{
+  position:relative;
+  font-size:.95rem;
+  color:var(--text);
+  letter-spacing:.04em;
+  text-transform:uppercase;
+  transition:.25s ease;
+}
+
+.main-nav a::after{
+  content:"";
+  position:absolute;
+  left:0;
+  bottom:-8px;
+  width:0;
+  height:1.5px;
+  background:var(--accent);
+  transition:.3s ease;
+}
+
+.main-nav a:hover{
+  color:var(--accent-text);
+}
+
+.main-nav a:hover::after,
+.main-nav a.active::after{
+  width:100%;
+}
+
+.main-nav a.active{
+  color:var(--accent-text);
+}
 
     .hero{
       padding:90px 0 50px;
@@ -258,47 +297,59 @@ scroll-behavior:smooth;
     }
 
     @media (max-width:760px){
-      .container{
-        width:min(var(--max), calc(100% - 24px));
-      }
+  .container{
+    width:min(var(--max), calc(100% - 24px));
+  }
 
-      .hero{
-        padding:70px 0 36px;
-      }
+  .hero{
+    padding:70px 0 36px;
+  }
 
-      .service-copy{
-        padding:24px;
-      }
+  .service-copy{
+    padding:24px;
+  }
 
-      .service-image{
-        min-height:320px;
-      }
+  .service-image{
+    min-height:320px;
+  }
 
-      .hero h1{
-        font-size:2.7rem;
-      }
+  .hero h1{
+    font-size:2.7rem;
+  }
 
-      .logo img{
-        width:58px;
-      }
-    }
+  .logo img{
+    width:58px;
+  }
+
+  .main-nav{
+    gap:16px;
+    flex-wrap:wrap;
+    justify-content:flex-end;
+  }
+
+  .main-nav a{
+    font-size:.78rem;
+  }
+}
   </style>
 </head>
 <body>
 
-  <header>
-    <div class="container header-inner">
-      <a class="logo" href="index.html" aria-label="H Square Design home">
-        <img src="./logo.png" alt="H Square Design logo">
-      </a>
+  <header class="site-header">
+  <div class="container header-inner">
+    <a class="logo" href="index.html" aria-label="H Square Design home">
+      <img src="./logo.png" alt="H Square Design logo">
+    </a>
 
-      <div class="menu-lines" aria-hidden="true">
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
-    </div>
-  </header>
+    <nav class="main-nav">
+      <a href="index.html">Home</a>
+      <a href="portfolio.html">Portfolio</a>
+      <a href="about.html">About</a>
+      <a href="service.html" class="active">Services</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </div>
+</header>
 
   <main>
     <section class="hero">
