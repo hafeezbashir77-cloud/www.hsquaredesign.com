@@ -164,9 +164,9 @@
       box-shadow:0 0 0 rgba(255,255,255,0);
     }
 
-    .menu-toggle-line:nth-child(1){transform:translateY(-11px);width:58px;}
-    .menu-toggle-line:nth-child(2){transform:translateY(0);width:58px;}
-    .menu-toggle-line:nth-child(3){transform:translateY(11px);width:58px;}
+    .menu-toggle-line:nth-child(1){transform:translateY(-11px);width:53px;}
+    .menu-toggle-line:nth-child(2){transform:translateY(0);width:53px;}
+    .menu-toggle-line:nth-child(3){transform:translateY(11px);width:53px;}
 
     .menu-toggle.is-active .menu-toggle-line:nth-child(1){
       transform:translateY(0) rotate(45deg);
@@ -603,7 +603,14 @@
       width:100%;
     }
 
-    .mega-col.left{justify-content:center;}
+    .mega-col.left{
+  justify-content:center;
+  align-items:center;
+}
+
+.mega-col.left .menu-list{
+  max-width:280px;
+}
 
     .mega-col.center{
       border-left:1px solid rgba(255,255,255,.10);
@@ -631,14 +638,17 @@
     }
 
     .menu-list,
-    .submenu-list,
-    .detail-list{
-      width:100%;
-      display:grid;
-      gap:16px;
-      justify-items:center;
-      text-align:center;
-    }
+.submenu-list,
+.detail-list{
+  width:100%;
+  display:grid;
+  gap:14px;
+}
+
+.menu-list{
+  justify-items:start;
+  text-align:left;
+}
 
     .menu-item,
     .submenu-item,
@@ -655,10 +665,18 @@
     }
 
     .menu-item{
-      font-size:clamp(1.7rem, 3vw, 2.45rem);
-      font-weight:400;
-      line-height:1.05;
-    }
+  font-family:"Helvetica Neue", Arial, Helvetica, sans-serif;
+  font-size:clamp(1.45rem, 2.2vw, 2rem);
+  font-weight:400;
+  line-height:1.15;
+  letter-spacing:-0.02em;
+  color:rgba(255,255,255,.82);
+  text-align:left;
+  width:100%;
+  max-width:260px;
+  padding:14px 18px;
+  border-radius:18px;
+}
 
     .submenu-item,
     .detail-item{
@@ -668,15 +686,21 @@
     }
 
     .menu-item:hover,
-    .submenu-item:hover,
-    .detail-item:hover,
-    .menu-item.active,
-    .submenu-item.active,
-    .detail-item.active{
-      color:rgba(255,255,255,.92);
-      transform:translateY(-2px) scale(1.02);
-      letter-spacing:.01em;
-    }
+.menu-item.active{
+  color:#fff;
+  background:rgba(255,255,255,.08);
+  transform:none;
+  letter-spacing:-0.02em;
+}
+
+.submenu-item:hover,
+.detail-item:hover,
+.submenu-item.active,
+.detail-item.active{
+  color:rgba(255,255,255,.92);
+  transform:translateY(-2px) scale(1.02);
+  letter-spacing:.01em;
+}
 
     .submenu-panel,
     .detail-panel{
