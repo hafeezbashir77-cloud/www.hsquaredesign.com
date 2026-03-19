@@ -108,25 +108,80 @@
       font-weight:600;
     }
 
-    .nav-links{
-      display:flex;
+    .menu-toggle{
+      width:64px;
+      height:64px;
+      border-radius:18px;
+      border:1px solid rgba(255,255,255,.10);
+      background:linear-gradient(145deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+      display:inline-flex;
       align-items:center;
-      gap:10px;
-      flex-wrap:wrap;
+      justify-content:center;
+      cursor:pointer;
+      transition:.25s ease;
+      box-shadow:var(--shadow);
     }
 
-    .nav-links a{
-      color:var(--muted);
-      font-size:.95rem;
-      padding:10px 14px;
+    .menu-toggle:hover{
+      transform:translateY(-2px);
+      background:linear-gradient(145deg, rgba(255,255,255,.08), rgba(255,255,255,.03));
+      border-color:rgba(255,255,255,.16);
+    }
+
+    .menu-icon{
+      width:24px;
+      display:grid;
+      gap:5px;
+    }
+
+    .menu-icon span{
+      display:block;
+      height:2px;
       border-radius:999px;
+      background:var(--text);
+    }
+
+    .menu-panel{
+      position:absolute;
+      top:calc(100% + 14px);
+      right:0;
+      min-width:220px;
+      padding:14px;
+      border-radius:22px;
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(12,12,12,.92);
+      backdrop-filter:blur(14px);
+      box-shadow:var(--shadow);
+      opacity:0;
+      visibility:hidden;
+      transform:translateY(8px);
       transition:.25s ease;
     }
 
-    .nav-links a:hover,
-    .nav-links a.active{
+    .menu-dropdown{
+      position:relative;
+    }
+
+    .menu-dropdown:hover .menu-panel,
+    .menu-dropdown:focus-within .menu-panel{
+      opacity:1;
+      visibility:visible;
+      transform:translateY(0);
+    }
+
+    .menu-panel a{
+      display:block;
+      padding:12px 14px;
+      border-radius:14px;
+      color:var(--muted);
+      transition:.25s ease;
+      font-size:.96rem;
+    }
+
+    .menu-panel a:hover,
+    .menu-panel a.active{
       color:var(--text);
-      background:rgba(255,255,255,.05);
+      background:rgba(255,255,255,.06);
     }
 
     .page{padding:34px 0 80px}
@@ -571,14 +626,17 @@
 
     @media (max-width:780px){
       .container{width:min(var(--max), calc(100% - 22px));}
-      .nav{min-height:74px; align-items:flex-start; padding:14px 0; flex-direction:column;}
+      .nav{min-height:74px; padding:14px 0;}
       .hero-panel,.card,.quote-band,.closing-cta{padding:26px}
       .hero-panel h1{font-size:2.9rem}
       .hero-bottom{grid-template-columns:1fr}
       .mosaic-right{grid-template-columns:1fr}
       .mosaic-left,.mosaic-small,.hero-visual{min-height:280px}
-      .nav-links{gap:4px}
+      .menu-toggle{width:58px;height:58px;border-radius:16px}
+      .menu-panel{right:0;left:auto;min-width:200px}
       .btn{width:100%}
+      .cta-actions{width:100%}
+    }
       .cta-actions{width:100%}
     }
   </style>
@@ -596,13 +654,23 @@
         </div>
       </a>
 
-      <nav class="nav-links" aria-label="Primary Navigation">
-        <a href="index.html">Home</a>
-        <a href="services.html">Services</a>
-        <a href="portfolio.html">Portfolio</a>
-        <a href="about.html" class="active">About</a>
-        <a href="contact.html">Contact</a>
-      </nav>
+      <div class="menu-dropdown" aria-label="Navigation Menu">
+        <button class="menu-toggle" type="button" aria-label="Open navigation menu">
+          <span class="menu-icon" aria-hidden="true">
+            <span></span>
+            <span></span>
+            <span></span>
+          </span>
+        </button>
+
+        <nav class="menu-panel" aria-label="Primary Navigation">
+          <a href="index.html">Home</a>
+          <a href="services.html">Services</a>
+          <a href="portfolio.html">Portfolio</a>
+          <a href="about.html" class="active">About</a>
+          <a href="contact.html">Contact</a>
+        </nav>
+      </div>
     </div>
   </header>
 
