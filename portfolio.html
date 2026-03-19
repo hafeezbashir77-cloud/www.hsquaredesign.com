@@ -1,1 +1,1156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio | H Square Design</title>
 
+  <style>
+    :root{
+      --bg:#050505;
+      --panel:#0c0c0c;
+      --panel-2:#121212;
+      --panel-3:#171717;
+      --text:#f5f1ea;
+      --muted:#9a9a9a;
+      --soft-line:rgba(255,255,255,.08);
+      --accent:#c6a77a;
+      --accent-soft:rgba(198,167,122,.16);
+      --max:1400px;
+      --radius:24px;
+      --shadow:0 20px 60px rgba(0,0,0,.34);
+    }
+
+    *{
+      box-sizing:border-box;
+      margin:0;
+      padding:0;
+    }
+
+    html{
+      scroll-behavior:smooth;
+    }
+
+    body{
+      background:var(--bg);
+      color:var(--text);
+      font-family:Arial, Helvetica, sans-serif;
+      line-height:1.6;
+    }
+
+    a{
+      text-decoration:none;
+      color:inherit;
+    }
+
+    img{
+      max-width:100%;
+      display:block;
+    }
+
+    button,
+    input{
+      font:inherit;
+    }
+
+    .container{
+      width:min(var(--max), calc(100% - 60px));
+      margin:auto;
+    }
+
+    /* ===== SAME HEADER / BAR ===== */
+    .site-header{
+      position:sticky;
+      top:0;
+      z-index:1000;
+      backdrop-filter:blur(14px);
+      background:rgba(10,10,10,.58);
+      border-bottom:1px solid rgba(255,255,255,.05);
+    }
+
+    .nav{
+      min-height:82px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:18px;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:14px;
+    }
+
+    .brand-mark{
+      width:54px;
+      height:54px;
+      border-radius:18px;
+      display:grid;
+      place-items:center;
+      background:linear-gradient(145deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+      border:1px solid rgba(255,255,255,.09);
+      box-shadow:0 20px 60px rgba(0,0,0,.34);
+      overflow:hidden;
+      flex-shrink:0;
+    }
+
+    .brand-mark img{
+      width:28px;
+      height:auto;
+      display:block;
+    }
+
+    .brand-copy small{
+      display:block;
+      color:var(--muted);
+      letter-spacing:.18em;
+      text-transform:uppercase;
+      font-size:.68rem;
+      margin-bottom:3px;
+    }
+
+    .brand-copy strong{
+      font-size:1rem;
+      font-weight:600;
+      color:var(--text);
+    }
+
+    .menu-dropdown{
+      position:relative;
+    }
+
+    .menu-toggle{
+      width:64px;
+      height:64px;
+      border-radius:18px;
+      border:1px solid rgba(255,255,255,.10);
+      background:linear-gradient(145deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      cursor:pointer;
+      transition:.25s ease;
+      box-shadow:0 20px 60px rgba(0,0,0,.34);
+    }
+
+    .menu-toggle:hover{
+      transform:translateY(-2px);
+      background:linear-gradient(145deg, rgba(255,255,255,.08), rgba(255,255,255,.03));
+      border-color:rgba(255,255,255,.16);
+    }
+
+    .menu-icon{
+      width:24px;
+      display:grid;
+      gap:5px;
+    }
+
+    .menu-icon span{
+      display:block;
+      height:2px;
+      border-radius:999px;
+      background:var(--text);
+    }
+
+    .menu-panel{
+      position:absolute;
+      top:calc(100% + 14px);
+      right:0;
+      min-width:220px;
+      padding:14px;
+      border-radius:22px;
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(12,12,12,.92);
+      backdrop-filter:blur(14px);
+      box-shadow:0 20px 60px rgba(0,0,0,.34);
+      opacity:0;
+      visibility:hidden;
+      transform:translateY(8px);
+      transition:.25s ease;
+    }
+
+    .menu-dropdown:hover .menu-panel,
+    .menu-dropdown:focus-within .menu-panel{
+      opacity:1;
+      visibility:visible;
+      transform:translateY(0);
+    }
+
+    .menu-panel a{
+      display:block;
+      padding:12px 14px;
+      border-radius:14px;
+      color:var(--muted);
+      transition:.25s ease;
+      font-size:.96rem;
+    }
+
+    .menu-panel a:hover,
+    .menu-panel a.active{
+      color:var(--text);
+      background:rgba(255,255,255,.06);
+    }
+
+    /* ===== HERO ===== */
+    .hero{
+      padding:84px 0 38px;
+    }
+
+    .hero-wrap{
+      display:grid;
+      grid-template-columns:1.3fr .9fr;
+      gap:24px;
+      align-items:stretch;
+    }
+
+    .hero-main,
+    .hero-side{
+      border:1px solid var(--soft-line);
+      border-radius:30px;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.01)),
+        var(--panel);
+      box-shadow:var(--shadow);
+    }
+
+    .hero-main{
+      padding:48px;
+      min-height:360px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .hero-main::before{
+      content:"";
+      position:absolute;
+      inset:auto -80px -80px auto;
+      width:220px;
+      height:220px;
+      border-radius:50%;
+      background:radial-gradient(circle, rgba(198,167,122,.18), rgba(198,167,122,0));
+      pointer-events:none;
+    }
+
+    .eyebrow{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      color:var(--accent);
+      letter-spacing:.16em;
+      text-transform:uppercase;
+      font-size:.72rem;
+      margin-bottom:16px;
+    }
+
+    .eyebrow::before{
+      content:"";
+      width:36px;
+      height:1px;
+      background:var(--accent);
+      opacity:.9;
+    }
+
+    .hero h1{
+      font-size:72px;
+      line-height:1;
+      letter-spacing:-2px;
+      margin-bottom:18px;
+    }
+
+    .hero p{
+      color:#c2c2c2;
+      max-width:760px;
+      font-size:18px;
+    }
+
+    .hero-meta{
+      display:flex;
+      flex-wrap:wrap;
+      gap:14px;
+      margin-top:30px;
+    }
+
+    .meta-pill{
+      padding:11px 16px;
+      border:1px solid var(--soft-line);
+      border-radius:999px;
+      background:rgba(255,255,255,.03);
+      color:#d7d7d7;
+      font-size:14px;
+    }
+
+    .hero-side{
+      padding:28px;
+      display:grid;
+      gap:16px;
+      align-content:start;
+    }
+
+    .stats-card{
+      border:1px solid var(--soft-line);
+      border-radius:22px;
+      padding:22px;
+      background:rgba(255,255,255,.02);
+    }
+
+    .stats-card span{
+      display:block;
+      color:var(--muted);
+      font-size:13px;
+      margin-bottom:6px;
+      text-transform:uppercase;
+      letter-spacing:.12em;
+    }
+
+    .stats-card strong{
+      display:block;
+      font-size:34px;
+      line-height:1.05;
+      color:var(--text);
+    }
+
+    .stats-card p{
+      color:#bcbcbc;
+      font-size:14px;
+      margin-top:8px;
+    }
+
+    /* ===== CONTROLS ===== */
+    .portfolio-controls{
+      padding:0 0 28px;
+    }
+
+    .controls-shell{
+      border:1px solid var(--soft-line);
+      border-radius:28px;
+      background:linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.01));
+      padding:20px;
+      box-shadow:var(--shadow);
+    }
+
+    .top-controls{
+      display:flex;
+      gap:14px;
+      align-items:center;
+      justify-content:space-between;
+      flex-wrap:wrap;
+      margin-bottom:16px;
+    }
+
+    .search-box{
+      flex:1 1 320px;
+      position:relative;
+    }
+
+    .search-box input{
+      width:100%;
+      background:var(--panel-2);
+      color:var(--text);
+      border:1px solid var(--soft-line);
+      border-radius:18px;
+      padding:15px 16px 15px 46px;
+      outline:none;
+      transition:.25s ease;
+    }
+
+    .search-box input:focus{
+      border-color:rgba(198,167,122,.45);
+      box-shadow:0 0 0 4px rgba(198,167,122,.08);
+    }
+
+    .search-box::before{
+      content:"⌕";
+      position:absolute;
+      left:16px;
+      top:50%;
+      transform:translateY(-50%);
+      color:var(--muted);
+      font-size:18px;
+      pointer-events:none;
+    }
+
+    .results-count{
+      color:var(--muted);
+      font-size:14px;
+      white-space:nowrap;
+    }
+
+    .filter{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+    }
+
+    .filter button{
+      padding:11px 18px;
+      border-radius:999px;
+      border:1px solid var(--soft-line);
+      background:var(--panel);
+      color:#b1b1b1;
+      cursor:pointer;
+      transition:.3s;
+      font-size:14px;
+    }
+
+    .filter button:hover,
+    .filter button.active{
+      background:var(--accent);
+      color:#000;
+      border-color:var(--accent);
+    }
+
+    /* ===== GRID ===== */
+    .portfolio-section{
+      padding:0 0 90px;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(3, minmax(0,1fr));
+      gap:24px;
+    }
+
+    .card{
+      position:relative;
+      min-height:380px;
+      border-radius:26px;
+      overflow:hidden;
+      background:#101010;
+      border:1px solid rgba(255,255,255,.06);
+      box-shadow:var(--shadow);
+      isolation:isolate;
+      transition:.35s ease;
+    }
+
+    .card.tall{
+      min-height:500px;
+    }
+
+    .card:hover{
+      transform:translateY(-6px);
+      border-color:rgba(198,167,122,.24);
+    }
+
+    .card-media{
+      position:absolute;
+      inset:0;
+    }
+
+    .card img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      transition:transform .8s ease, filter .8s ease;
+      filter:grayscale(12%);
+    }
+
+    .card:hover img{
+      transform:scale(1.06);
+      filter:grayscale(0%);
+    }
+
+    .card::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+        linear-gradient(to top, rgba(0,0,0,.92) 0%, rgba(0,0,0,.38) 45%, rgba(0,0,0,.08) 100%);
+      z-index:1;
+      pointer-events:none;
+    }
+
+    .card-badge{
+      position:absolute;
+      top:18px;
+      left:18px;
+      z-index:2;
+      padding:8px 12px;
+      border-radius:999px;
+      background:rgba(0,0,0,.42);
+      backdrop-filter:blur(10px);
+      border:1px solid rgba(255,255,255,.14);
+      color:#f3e5d1;
+      font-size:12px;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+    }
+
+    .overlay{
+      position:absolute;
+      left:0;
+      right:0;
+      bottom:0;
+      z-index:2;
+      padding:24px;
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+    }
+
+    .overlay-top{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:16px;
+    }
+
+    .overlay h3{
+      font-size:28px;
+      line-height:1.12;
+      margin:0;
+    }
+
+    .view-btn{
+      width:46px;
+      height:46px;
+      border-radius:50%;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(255,255,255,.08);
+      color:#fff;
+      cursor:pointer;
+      flex-shrink:0;
+      transition:.25s ease;
+    }
+
+    .view-btn:hover{
+      background:var(--accent);
+      color:#000;
+      border-color:var(--accent);
+    }
+
+    .overlay p{
+      color:#d6d6d6;
+      font-size:14px;
+      line-height:1.7;
+    }
+
+    .card-meta{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:2px;
+    }
+
+    .card-meta span{
+      padding:6px 10px;
+      border-radius:999px;
+      background:rgba(255,255,255,.07);
+      color:#e7e7e7;
+      font-size:12px;
+      border:1px solid rgba(255,255,255,.09);
+    }
+
+    .empty-state{
+      display:none;
+      border:1px solid var(--soft-line);
+      border-radius:28px;
+      background:linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.01));
+      text-align:center;
+      padding:60px 24px;
+      color:var(--muted);
+      box-shadow:var(--shadow);
+    }
+
+    .empty-state.show{
+      display:block;
+    }
+
+    .empty-state h3{
+      font-size:28px;
+      color:var(--text);
+      margin-bottom:10px;
+    }
+
+    /* ===== LIGHTBOX ===== */
+    .lightbox{
+      position:fixed;
+      inset:0;
+      background:rgba(0,0,0,.84);
+      backdrop-filter:blur(10px);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:24px;
+      opacity:0;
+      visibility:hidden;
+      transition:.25s ease;
+      z-index:2000;
+    }
+
+    .lightbox.show{
+      opacity:1;
+      visibility:visible;
+    }
+
+    .lightbox-inner{
+      width:min(1100px, 100%);
+      max-height:90vh;
+      overflow:auto;
+      border-radius:28px;
+      background:#0f0f0f;
+      border:1px solid rgba(255,255,255,.1);
+      box-shadow:0 30px 100px rgba(0,0,0,.45);
+    }
+
+    .lightbox-image-wrap{
+      background:#000;
+    }
+
+    .lightbox-image{
+      width:100%;
+      max-height:72vh;
+      object-fit:contain;
+      display:block;
+      margin:auto;
+    }
+
+    .lightbox-content{
+      padding:24px;
+    }
+
+    .lightbox-content h3{
+      font-size:32px;
+      margin-bottom:10px;
+    }
+
+    .lightbox-content p{
+      color:#d0d0d0;
+      margin-bottom:12px;
+    }
+
+    .lightbox-meta{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+    }
+
+    .lightbox-meta span{
+      padding:8px 12px;
+      border-radius:999px;
+      background:rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.09);
+      color:#e7e7e7;
+      font-size:12px;
+    }
+
+    .lightbox-close{
+      position:fixed;
+      top:18px;
+      right:18px;
+      width:54px;
+      height:54px;
+      border-radius:50%;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(255,255,255,.08);
+      color:#fff;
+      font-size:24px;
+      cursor:pointer;
+      z-index:2001;
+    }
+
+    footer{
+      border-top:1px solid var(--soft-line);
+      padding:26px 0;
+      text-align:center;
+      color:var(--muted);
+      font-size:14px;
+    }
+
+    @media (max-width:1100px){
+      .hero-wrap{
+        grid-template-columns:1fr;
+      }
+
+      .grid{
+        grid-template-columns:repeat(2, minmax(0,1fr));
+      }
+    }
+
+    @media (max-width:780px){
+      .nav{
+        min-height:74px;
+        padding:14px 0;
+      }
+
+      .menu-toggle{
+        width:58px;
+        height:58px;
+        border-radius:16px;
+      }
+
+      .menu-panel{
+        min-width:200px;
+      }
+
+      .hero{
+        padding:56px 0 28px;
+      }
+
+      .hero-main{
+        padding:28px;
+        min-height:auto;
+      }
+
+      .hero h1{
+        font-size:48px;
+      }
+
+      .hero p{
+        font-size:16px;
+      }
+
+      .grid{
+        grid-template-columns:1fr;
+      }
+    }
+
+    @media (max-width:640px){
+      .container{
+        width:min(var(--max), calc(100% - 28px));
+      }
+
+      .brand-mark{
+        width:46px;
+        height:46px;
+        border-radius:14px;
+      }
+
+      .brand-mark img{
+        width:24px;
+      }
+
+      .brand-copy small{
+        font-size:.56rem;
+        letter-spacing:.16em;
+      }
+
+      .brand-copy strong{
+        font-size:.9rem;
+      }
+
+      .hero h1{
+        font-size:38px;
+        letter-spacing:-1px;
+      }
+
+      .stats-card strong{
+        font-size:28px;
+      }
+
+      .overlay h3{
+        font-size:24px;
+      }
+
+      .controls-shell{
+        padding:16px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== HEADER SAME AS YOUR ABOUT / SERVICES ===== -->
+  <header class="site-header">
+    <div class="container nav">
+      <a href="index.html" class="brand" aria-label="H Square Design Home">
+        <div class="brand-mark">
+          <img src="./logo.png" alt="H Square Design logo">
+        </div>
+        <div class="brand-copy">
+          <small>Architecture & Interiors</small>
+          <strong>H Square Design</strong>
+        </div>
+      </a>
+
+      <div class="menu-dropdown" aria-label="Navigation Menu">
+        <button class="menu-toggle" type="button" aria-label="Open navigation menu">
+          <span class="menu-icon" aria-hidden="true">
+            <span></span>
+            <span></span>
+            <span></span>
+          </span>
+        </button>
+
+        <nav class="menu-panel" aria-label="Primary Navigation">
+          <a href="index.html">Home</a>
+          <a href="services.html">Services</a>
+          <a href="portfolio.html" class="active">Portfolio</a>
+          <a href="about.html">About</a>
+          <a href="contact.html">Contact</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===== HERO ===== -->
+  <section class="hero">
+    <div class="container hero-wrap">
+      <div class="hero-main">
+        <div>
+          <div class="eyebrow">Selected Works</div>
+          <h1>Portfolio</h1>
+          <p>
+            Explore a curated collection of residential, commercial, office,
+            institutional and planning projects designed by H Square Design.
+            Clean lines, practical layouts and strong visual identity shape every space.
+          </p>
+        </div>
+
+        <div class="hero-meta">
+          <div class="meta-pill">Modern Architectural Portfolio</div>
+          <div class="meta-pill">Interior + Exterior Concepts</div>
+          <div class="meta-pill">Professional Project Showcase</div>
+        </div>
+      </div>
+
+      <div class="hero-side">
+        <div class="stats-card">
+          <span>Total Projects</span>
+          <strong id="totalProjects">0</strong>
+          <p>Displayed dynamically from your full portfolio list.</p>
+        </div>
+
+        <div class="stats-card">
+          <span>Categories</span>
+          <strong>6+</strong>
+          <p>Residential, commercial, office, institutions, landscaping and planning.</p>
+        </div>
+
+        <div class="stats-card">
+          <span>Display Style</span>
+          <strong>Premium Grid</strong>
+          <p>Modern cards with fullscreen preview and elegant filter system.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CONTROLS ===== -->
+  <section class="portfolio-controls">
+    <div class="container">
+      <div class="controls-shell">
+        <div class="top-controls">
+          <div class="search-box">
+            <input type="text" id="searchInput" placeholder="Search project name, category or keywords..." />
+          </div>
+          <div class="results-count" id="resultsCount">0 projects</div>
+        </div>
+
+        <div class="filter" id="filterButtons">
+          <button class="active" data-filter="all">All</button>
+          <button data-filter="residential">Residential</button>
+          <button data-filter="commercial">Commercial</button>
+          <button data-filter="office">Offices</button>
+          <button data-filter="institution">Institutions</button>
+          <button data-filter="landscape">Landscaping</button>
+          <button data-filter="planning">Town Planning</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PORTFOLIO GRID ===== -->
+  <section class="portfolio-section">
+    <div class="container">
+      <div class="grid" id="portfolioGrid"></div>
+
+      <div class="empty-state" id="emptyState">
+        <h3>No projects found</h3>
+        <p>Try another category or a different keyword.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      © 2026 H Square Design
+    </div>
+  </footer>
+
+  <!-- ===== LIGHTBOX ===== -->
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox-close" id="lightboxClose" aria-label="Close preview">×</button>
+    <div class="lightbox-inner">
+      <div class="lightbox-image-wrap">
+        <img src="" alt="" class="lightbox-image" id="lightboxImage">
+      </div>
+      <div class="lightbox-content">
+        <h3 id="lightboxTitle"></h3>
+        <p id="lightboxDesc"></p>
+        <div class="lightbox-meta" id="lightboxMeta"></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    /*
+      IMPORTANT:
+      Browser apne aap folder ki 100+ images read nahi karta.
+      Tumhein har image ka path yahan add karna hoga.
+      Neeche sample entries di hain.
+      Isi pattern me jitni chaaho images add karo.
+    */
+    const portfolioItems = [
+      {
+        title: "Apartment Exterior 01",
+        category: "residential",
+        image: "./Appartments/apartment elevation design (1).jpg",
+        description: "Balanced residential elevation with refined façade proportions and modern finish.",
+        tags: ["Exterior", "Residential", "Facade"]
+      },
+      {
+        title: "Apartment Exterior 02",
+        category: "residential",
+        image: "./Appartments/apartment elevation design (2).jpg",
+        description: "Modern apartment frontage designed with depth, symmetry and architectural presence.",
+        tags: ["Apartment", "Elevation", "Modern"]
+      },
+      {
+        title: "Farm House Concept 01",
+        category: "residential",
+        image: "./farm house/farmhouse elevation design (1).jpg",
+        description: "Luxury farmhouse concept with calm language, spacious frontage and premium detailing.",
+        tags: ["Farm House", "Luxury", "Exterior"]
+      },
+      {
+        title: "Farm House Concept 02",
+        category: "residential",
+        image: "./farm house/farmhouse elevation design (2).jpg",
+        description: "Elegant farmhouse scheme focused on openness, comfort and clean architectural lines.",
+        tags: ["Residence", "Farmhouse", "Concept"]
+      },
+      {
+        title: "Commercial Building 01",
+        category: "commercial",
+        image: "./commercial elevation design (1).jpeg",
+        description: "Modern commercial building designed to create a bold and professional first impression.",
+        tags: ["Commercial", "Frontage", "Geometry"]
+      },
+      {
+        title: "Commercial Building 02",
+        category: "commercial",
+        image: "./commercial elevation design (2).jpeg",
+        description: "Contemporary mixed-use commercial façade with powerful vertical and horizontal rhythm.",
+        tags: ["Building", "Facade", "Business"]
+      },
+      {
+        title: "Feature Wall Interior 01",
+        category: "commercial",
+        image: "./Feature Walls/feature wall elevation design (1).jpg",
+        description: "Feature wall concept for branded spaces with layered materials and visual depth.",
+        tags: ["Interior", "Feature Wall", "Branding"]
+      },
+      {
+        title: "Feature Wall Interior 02",
+        category: "commercial",
+        image: "./Feature Walls/feature wall elevation design (2).jpg",
+        description: "Premium interior wall treatment for a stronger, more memorable client experience.",
+        tags: ["Interior", "Wall", "Modern"]
+      },
+      {
+        title: "Office Exterior 01",
+        category: "office",
+        image: "./office/office elevation design (1).jpg",
+        description: "Professional office elevation designed for a confident and contemporary visual identity.",
+        tags: ["Office", "Architecture", "Exterior"]
+      },
+      {
+        title: "Office Interior 01",
+        category: "office",
+        image: "./office interior/office interior design (1).jpg",
+        description: "Functional office interior focused on workspace efficiency, comfort and elegant planning.",
+        tags: ["Office", "Interior", "Planning"]
+      },
+      {
+        title: "School Design 01",
+        category: "institution",
+        image: "./school/school elevation design (1).png",
+        description: "Institutional school concept with organized planning and welcoming architectural form.",
+        tags: ["School", "Institution", "Education"]
+      },
+      {
+        title: "School Design 02",
+        category: "institution",
+        image: "./school/school elevation design (2).png",
+        description: "Educational building concept combining clarity, structure and practical circulation.",
+        tags: ["Academic", "Campus", "Institutional"]
+      },
+      {
+        title: "Hospital Concept 01",
+        category: "institution",
+        image: "./hospital/hospital elevation design (1).png",
+        description: "Healthcare architecture with clean zoning, calm character and efficient organization.",
+        tags: ["Hospital", "Healthcare", "Planning"]
+      },
+      {
+        title: "Hospital Concept 02",
+        category: "institution",
+        image: "./hospital/hospital elevation design (2).png",
+        description: "Modern medical facility exterior designed for clarity, trust and accessibility.",
+        tags: ["Medical", "Institution", "Exterior"]
+      },
+      {
+        title: "Landscape Design 01",
+        category: "landscape",
+        image: "./landscape/landscape design (1).jpg",
+        description: "Open landscape arrangement created to enhance movement, greenery and visual calm.",
+        tags: ["Landscape", "Outdoor", "Site"]
+      },
+      {
+        title: "Town Planning 01",
+        category: "planning",
+        image: "./town planning/town planning design (1).jpg",
+        description: "Town planning proposal developed with functional zoning and long-term usability in mind.",
+        tags: ["Planning", "Urban", "Layout"]
+      }
+    ];
+
+    const portfolioGrid = document.getElementById("portfolioGrid");
+    const filterButtons = document.getElementById("filterButtons");
+    const buttons = filterButtons.querySelectorAll("button");
+    const resultsCount = document.getElementById("resultsCount");
+    const searchInput = document.getElementById("searchInput");
+    const emptyState = document.getElementById("emptyState");
+    const totalProjects = document.getElementById("totalProjects");
+
+    const lightbox = document.getElementById("lightbox");
+    const lightboxImage = document.getElementById("lightboxImage");
+    const lightboxTitle = document.getElementById("lightboxTitle");
+    const lightboxDesc = document.getElementById("lightboxDesc");
+    const lightboxMeta = document.getElementById("lightboxMeta");
+    const lightboxClose = document.getElementById("lightboxClose");
+
+    let activeFilter = "all";
+
+    function renderPortfolio(items){
+      portfolioGrid.innerHTML = "";
+
+      if(!items.length){
+        emptyState.classList.add("show");
+      } else {
+        emptyState.classList.remove("show");
+      }
+
+      items.forEach((item, index) => {
+        const card = document.createElement("article");
+        card.className = `card ${index % 5 === 0 ? "tall" : ""}`;
+
+        card.innerHTML = `
+          <div class="card-media">
+            <img src="${item.image}" alt="${item.title}" loading="lazy">
+          </div>
+
+          <div class="card-badge">${formatCategory(item.category)}</div>
+
+          <div class="overlay">
+            <div class="overlay-top">
+              <div>
+                <h3>${item.title}</h3>
+              </div>
+              <button class="view-btn" type="button" aria-label="View ${item.title}">↗</button>
+            </div>
+
+            <p>${item.description}</p>
+
+            <div class="card-meta">
+              ${(item.tags || []).map(tag => `<span>${tag}</span>`).join("")}
+            </div>
+          </div>
+        `;
+
+        const viewBtn = card.querySelector(".view-btn");
+        viewBtn.addEventListener("click", () => openLightbox(item));
+        card.querySelector("img").addEventListener("click", () => openLightbox(item));
+
+        portfolioGrid.appendChild(card);
+      });
+
+      resultsCount.textContent = `${items.length} project${items.length !== 1 ? "s" : ""}`;
+      totalProjects.textContent = portfolioItems.length;
+    }
+
+    function formatCategory(category){
+      const map = {
+        residential: "Residential",
+        commercial: "Commercial",
+        office: "Office",
+        institution: "Institution",
+        landscape: "Landscape",
+        planning: "Planning"
+      };
+      return map[category] || category;
+    }
+
+    function filterAndSearch(){
+      const keyword = searchInput.value.trim().toLowerCase();
+
+      const filtered = portfolioItems.filter(item => {
+        const matchesCategory =
+          activeFilter === "all" || item.category === activeFilter;
+
+        const textPool = [
+          item.title,
+          item.category,
+          item.description,
+          ...(item.tags || [])
+        ].join(" ").toLowerCase();
+
+        const matchesSearch = textPool.includes(keyword);
+
+        return matchesCategory && matchesSearch;
+      });
+
+      renderPortfolio(filtered);
+    }
+
+    buttons.forEach(btn => {
+      btn.addEventListener("click", () => {
+        buttons.forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+        activeFilter = btn.dataset.filter;
+        filterAndSearch();
+      });
+    });
+
+    searchInput.addEventListener("input", filterAndSearch);
+
+    function openLightbox(item){
+      lightboxImage.src = item.image;
+      lightboxImage.alt = item.title;
+      lightboxTitle.textContent = item.title;
+      lightboxDesc.textContent = item.description;
+      lightboxMeta.innerHTML = `
+        <span>${formatCategory(item.category)}</span>
+        ${(item.tags || []).map(tag => `<span>${tag}</span>`).join("")}
+      `;
+      lightbox.classList.add("show");
+      document.body.style.overflow = "hidden";
+    }
+
+    function closeLightbox(){
+      lightbox.classList.remove("show");
+      document.body.style.overflow = "";
+    }
+
+    lightboxClose.addEventListener("click", closeLightbox);
+
+    lightbox.addEventListener("click", (e) => {
+      if(e.target === lightbox){
+        closeLightbox();
+      }
+    });
+
+    document.addEventListener("keydown", (e) => {
+      if(e.key === "Escape"){
+        closeLightbox();
+      }
+    });
+
+    renderPortfolio(portfolioItems);
+  </script>
+</body>
+</html>
