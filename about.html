@@ -1,1 +1,859 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Us | H Square Design</title>
+  <meta name="description" content="Discover H Square Design — a creative architecture and interior design studio focused on timeless spaces, refined aesthetics, and clear design thinking." />
+  <style>
+    :root{
+      --bg:#0a0a0a;
+      --bg-soft:#111111;
+      --panel:#151515;
+      --panel-2:#1a1a1a;
+      --text:#f5f2ec;
+      --muted:#b9b1a7;
+      --line:rgba(255,255,255,.08);
+      --line-strong:rgba(255,255,255,.16);
+      --accent:#c9a46d;
+      --accent-soft:rgba(201,164,109,.12);
+      --shadow:0 20px 60px rgba(0,0,0,.34);
+      --radius:28px;
+      --max:1440px;
+      --serif: Georgia, "Times New Roman", serif;
+      --sans: "Inter", "Helvetica Neue", Arial, sans-serif;
+    }
 
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:var(--sans);
+      color:var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(201,164,109,.09), transparent 28%),
+        radial-gradient(circle at 85% 15%, rgba(255,255,255,.03), transparent 22%),
+        linear-gradient(180deg, #0b0b0b 0%, #090909 100%);
+      line-height:1.65;
+      overflow-x:hidden;
+    }
+
+    a{text-decoration:none;color:inherit}
+    img{display:block;max-width:100%}
+
+    .container{
+      width:min(var(--max), calc(100% - 56px));
+      margin:0 auto;
+    }
+
+    h1,h2,h3,h4,p{margin:0}
+    h1,h2,h3{
+      font-family:var(--serif);
+      font-weight:500;
+      letter-spacing:-.045em;
+      line-height:.94;
+    }
+
+    .site-header{
+      position:sticky;
+      top:0;
+      z-index:1000;
+      backdrop-filter:blur(14px);
+      background:rgba(10,10,10,.58);
+      border-bottom:1px solid rgba(255,255,255,.05);
+    }
+
+    .nav{
+      min-height:82px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:18px;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:14px;
+    }
+
+    .brand-mark{
+      width:54px;
+      height:54px;
+      border-radius:18px;
+      display:grid;
+      place-items:center;
+      background:linear-gradient(145deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+      border:1px solid rgba(255,255,255,.09);
+      box-shadow:var(--shadow);
+      overflow:hidden;
+    }
+
+    .brand-mark img{
+      width:28px;
+      height:auto;
+    }
+
+    .brand-copy small{
+      display:block;
+      color:var(--muted);
+      letter-spacing:.18em;
+      text-transform:uppercase;
+      font-size:.68rem;
+      margin-bottom:3px;
+    }
+
+    .brand-copy strong{
+      font-size:1rem;
+      font-weight:600;
+    }
+
+    .menu-toggle{
+      width:64px;
+      height:64px;
+      border-radius:18px;
+      border:1px solid rgba(255,255,255,.10);
+      background:linear-gradient(145deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      cursor:pointer;
+      transition:.25s ease;
+      box-shadow:var(--shadow);
+    }
+
+    .menu-toggle:hover{
+      transform:translateY(-2px);
+      background:linear-gradient(145deg, rgba(255,255,255,.08), rgba(255,255,255,.03));
+      border-color:rgba(255,255,255,.16);
+    }
+
+    .menu-icon{
+      width:24px;
+      display:grid;
+      gap:5px;
+    }
+
+    .menu-icon span{
+      display:block;
+      height:2px;
+      border-radius:999px;
+      background:var(--text);
+    }
+
+    .menu-panel{
+      position:absolute;
+      top:calc(100% + 14px);
+      right:0;
+      min-width:220px;
+      padding:14px;
+      border-radius:22px;
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(12,12,12,.92);
+      backdrop-filter:blur(14px);
+      box-shadow:var(--shadow);
+      opacity:0;
+      visibility:hidden;
+      transform:translateY(8px);
+      transition:.25s ease;
+    }
+
+    .menu-dropdown{
+      position:relative;
+    }
+
+    .menu-dropdown:hover .menu-panel,
+    .menu-dropdown:focus-within .menu-panel{
+      opacity:1;
+      visibility:visible;
+      transform:translateY(0);
+    }
+
+    .menu-panel a{
+      display:block;
+      padding:12px 14px;
+      border-radius:14px;
+      color:var(--muted);
+      transition:.25s ease;
+      font-size:.96rem;
+    }
+
+    .menu-panel a:hover,
+    .menu-panel a.active{
+      color:var(--text);
+      background:rgba(255,255,255,.06);
+    }
+
+    .page{padding:34px 0 80px}
+
+    .hero{
+      position:relative;
+      display:grid;
+      grid-template-columns:1.08fr .92fr;
+      gap:28px;
+      align-items:stretch;
+      margin-top:28px;
+    }
+
+    .hero-panel,
+    .hero-visual,
+    .card,
+    .quote-band,
+    .closing-cta{
+      border:1px solid var(--line);
+      background:linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.01));
+      box-shadow:var(--shadow);
+    }
+
+    .hero-panel{
+      padding:52px;
+      border-radius:36px;
+      min-height:680px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .hero-panel::before{
+      content:"";
+      position:absolute;
+      width:240px;
+      height:240px;
+      border-radius:50%;
+      right:-70px;
+      top:-70px;
+      background:radial-gradient(circle, rgba(201,164,109,.18), transparent 68%);
+      pointer-events:none;
+    }
+
+    .eyebrow{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:10px 16px;
+      width:max-content;
+      border-radius:999px;
+      background:var(--accent-soft);
+      border:1px solid rgba(201,164,109,.24);
+      color:#ecd7b6;
+      text-transform:uppercase;
+      letter-spacing:.16em;
+      font-size:.74rem;
+      font-weight:700;
+      margin-bottom:24px;
+    }
+
+    .eyebrow::before{
+      content:"";
+      width:8px;
+      height:8px;
+      border-radius:50%;
+      background:var(--accent);
+      box-shadow:0 0 16px rgba(201,164,109,.55);
+    }
+
+    .hero-panel h1{
+      font-size:clamp(2.5rem, 5.2vw, 4.9rem);
+      max-width:11.5ch;
+      margin-bottom:24px;
+    }
+
+    .lead{
+      max-width:46rem;
+      color:#d7d0c8;
+      font-size:1.05rem;
+      line-height:1.9;
+    }
+
+    .hero-bottom{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:18px;
+      padding-top:34px;
+      margin-top:34px;
+      border-top:1px solid rgba(255,255,255,.08);
+    }
+
+    .mini-stat span{
+      display:block;
+      color:var(--muted);
+      font-size:.83rem;
+      text-transform:uppercase;
+      letter-spacing:.16em;
+      margin-bottom:10px;
+    }
+
+    .mini-stat strong{
+      font-family:var(--serif);
+      font-size:1.55rem;
+      font-weight:500;
+      display:block;
+      margin-bottom:8px;
+    }
+
+    .mini-stat p{
+      color:var(--muted);
+      font-size:.95rem;
+      line-height:1.75;
+    }
+
+    .hero-visual{
+      border-radius:36px;
+      overflow:hidden;
+      min-height:680px;
+      position:relative;
+      background:#121212;
+    }
+
+    .hero-visual img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      filter:grayscale(100%) contrast(108%);
+      transition:transform .9s ease, filter .9s ease;
+    }
+
+    .hero-visual:hover img{
+      transform:scale(1.05);
+      filter:grayscale(12%) contrast(104%);
+    }
+
+    .hero-visual::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(to top, rgba(0,0,0,.45), rgba(0,0,0,.06) 55%, rgba(0,0,0,.16));
+      pointer-events:none;
+    }
+
+    .floating-note{
+      position:absolute;
+      left:24px;
+      bottom:24px;
+      z-index:2;
+      max-width:300px;
+      padding:18px 18px;
+      border-radius:22px;
+      background:rgba(12,12,12,.62);
+      border:1px solid rgba(255,255,255,.12);
+      backdrop-filter:blur(12px);
+    }
+
+    .floating-note strong{
+      display:block;
+      margin-bottom:8px;
+      font-size:1rem;
+    }
+
+    .floating-note p{
+      color:#d8d0c7;
+      font-size:.94rem;
+      line-height:1.7;
+    }
+
+    .section{
+      margin-top:28px;
+    }
+
+    .grid-two{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:28px;
+      align-items:stretch;
+    }
+
+    .card{
+      border-radius:30px;
+      padding:40px;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .card h2{
+      font-size:clamp(2.2rem, 4vw, 3.4rem);
+      max-width:10ch;
+      margin-bottom:18px;
+    }
+
+    .card > p{
+      color:var(--muted);
+      line-height:1.9;
+      font-size:1rem;
+      margin-bottom:16px;
+    }
+
+    .features{
+      display:grid;
+      gap:16px;
+      margin-top:22px;
+    }
+
+    .feature{
+      padding:18px 18px 0 0;
+      border-top:1px solid rgba(255,255,255,.08);
+    }
+
+    .feature strong{
+      display:block;
+      font-size:1rem;
+      margin-bottom:7px;
+      color:var(--text);
+    }
+
+    .feature span{
+      color:var(--muted);
+      display:block;
+      line-height:1.76;
+      font-size:.97rem;
+    }
+
+    .mosaic{
+      display:grid;
+      grid-template-columns:1.15fr .85fr;
+      gap:18px;
+      min-height:100%;
+    }
+
+    .mosaic-left,
+    .mosaic-small{
+      position:relative;
+      overflow:hidden;
+      border-radius:28px;
+      border:1px solid var(--line);
+      min-height:300px;
+      background:#121212;
+    }
+
+    .mosaic-left{min-height:640px}
+
+    .mosaic-right{
+      display:grid;
+      gap:18px;
+      grid-template-rows:1fr 1fr;
+    }
+
+    .mosaic img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      filter:grayscale(100%) contrast(110%);
+      transition:transform .8s ease, filter .8s ease;
+    }
+
+    .mosaic-left:hover img,
+    .mosaic-small:hover img{
+      transform:scale(1.05);
+      filter:grayscale(10%) contrast(104%);
+    }
+
+    .mosaic-left::after,
+    .mosaic-small::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(to top, rgba(0,0,0,.30), rgba(0,0,0,.06));
+      pointer-events:none;
+    }
+
+    .services-strip{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:18px;
+      margin-top:28px;
+    }
+
+    .service-box{
+      padding:26px;
+      border-radius:26px;
+      border:1px solid var(--line);
+      background:linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.015));
+    }
+
+    .service-box span{
+      display:inline-block;
+      font-size:.74rem;
+      letter-spacing:.16em;
+      text-transform:uppercase;
+      color:var(--accent);
+      margin-bottom:14px;
+    }
+
+    .service-box h3{
+      font-size:1.55rem;
+      margin-bottom:10px;
+    }
+
+    .service-box p{
+      color:var(--muted);
+      font-size:.96rem;
+      line-height:1.75;
+    }
+
+    .quote-band{
+      margin-top:28px;
+      border-radius:34px;
+      padding:42px;
+      position:relative;
+    }
+
+    .quote-band::before{
+      content:"“";
+      position:absolute;
+      top:18px;
+      right:26px;
+      font-family:var(--serif);
+      font-size:6rem;
+      color:rgba(201,164,109,.16);
+      line-height:1;
+    }
+
+    .quote-band p{
+      font-family:var(--serif);
+      font-size:clamp(1.8rem, 3vw, 2.8rem);
+      line-height:1.22;
+      max-width:20ch;
+      margin-bottom:18px;
+    }
+
+    .quote-band span{
+      color:var(--muted);
+      font-size:1rem;
+      letter-spacing:.04em;
+    }
+
+    .closing-cta{
+      margin-top:28px;
+      border-radius:34px;
+      padding:42px;
+      display:grid;
+      grid-template-columns:1.15fr .85fr;
+      gap:24px;
+      align-items:end;
+    }
+
+    .closing-cta h2{
+      font-size:clamp(2.2rem, 4vw, 3.7rem);
+      margin-bottom:16px;
+      max-width:10ch;
+    }
+
+    .closing-cta p{
+      color:var(--muted);
+      font-size:1rem;
+      line-height:1.9;
+      max-width:44rem;
+    }
+
+    .cta-actions{
+      display:flex;
+      justify-content:flex-end;
+      align-items:center;
+      gap:14px;
+      flex-wrap:wrap;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-width:178px;
+      min-height:56px;
+      border-radius:999px;
+      font-weight:600;
+      transition:.25s ease;
+      border:1px solid transparent;
+    }
+
+    .btn-primary{
+      background:var(--accent);
+      color:#111;
+    }
+
+    .btn-primary:hover{
+      transform:translateY(-2px);
+      filter:brightness(1.04);
+    }
+
+    .btn-secondary{
+      color:var(--text);
+      border-color:rgba(255,255,255,.12);
+      background:rgba(255,255,255,.03);
+    }
+
+    .btn-secondary:hover{
+      background:rgba(255,255,255,.06);
+      transform:translateY(-2px);
+    }
+
+    .footer{
+      padding:24px 0 42px;
+    }
+
+    .footer-inner{
+      display:flex;
+      justify-content:space-between;
+      gap:16px;
+      flex-wrap:wrap;
+      padding-top:18px;
+      border-top:1px solid rgba(255,255,255,.08);
+      color:var(--muted);
+      font-size:.95rem;
+    }
+
+    @media (max-width:1180px){
+      .hero,
+      .grid-two,
+      .closing-cta,
+      .services-strip{
+        grid-template-columns:1fr;
+      }
+
+      .hero-panel,
+      .hero-visual{
+        min-height:auto;
+      }
+
+      .mosaic{
+        grid-template-columns:1fr;
+      }
+
+      .mosaic-left{min-height:420px}
+      .mosaic-right{grid-template-columns:1fr 1fr;grid-template-rows:auto}
+      .cta-actions{justify-content:flex-start}
+    }
+
+    @media (max-width:780px){
+      .container{width:min(var(--max), calc(100% - 22px));}
+      .nav{min-height:74px; padding:14px 0;}
+      .hero-panel,.card,.quote-band,.closing-cta{padding:26px}
+      .hero-panel h1{font-size:clamp(2.2rem, 10vw, 3.4rem); line-height:.98; max-width:9ch}
+      .hero-bottom{grid-template-columns:1fr}
+      .mosaic-right{grid-template-columns:1fr}
+      .mosaic-left,.mosaic-small,.hero-visual{min-height:280px}
+      .menu-toggle{width:58px;height:58px;border-radius:16px}
+      .menu-panel{right:0;left:auto;min-width:200px}
+      .btn{width:100%}
+      .cta-actions{width:100%}
+    }
+      .hero-bottom{grid-template-columns:1fr}
+      .mosaic-right{grid-template-columns:1fr}
+      .mosaic-left,.mosaic-small,.hero-visual{min-height:280px}
+      .menu-toggle{width:58px;height:58px;border-radius:16px}
+      .menu-panel{right:0;left:auto;min-width:200px}
+      .btn{width:100%}
+      .cta-actions{width:100%}
+    }
+      .cta-actions{width:100%}
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav">
+      <a href="index.html" class="brand" aria-label="H Square Design Home">
+        <div class="brand-mark">
+          <img src="./logo.png" alt="H Square Design logo">
+        </div>
+        <div class="brand-copy">
+          <small>Architecture & Interiors</small>
+          <strong>H Square Design</strong>
+        </div>
+      </a>
+
+      <div class="menu-dropdown" aria-label="Navigation Menu">
+        <button class="menu-toggle" type="button" aria-label="Open navigation menu">
+          <span class="menu-icon" aria-hidden="true">
+            <span></span>
+            <span></span>
+            <span></span>
+          </span>
+        </button>
+
+        <nav class="menu-panel" aria-label="Primary Navigation">
+          <a href="index.html">Home</a>
+          <a href="services.html">Services</a>
+          <a href="portfolio.html">Portfolio</a>
+          <a href="about.html" class="active">About</a>
+          <a href="contact.html">Contact</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main class="page">
+    <section class="container hero">
+      <div class="hero-panel">
+        <div>
+          <span class="eyebrow">About Our Studio</span>
+          <h1>We design spaces with identity, elegance, and lasting impact.</h1>
+          <p class="lead">
+            H Square Design is an architecture and interior design studio focused on creating refined residential, commercial, and institutional environments. Our work blends strong concept development, visual clarity, and practical design thinking to shape spaces that feel premium, functional, and memorable.
+          </p>
+        </div>
+
+        <div class="hero-bottom">
+          <div class="mini-stat">
+            <span>Our Approach</span>
+            <strong>Creative + Practical</strong>
+            <p>We merge visual ambition with real-world usability, planning, and execution clarity.</p>
+          </div>
+          <div class="mini-stat">
+            <span>Design Focus</span>
+            <strong>Timeless Identity</strong>
+            <p>Every project is shaped to feel distinct, balanced, and strong beyond trends.</p>
+          </div>
+          <div class="mini-stat">
+            <span>Client Experience</span>
+            <strong>Clear Process</strong>
+            <p>We communicate ideas in a polished and professional way so decisions feel easier.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <img src="./commercial elevation design (1).jpeg" alt="Commercial architectural design by H Square Design">
+        <div class="floating-note">
+          <strong>Design that speaks clearly</strong>
+          <p>From elevation language to interior detail, we aim for calm luxury, strong composition, and a confident final impression.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="container section grid-two">
+      <div class="card">
+        <span class="eyebrow">Who We Are</span>
+        <h2>Thoughtful concepts, refined presentation.</h2>
+        <p>
+          We believe that good design is not only about appearance — it is about proportion, experience, material awareness, and the ability to solve a space beautifully. At H Square Design, each project is approached with care, structure, and a premium visual direction.
+        </p>
+        <p>
+          Our studio works across homes, apartments, offices, commercial environments, institutional projects, landscape ideas, and broader planning concepts. No matter the scale, we aim to create designs that feel intentional and complete.
+        </p>
+
+        <div class="features">
+          <div class="feature">
+            <strong>Clarity in design thinking</strong>
+            <span>We build each concept with a clear direction, strong proportions, and a calm architectural language.</span>
+          </div>
+          <div class="feature">
+            <strong>Visual quality with purpose</strong>
+            <span>Our visuals are not only attractive — they help communicate the full idea with confidence and precision.</span>
+          </div>
+          <div class="feature">
+            <strong>Detail as part of identity</strong>
+            <span>Façade lines, focal walls, textures, and interior moments are treated as part of the project story.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="mosaic">
+        <div class="mosaic-left">
+          <img src="./Appartments/apartment elevation design (1).jpg" alt="Apartment architecture design concept">
+        </div>
+        <div class="mosaic-right">
+          <div class="mosaic-small">
+            <img src="./Feature Walls/feature wall elevation design (1).jpg" alt="Interior feature wall concept">
+          </div>
+          <div class="mosaic-small">
+            <img src="./commercial elevation design (1).jpeg" alt="Commercial elevation design">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="container services-strip">
+      <div class="service-box">
+        <span>01</span>
+        <h3>Architecture</h3>
+        <p>Residential, apartment, institutional, and exterior concepts designed with stronger composition and presence.</p>
+      </div>
+      <div class="service-box">
+        <span>02</span>
+        <h3>Interiors</h3>
+        <p>Interior environments shaped through mood, materiality, focal elements, and everyday usability.</p>
+      </div>
+      <div class="service-box">
+        <span>03</span>
+        <h3>Planning</h3>
+        <p>Design directions developed with structure, flow, functionality, and thoughtful spatial logic.</p>
+      </div>
+      <div class="service-box">
+        <span>04</span>
+        <h3>Presentation</h3>
+        <p>High-quality visual communication that helps clients understand the design clearly and confidently.</p>
+      </div>
+    </section>
+
+    <section class="container section grid-two">
+      <div class="mosaic-left" style="border-radius:30px; min-height:640px;">
+        <img src="./Appartments/apartment elevation design (1).jpg" alt="Apartment elevation design project">
+      </div>
+
+      <div class="card">
+        <span class="eyebrow">Why Clients Choose Us</span>
+        <h2>Professional process. Creative outcomes.</h2>
+        <p>
+          Clients trust H Square Design because we combine creativity with practical understanding. We do not simply create appealing images — we develop solutions that are easier to understand, stronger in identity, and better prepared for execution.
+        </p>
+        <p>
+          Our workflow is rooted in listening carefully, refining thoughtfully, and delivering work that feels premium from concept stage to final presentation.
+        </p>
+
+        <div class="features">
+          <div class="feature">
+            <strong>Premium design language</strong>
+            <span>We aim for work that feels elegant, current, and visually enduring rather than temporary or overdone.</span>
+          </div>
+          <div class="feature">
+            <strong>Attention to every layer</strong>
+            <span>From form and façade rhythm to interior focal points, we care about the project as a whole.</span>
+          </div>
+          <div class="feature">
+            <strong>Versatility across project types</strong>
+            <span>We work across residential, commercial, office, institutional, and landscape-related directions.</span>
+          </div>
+          <div class="feature">
+            <strong>Client-friendly communication</strong>
+            <span>We keep the process clear, visual, and professional so collaboration feels smooth at every stage.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="container quote-band">
+      <p>We believe the best spaces are not only beautiful — they feel clear, intentional, and deeply resolved.</p>
+      <span>H Square Design — Architecture, Interiors, and Presentation with purpose.</span>
+    </section>
+
+    <section class="container closing-cta">
+      <div>
+        <span class="eyebrow">Let’s Create Something Exceptional</span>
+        <h2>Design solutions shaped with vision and detail.</h2>
+        <p>
+          Whether the project is a residence, office, commercial space, apartment concept, or institutional environment, our aim is to create work that feels premium, practical, and visually memorable from every angle.
+        </p>
+      </div>
+
+      <div class="cta-actions">
+        <a href="portfolio.html" class="btn btn-secondary">View Portfolio</a>
+        <a href="contact.html" class="btn btn-primary">Start a Project</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div>© 2026 H Square Design. All rights reserved.</div>
+      <div>
+        <a href="index.html">Home</a> •
+        <a href="services.html">Services</a> •
+        <a href="portfolio.html">Portfolio</a> •
+        <a href="about.html">About</a> •
+        <a href="contact.html">Contact</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
