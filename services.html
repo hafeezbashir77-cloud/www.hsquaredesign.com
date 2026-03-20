@@ -172,7 +172,35 @@ scroll-behavior:smooth;
       max-width:720px;
       font-size:1rem;
     }
+.hero-side{
+  display:flex;
+  flex-direction:column;
+  justify-content:end;
+  gap:20px;
+}
 
+.hero-side-image{
+  width:100%;
+  min-height:320px;
+  border-radius:28px;
+  overflow:hidden;
+  border:1px solid var(--soft-line);
+  background:#171717;
+}
+
+.hero-side-image img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  filter:grayscale(100%);
+  transition:transform .55s ease, filter .55s ease;
+}
+
+.hero-side-image:hover img{
+  transform:scale(1.04);
+  filter:grayscale(0%);
+}
+    
     .services{
       padding:10px 0 80px;
       display:grid;
@@ -312,7 +340,11 @@ scroll-behavior:smooth;
   .service-image{
     min-height:320px;
   }
-
+      
+.hero-side-image{
+    min-height:220px;
+  }
+      
   .hero h1{
     font-size:2.7rem;
   }
@@ -517,14 +549,20 @@ scroll-behavior:smooth;
   <main>
     <section class="hero">
       <div class="container hero-grid">
-        <div>
-          <span class="eyebrow">Services</span>
-          <h1>Design direction across every scale.</h1>
-        </div>
-        <p>
-          H Square Design provides architecture, interior design, town planning, landscaping, and construction support with a calm premium visual language and stronger project clarity.
-        </p>
-      </div>
+  <div>
+    <span class="eyebrow">Services</span>
+    <h1>Design direction across every scale.</h1>
+  </div>
+
+  <div class="hero-side">
+    <div class="hero-side-image">
+      <img src="./commercial elevation design (1).jpeg" alt="H Square Design services">
+    </div>
+    <p>
+      H Square Design provides architecture, interior design, town planning, landscaping, and construction support with a calm premium visual language and stronger project clarity.
+    </p>
+  </div>
+
     </section>
 
     <section class="container services">
@@ -540,11 +578,11 @@ scroll-behavior:smooth;
             We create architectural concepts for residential, commercial, and institutional projects with attention to planning, proportion, facade composition, and a refined project language.
           </p>
           <div class="service-points">
-            <div>Residential design</div>
-            <div>Commercial design</div>
-            <div>Institutional concepts</div>
-            <div>Facade development</div>
-          </div>
+          <div>Residential designs</div>
+          <div>Commercial designs</div>
+          <div>Office design</div>
+          <div>Institutional design</div>
+        </div>
           <a class="service-link" href="contact.html">Discuss this service</a>
         </div>
       </article>
@@ -557,14 +595,14 @@ scroll-behavior:smooth;
           <span class="tag">Interior Design</span>
           <h2>Interior spaces shaped with clarity and atmosphere.</h2>
           <p>
-            Interior design for homes, offices, and commercial environments with focus on zoning, feature walls, ceilings, finishes, and a more complete visual identity.
+            Interior design for homes, offices, and commercial buildings, with a focus on zoning, feature walls, ceilings, finishes, and a comprehensive visual identity.
           </p>
           <div class="service-points">
-            <div>Home interiors</div>
-            <div>Office interiors</div>
-            <div>Commercial interiors</div>
-            <div>Feature wall design</div>
+          <div>Residential interiors</div>
+          <div>Office interiors</div>
+          <div>Commercial interiors</div>
           </div>
+          
           <a class="service-link" href="contact.html">Discuss this service</a>
         </div>
       </article>
@@ -577,14 +615,15 @@ scroll-behavior:smooth;
           <span class="tag">Town Planning</span>
           <h2>Structured planning for larger developments.</h2>
           <p>
-            Town planning services built around movement, zoning, site response, layout logic, and the long-term organization of larger project schemes.
+  Town planning services focused on layout development, land use organization, circulation networks, and the structured planning of larger communities and project schemes.
           </p>
           <div class="service-points">
-            <div>Master planning</div>
-            <div>Site organization</div>
-            <div>Zoning response</div>
-            <div>Movement systems</div>
-          </div>
+          <div>Layout planning</div>
+          <div>Road network design</div>
+          <div>Land use planning</div>
+          <div>Development strategy</div>
+        </div>
+          
           <a class="service-link" href="contact.html">Discuss this service</a>
         </div>
       </article>
@@ -597,13 +636,13 @@ scroll-behavior:smooth;
           <span class="tag">Landscaping</span>
           <h2>Outdoor environments with visual calm and balance.</h2>
           <p>
-            Landscaping concepts that strengthen the architectural experience through greenery, circulation, open-space composition, and a more premium site atmosphere.
+  Landscaping concepts designed to enhance outdoor living through planting, garden composition, seating areas, and a balanced connection between architecture and open space.
           </p>
           <div class="service-points">
-            <div>Outdoor planning</div>
-            <div>Green space design</div>
-            <div>Circulation layout</div>
-            <div>Landscape enhancement</div>
+           <div>Garden planning</div>
+           <div>Plantation concepts</div>
+           <div>Outdoor seating areas</div>
+           <div>Site beautification</div>
           </div>
           <a class="service-link" href="contact.html">Discuss this service</a>
         </div>
