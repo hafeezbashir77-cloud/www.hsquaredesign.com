@@ -487,6 +487,38 @@
       color:var(--text);
     }
 
+    .btn-icon{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  margin-right:8px;
+  font-size:1rem;
+  line-height:1;
+}
+
+.hero-phone{
+  background:rgba(255,255,255,.08);
+  color:#fff;
+  border-color:rgba(255,255,255,.18);
+}
+
+.whatsapp-btn{
+  background:rgba(37, 211, 102, .14);
+  color:#fff;
+  border-color:rgba(37, 211, 102, .38);
+  animation:whatsappBlink 1.2s ease-in-out infinite;
+}
+
+@keyframes whatsappBlink{
+  0%, 100%{
+    transform:scale(1);
+    box-shadow:0 0 0 rgba(37, 211, 102, 0);
+  }
+  50%{
+    transform:scale(1.05);
+    box-shadow:0 0 18px rgba(37, 211, 102, .45);
+  }
+}
     .footer{
       padding:22px 0 40px;
       color:var(--muted);
@@ -1291,13 +1323,18 @@ document.addEventListener('DOMContentLoaded', function () {
       </p>
 
       <div class="hero-actions">
-        <a href="contact.html" class="btn btn-dark">Book Consultation</a>
-        <a href="https://wa.me/923014463492" class="btn btn-light" target="_blank" rel="noopener">
-          <a href="contact.html" class="btn btn-dark">WhatsApp Now</a>
-        </a>
-      </div>
-    </div>
-  </div>
+  <a href="contact.html" class="btn btn-dark">Book Consultation</a>
+
+  <a href="tel:+923014463492" class="btn btn-light hero-phone">
+    <span class="btn-icon">📞</span>
+    <span>0301-4463492</span>
+  </a>
+
+  <a href="https://wa.me/923014463492" class="btn btn-light whatsapp-btn" target="_blank" rel="noopener">
+    <span class="btn-icon">💬</span>
+    <span>WhatsApp Now</span>
+  </a>
+</div>
 
   <div class="hero-dots">
     <button class="dot active" data-slide="0"></button>
