@@ -211,7 +211,7 @@
 
     .hero-inner{
       position:relative;
-      z-index:2;
+      z-index:3;
       width:100%;
       padding:0 0 72px;
     }
@@ -660,7 +660,6 @@
       text-align:center;
       cursor:pointer;
       appearance:none;
-      white-space:nowrap;
       transition:color .3s ease, transform .35s ease, letter-spacing .3s ease;
     }
 
@@ -1011,7 +1010,7 @@
 
 .hero-inner{
   position:relative;
-  z-index:3;
+  z-index:5;
   height:100%;
   display:flex;
   align-items:flex-end;
@@ -1034,9 +1033,11 @@
 
 .hero-title-single{
   margin:0 0 14px;
-  font-size:clamp(44px, 8vw, 92px);
-  line-height:.95;
+  font-size:clamp(38px, 5vw, 72px);
+  line-height:1.02;
   color:#fff;
+  white-space:normal;
+  max-width:12ch;
 }
 
 .hero-text{
@@ -1237,19 +1238,24 @@ document.addEventListener('DOMContentLoaded', function () {
       <div class="hero-meta">
         <span>Architecture & Interior Design</span>
       </div>
-      <h1 class="hero-title-single">Architecture & Interior Design for Serious Residential & Commercial Projects</h1>
+
+      <h1 class="hero-title-single">
+        Architecture & Interior Design for Serious Residential & Commercial Projects
+      </h1>
+
       <p class="hero-text">
         10+ years experience | Concept to working drawings | Consultation available
       </p>
 
       <div class="hero-actions">
         <a href="contact.html" class="btn btn-dark">Book Consultation</a>
-        <a href="https://wa.me/923014463492" class="btn btn-light" target="_blank" rel="noopener">WhatsApp Now</a>
+        <a href="https://wa.me/923014463492" class="btn btn-light" target="_blank" rel="noopener">
+          WhatsApp Now
+        </a>
       </div>
     </div>
   </div>
 </div>
-
   <div class="hero-slide">
     <img src="./new-hero-2.jpg" alt="Luxury house elevation">
     <div class="hero-overlay"></div>
