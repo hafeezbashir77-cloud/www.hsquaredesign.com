@@ -440,6 +440,63 @@
         padding:26px;
       }
     }
+
+    .quick-contact-box{
+  margin:20px 0 24px;
+  padding:18px 18px 20px;
+  border:1px solid var(--soft-line);
+  border-radius:22px;
+  background:rgba(255,255,255,.03);
+}
+
+.quick-contact-text{
+  margin:0 0 14px;
+  color:var(--text);
+  font-size:1rem;
+  line-height:1.7;
+}
+
+.quick-contact-actions{
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+}
+
+.quick-contact-btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-height:50px;
+  padding:0 18px;
+  border-radius:999px;
+  font-weight:700;
+  transition:.25s ease;
+  border:1px solid transparent;
+}
+
+.quick-contact-btn:hover{
+  transform:translateY(-1px);
+}
+
+.whatsapp-btn{
+  background:#25D366;
+  color:#ffffff;
+}
+
+.phone-btn{
+  background:var(--cream);
+  color:var(--cream-text);
+}
+
+@media (max-width:760px){
+  .quick-contact-actions{
+    flex-direction:column;
+  }
+
+  .quick-contact-btn{
+    width:100%;
+  }
+}
   </style>
 </head>
 <body>
@@ -521,11 +578,52 @@
         </div>
 
         <div class="form-panel">
-          <h2>Project Qualification Form.</h2>
-          <p>
-            Share a few project details and we’ll review your requirements before moving to the next step.
-          </p>
+  <h2>Project Qualification Form.</h2>
+  <p>
+    Share a few project details and we’ll review your requirements before moving to the next step.
+  </p>
 
+  <div class="quick-contact-box">
+    <p class="quick-contact-text">
+      Need faster assistance? Contact us on WhatsApp or phone.
+    </p>
+
+    <div class="quick-contact-actions">
+      <a class="quick-contact-btn whatsapp-btn" href="https://wa.me/923014463492" target="_blank" rel="noopener">
+        WhatsApp
+      </a>
+
+      <a class="quick-contact-btn phone-btn" href="tel:03014463492">
+        Call 0301-4463492
+      </a>
+
+      <a class="quick-contact-btn phone-btn" href="tel:03004848909">
+        Call 0300-4848909
+      </a>
+    </div>
+  </div>
+
+  <form class="form-grid">
+
+          <div class="quick-contact-box">
+  <p class="quick-contact-text">
+    Need faster assistance? Contact us on WhatsApp or phone.
+  </p>
+
+  <div class="quick-contact-actions">
+    <a class="quick-contact-btn whatsapp-btn" href="https://wa.me/923014463492" target="_blank" rel="noopener">
+      WhatsApp
+    </a>
+
+    <a class="quick-contact-btn phone-btn" href="tel:03014463492">
+      Call 0301-4463492
+    </a>
+
+    <a class="quick-contact-btn phone-btn" href="tel:03004848909">
+      Call 0300-4848909
+    </a>
+  </div>
+</div>
           <form class="form-grid">
             <input type="text" placeholder="Name" />
             <input type="tel" placeholder="Phone" />
