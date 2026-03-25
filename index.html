@@ -209,18 +209,12 @@
       transform:scale(1.02);
     }
 
-    .hero-fixed-content{
+  .hero-fixed-content{
   position:absolute;
   left:0;
   right:0;
   bottom:72px;
   z-index:6;
-}
-
-.hero-content{
-  max-width:760px;
-  color:#fff;
-  margin-left:clamp(20px, 4vw, 70px);
 }
 
 .hero-meta span{
@@ -247,16 +241,6 @@
   font-size:15px;
   line-height:1.65;
   color:rgba(255,255,255,.9);
-}
-
-.hero-dots{
-  position:absolute;
-  left:50%;
-  bottom:26px;
-  transform:translateX(-50%);
-  display:flex;
-  gap:10px;
-  z-index:7;
 }
 
     section{padding:72px 0}
@@ -888,16 +872,6 @@
       .service-gallery-item.large{min-height:180px;}
     }
 
-    @media (max-width:760px){
-      .container{width:min(var(--max), calc(100% - 24px));}
-      .site-header{padding:18px 0}
-      .hero-inner{padding-bottom:42px}
-      .hero-content{margin-left:12px}
-      .hero-title-single{
-        font-size:3.2rem;
-        white-space:normal;
-        line-height:.95;
-      }
       .hero-text{font-size:.98rem}
       .service-copy,.studio-panel,.contact-panel{padding:26px}
       .contact-grid{grid-template-columns:1fr}
@@ -1068,11 +1042,6 @@
   padding-bottom:72px;
 }
 
-.hero-content{
-  max-width:720px;
-  color:#fff;
-}
-
 .hero-meta span{
   display:inline-block;
   font-size:14px;
@@ -1099,16 +1068,6 @@
   color:rgba(255,255,255,.88);
 }
 
-.hero-dots{
-  position:absolute;
-  left:50%;
-  bottom:26px;
-  transform:translateX(-50%);
-  display:flex;
-  gap:10px;
-  z-index:5;
-}
-
 .hero-dots .dot{
   width:12px;
   height:12px;
@@ -1128,21 +1087,11 @@
   to{transform:scale(1.08);}
 }
 
-@media (max-width:768px){
-  .hero-slider{
-    height:85vh;
-  }
-
   .hero-fixed-content{
     bottom:88px;
   }
 
-  .hero-content{
-    margin-left:12px;
-    max-width:92%;
-  }
-
-  .hero-title-single{
+    .hero-title-single{
     font-size:clamp(30px, 8vw, 46px);
     max-width:100%;
   }
@@ -1155,8 +1104,6 @@
 .hero-slide,
 .hero-slide img,
 .hero-overlay,
-.hero-dots{
-  z-index:1 !important;
 }
 
 .menu-overlay,
@@ -1216,14 +1163,7 @@
     z-index:6;
   }
 
-  .hero-content{
-    margin-left:0;
-    max-width:none;
-    width:100%;
-    padding:0 24px;
-  }
-
-  .hero-meta{
+   .hero-meta{
     margin-bottom:12px;
   }
 
@@ -1275,13 +1215,7 @@
     margin-right:10px;
     font-size:1.05rem;
   }
-
-  .hero-dots{
-    bottom:34px;
-    gap:8px;
-    z-index:7;
-  }
-
+  
   .hero-dots .dot{
     width:10px;
     height:10px;
@@ -1348,12 +1282,7 @@
     font-size:.98rem;
   }
 
-  .hero-dots{
-    bottom:28px;
-    gap:8px;
-  }
-}
-  .hero-top-text{
+      .hero-top-text{
   position:absolute;
   top:150px;
   left:0;
@@ -1389,57 +1318,6 @@
   white-space:normal;
 }
 
-.hero-bottom-actions{
-  position:absolute;
-  left:0;
-  right:0;
-  bottom:130px;
-  z-index:8;
-}
-
-.hero-bottom-actions .hero-content{
-  max-width:760px;
-  margin-left:clamp(20px, 4vw, 70px);
-}
-
-.hero-bottom-actions .hero-text{
-  margin:0 0 18px;
-  max-width:720px;
-  font-size:15px;
-  line-height:1.65;
-  color:rgba(255,255,255,.9);
-}
-
-.hero-bottom-actions .hero-actions{
-  display:flex;
-  flex-wrap:wrap;
-  gap:12px;
-  align-items:center;
-}
-
-.hero-dots{
-  position:absolute;
-  left:50%;
-  bottom:22px;
-  transform:translateX(-50%);
-  display:flex;
-  gap:10px;
-  z-index:9;
-}
-
-@media (max-width:768px){
-  .hero-top-text{
-    top:120px;
-  }
-
-  .hero-top-text .hero-content,
-  .hero-bottom-actions .hero-content{
-    margin-left:0;
-    max-width:none;
-    width:100%;
-    padding:0 22px;
-  }
-
   .hero-top-text .hero-meta span{
     font-size:11px;
     letter-spacing:.14em;
@@ -1451,35 +1329,6 @@
     line-height:1.06;
     max-width:100%;
   }
-
-  .hero-bottom-actions{
-  bottom:120px;
-}
-
-  .hero-bottom-actions .hero-text{
-    font-size:13px;
-    line-height:1.55;
-    margin-bottom:14px;
-    max-width:100%;
-  }
-
-  .hero-bottom-actions .hero-actions{
-    flex-direction:column;
-    align-items:flex-start;
-    gap:10px;
-    max-width:300px;
-  }
-
-  .hero-bottom-actions .hero-actions .btn{
-    width:100%;
-    min-height:50px;
-    justify-content:center;
-  }
-
-  .hero-dots{
-  bottom:18px;
-  gap:8px;
-}
 
   .hero-bottom-actions{
   position:absolute;
@@ -1750,34 +1599,39 @@ document.addEventListener('DOMContentLoaded', function () {
   </div>
 </div>
 
-<<div class="container hero-bottom-actions">
+<div class="container hero-bottom-actions">
   <div class="hero-content">
     <p class="hero-text">
       15+ years experience | Concept to working drawings | Consultation available
     </p>
 
     <div class="hero-actions">
-  <a href="contact.html" class="btn btn-dark book-btn">Book Consultation</a>
+      <a href="contact.html" class="btn btn-dark book-btn">Book Consultation</a>
 
-  <a href="https://wa.me/923014463492" class="btn btn-light whatsapp-btn" target="_blank" rel="noopener">
-    <span class="btn-icon">💬</span>
-    <span>WhatsApp Now</span>
-  </a>
+      <a href="https://wa.me/923014463492" class="btn btn-light whatsapp-btn" target="_blank" rel="noopener">
+        <span class="btn-icon">💬</span>
+        <span>WhatsApp Now</span>
+      </a>
 
-  <a href="tel:+923014463492" class="btn btn-light hero-phone">
-    <span class="btn-icon">📞</span>
-    <span>0301-4463492</span>
-  </a>
+      <a href="tel:+923014463492" class="btn btn-light hero-phone">
+        <span class="btn-icon">📞</span>
+        <span>0301-4463492</span>
+      </a>
+    </div>
+  </div>
 </div>
 
-  <div class="hero-dots">
-    <button class="dot active" data-slide="0"></button>
-    <button class="dot" data-slide="1"></button>
-    <button class="dot" data-slide="2"></button>
-    <button class="dot" data-slide="3"></button>
-    <button class="dot" data-slide="4"></button>
-    <button class="dot" data-slide="5"></button>
-  </div>
+<div class="hero-dots">
+  <button class="dot active" data-slide="0"></button>
+  <button class="dot" data-slide="1"></button>
+  <button class="dot" data-slide="2"></button>
+  <button class="dot" data-slide="3"></button>
+  <button class="dot" data-slide="4"></button>
+  <button class="dot" data-slide="5"></button>
+  <button class="dot" data-slide="6"></button>
+  <button class="dot" data-slide="7"></button>
+  <button class="dot" data-slide="8"></button>
+</div>
 </section>
     </main>
 
