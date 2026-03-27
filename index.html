@@ -833,7 +833,25 @@
       .mega-col.center{
         padding:22px 0;
       }
-    }
+    @media (max-width:768px){
+  .hero-slider{
+    height:100svh;
+    min-height:100svh;
+  }
+
+  .hero-slide,
+  .hero-slide img,
+  .hero-video{
+    width:100%;
+    height:100%;
+  }
+
+  .hero-slide img,
+  .hero-video{
+    object-fit:cover;
+    object-position:center center;
+  }
+}
   </style>
 </head>
 <body>
