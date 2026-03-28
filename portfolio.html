@@ -886,271 +886,724 @@
     </div>
   </div>
 
-  <script>
-    /*
-      IMPORTANT:
-      Browser apne aap folder ki 100+ images read nahi karta.
-      Tumhein har image ka path yahan add karna hoga.
-      Neeche sample entries di hain.
-      Isi pattern me jitni chaaho images add karo.
-    */
-    const portfolioItems = [
-      {
-        title: "Apartment Exterior 01",
-        category: "residential",
-        image: "./Appartments/apartment elevation design (1).jpg",
-        description: "Balanced residential elevation with refined façade proportions and modern finish.",
-        tags: ["Exterior", "Residential", "Facade"]
-      },
-      {
-        title: "Apartment Exterior 02",
-        category: "residential",
-        image: "./Appartments/apartment elevation design (2).jpg",
-        description: "Modern apartment frontage designed with depth, symmetry and architectural presence.",
-        tags: ["Apartment", "Elevation", "Modern"]
-      },
-      {
-        title: "Farm House Concept 01",
-        category: "residential",
-        image: "./farm house/farmhouse elevation design (1).jpg",
-        description: "Luxury farmhouse concept with calm language, spacious frontage and premium detailing.",
-        tags: ["Farm House", "Luxury", "Exterior"]
-      },
-      {
-        title: "Farm House Concept 02",
-        category: "residential",
-        image: "./farm house/farmhouse elevation design (2).jpg",
-        description: "Elegant farmhouse scheme focused on openness, comfort and clean architectural lines.",
-        tags: ["Residence", "Farmhouse", "Concept"]
-      },
-      {
-        title: "Commercial Building 01",
-        category: "commercial",
-        image: "./commercial elevation design (1).jpeg",
-        description: "Modern commercial building designed to create a bold and professional first impression.",
-        tags: ["Commercial", "Frontage", "Geometry"]
-      },
-      {
-        title: "Commercial Building 02",
-        category: "commercial",
-        image: "./commercial elevation design (2).jpeg",
-        description: "Contemporary mixed-use commercial façade with powerful vertical and horizontal rhythm.",
-        tags: ["Building", "Facade", "Business"]
-      },
-      {
-        title: "Feature Wall Interior 01",
-        category: "commercial",
-        image: "./Feature Walls/feature wall elevation design (1).jpg",
-        description: "Feature wall concept for branded spaces with layered materials and visual depth.",
-        tags: ["Interior", "Feature Wall", "Branding"]
-      },
-      {
-        title: "Feature Wall Interior 02",
-        category: "commercial",
-        image: "./Feature Walls/feature wall elevation design (2).jpg",
-        description: "Premium interior wall treatment for a stronger, more memorable client experience.",
-        tags: ["Interior", "Wall", "Modern"]
-      },
-      {
-        title: "Office Exterior 01",
-        category: "office",
-        image: "./office/office elevation design (1).jpg",
-        description: "Professional office elevation designed for a confident and contemporary visual identity.",
-        tags: ["Office", "Architecture", "Exterior"]
-      },
-      {
-        title: "Office Interior 01",
-        category: "office",
-        image: "./office interior/office interior design (1).jpg",
-        description: "Functional office interior focused on workspace efficiency, comfort and elegant planning.",
-        tags: ["Office", "Interior", "Planning"]
-      },
-      {
-        title: "School Design 01",
-        category: "institution",
-        image: "./school/school elevation design (1).png",
-        description: "Institutional school concept with organized planning and welcoming architectural form.",
-        tags: ["School", "Institution", "Education"]
-      },
-      {
-        title: "School Design 02",
-        category: "institution",
-        image: "./school/school elevation design (2).png",
-        description: "Educational building concept combining clarity, structure and practical circulation.",
-        tags: ["Academic", "Campus", "Institutional"]
-      },
-      {
-        title: "Hospital Concept 01",
-        category: "institution",
-        image: "./hospital/hospital elevation design (1).png",
-        description: "Healthcare architecture with clean zoning, calm character and efficient organization.",
-        tags: ["Hospital", "Healthcare", "Planning"]
-      },
-      {
-        title: "Hospital Concept 02",
-        category: "institution",
-        image: "./hospital/hospital elevation design (2).png",
-        description: "Modern medical facility exterior designed for clarity, trust and accessibility.",
-        tags: ["Medical", "Institution", "Exterior"]
-      },
-      {
-        title: "Landscape Design 01",
-        category: "landscape",
-        image: "./landscape/landscape design (1).jpg",
-        description: "Open landscape arrangement created to enhance movement, greenery and visual calm.",
-        tags: ["Landscape", "Outdoor", "Site"]
-      },
-      {
-        title: "Town Planning 01",
-        category: "planning",
-        image: "./town planning/town planning design (1).jpg",
-        description: "Town planning proposal developed with functional zoning and long-term usability in mind.",
-        tags: ["Planning", "Urban", "Layout"]
-      }
-    ];
+ <script>
+  const portfolioItems = [
+    {
+      title: "Apartment Design 01",
+      category: "residential",
+      image: "./Appartments/apartment elevation design (1).jpg",
+      description: "Modern apartment elevation with balanced facade composition.",
+      tags: ["Residential", "Apartment", "Exterior"]
+    },
+    {
+      title: "Feature Wall 01",
+      category: "commercial",
+      image: "./Feature Walls/feature wall elevation design (1).jpg",
+      description: "Creative feature wall concept for branded interior spaces.",
+      tags: ["Commercial", "Interior", "Feature Wall"]
+    },
 
-    const portfolioGrid = document.getElementById("portfolioGrid");
-    const filterButtons = document.getElementById("filterButtons");
-    const buttons = filterButtons.querySelectorAll("button");
-    const resultsCount = document.getElementById("resultsCount");
-    const searchInput = document.getElementById("searchInput");
-    const emptyState = document.getElementById("emptyState");
-    const totalProjects = document.getElementById("totalProjects");
+    {
+      title: "Commercial Plaza Elevation",
+      category: "commercial",
+      image: "./Commercial Plaza Elevation.png",
+      description: "Contemporary commercial plaza frontage with strong visual identity.",
+      tags: ["Commercial", "Plaza", "Elevation"]
+    },
+    {
+      title: "Commercial Elevation 01 JPG",
+      category: "commercial",
+      image: "./commercial elevation design (1).jpg",
+      description: "Commercial elevation concept with modern facade treatment.",
+      tags: ["Commercial", "Exterior", "Facade"]
+    },
+    {
+      title: "Commercial Elevation 01 PNG",
+      category: "commercial",
+      image: "./commercial elevation design (1).png",
+      description: "Commercial elevation concept in alternate render format.",
+      tags: ["Commercial", "Elevation", "Render"]
+    },
+    {
+      title: "Commercial Elevation 02 JPG",
+      category: "commercial",
+      image: "./commercial elevation design (2).jpg",
+      description: "Business frontage designed with simple and bold proportions.",
+      tags: ["Commercial", "Building", "Exterior"]
+    },
+    {
+      title: "Commercial Elevation 02 PNG",
+      category: "commercial",
+      image: "./commercial elevation design (2).png",
+      description: "Commercial elevation with clean geometry and sharp form.",
+      tags: ["Commercial", "Modern", "Facade"]
+    },
+    {
+      title: "Commercial Elevation 03 JPG",
+      category: "commercial",
+      image: "./commercial elevation design (3).jpg",
+      description: "Contemporary facade concept for commercial architecture.",
+      tags: ["Commercial", "Architecture", "Frontage"]
+    },
+    {
+      title: "Commercial Elevation 03 PNG",
+      category: "commercial",
+      image: "./commercial elevation design (3).png",
+      description: "Alternate commercial elevation render with balanced massing.",
+      tags: ["Commercial", "Exterior", "Render"]
+    },
+    {
+      title: "Commercial Elevation 04 JPG",
+      category: "commercial",
+      image: "./commercial elevation design (4).jpg",
+      description: "Refined business building frontage with premium appeal.",
+      tags: ["Commercial", "Premium", "Exterior"]
+    },
+    {
+      title: "Commercial Elevation 05 JPG",
+      category: "commercial",
+      image: "./commercial elevation design (5).JPG",
+      description: "Commercial architectural concept with distinct visual rhythm.",
+      tags: ["Commercial", "Concept", "Facade"]
+    },
+    {
+      title: "Commercial Elevation 05 PNG",
+      category: "commercial",
+      image: "./commercial elevation design (5).png",
+      description: "Rendered elevation view for a modern business building.",
+      tags: ["Commercial", "Render", "Elevation"]
+    },
+    {
+      title: "Commercial Elevation 06 PNG",
+      category: "commercial",
+      image: "./commercial elevation design (6).png",
+      description: "Commercial exterior showing modern frontage composition.",
+      tags: ["Commercial", "Modern", "Exterior"]
+    },
+    {
+      title: "Commercial Elevation 07 PNG",
+      category: "commercial",
+      image: "./commercial elevation design (7).png",
+      description: "Facade concept focused on clean lines and clarity.",
+      tags: ["Commercial", "Facade", "Design"]
+    },
+    {
+      title: "Commercial Elevation 08 PNG",
+      category: "commercial",
+      image: "./commercial elevation design (8).png",
+      description: "Commercial design rendered with clear massing and proportion.",
+      tags: ["Commercial", "Architecture", "Render"]
+    },
+    {
+      title: "Commercial Elevation 09 PNG",
+      category: "commercial",
+      image: "./commercial elevation design (9).png",
+      description: "Professional commercial frontage with modern design language.",
+      tags: ["Commercial", "Frontage", "Modern"]
+    },
+    {
+      title: "Commercial Elevation 10 PNG",
+      category: "commercial",
+      image: "./commercial elevation design (10).png",
+      description: "Commercial concept designed for a strong urban presence.",
+      tags: ["Commercial", "Urban", "Exterior"]
+    },
 
-    const lightbox = document.getElementById("lightbox");
-    const lightboxImage = document.getElementById("lightboxImage");
-    const lightboxTitle = document.getElementById("lightboxTitle");
-    const lightboxDesc = document.getElementById("lightboxDesc");
-    const lightboxMeta = document.getElementById("lightboxMeta");
-    const lightboxClose = document.getElementById("lightboxClose");
+    {
+      title: "Executive Office Interior 01",
+      category: "office",
+      image: "./Executive Office Interior Design (1).jpg",
+      description: "Executive office interior with elegant spatial planning.",
+      tags: ["Office", "Interior", "Executive"]
+    },
+    {
+      title: "Executive Office Interior 02",
+      category: "office",
+      image: "./Executive Office Interior Design (2).jpg",
+      description: "Professional office interior concept with refined finishes.",
+      tags: ["Office", "Interior", "Workspace"]
+    },
+    {
+      title: "Executive Office Interior 03",
+      category: "office",
+      image: "./Executive Office Interior Design (3).jpg",
+      description: "Premium office interior arrangement for executive spaces.",
+      tags: ["Office", "Executive", "Interior"]
+    },
+    {
+      title: "Executive Office Interior 04",
+      category: "office",
+      image: "./Executive Office Interior Design (4).jpg",
+      description: "Executive office concept with clean furniture layout.",
+      tags: ["Office", "Interior", "Professional"]
+    },
+    {
+      title: "Executive Office Interior PNG",
+      category: "office",
+      image: "./executive office interior design.png",
+      description: "Executive office render showing premium corporate aesthetics.",
+      tags: ["Office", "Interior", "Render"]
+    },
+    {
+      title: "Office Reception Interior",
+      category: "office",
+      image: "./office reception interior design.jpg",
+      description: "Reception interior designed to create a polished first impression.",
+      tags: ["Office", "Reception", "Interior"]
+    },
+    {
+      title: "Mini Office Interior 01",
+      category: "office",
+      image: "./mini office interior design (1).png",
+      description: "Compact office planning with functional circulation.",
+      tags: ["Office", "Mini", "Interior"]
+    },
+    {
+      title: "Mini Office Interior 02",
+      category: "office",
+      image: "./mini office interior design (2).png",
+      description: "Small office concept with practical and elegant design language.",
+      tags: ["Office", "Interior", "Compact"]
+    },
+    {
+      title: "Mini Office Interior 03",
+      category: "office",
+      image: "./mini office interior design (3).png",
+      description: "Workspace concept optimized for compact office layouts.",
+      tags: ["Office", "Workspace", "Interior"]
+    },
+    {
+      title: "Meeting Room Interior 01",
+      category: "office",
+      image: "./Meeting Room Interior Design (1).jpg",
+      description: "Meeting room interior designed for focus and professionalism.",
+      tags: ["Office", "Meeting Room", "Interior"]
+    },
+    {
+      title: "Meeting Room Interior 02",
+      category: "office",
+      image: "./Meeting Room Interior Design (2).png",
+      description: "Modern meeting room concept with strong interior identity.",
+      tags: ["Office", "Conference", "Interior"]
+    },
 
-    let activeFilter = "all";
+    {
+      title: "Reception Interior 01",
+      category: "commercial",
+      image: "./Reception Interior Design (1).jpg",
+      description: "Reception interior designed to elevate visitor experience.",
+      tags: ["Reception", "Interior", "Modern"]
+    },
+    {
+      title: "Reception Interior 02",
+      category: "commercial",
+      image: "./Reception Interior Design (2).png",
+      description: "Elegant reception counter and wall treatment concept.",
+      tags: ["Reception", "Interior", "Feature"]
+    },
 
-    function renderPortfolio(items){
-      portfolioGrid.innerHTML = "";
+    {
+      title: "House Elevation Render",
+      category: "residential",
+      image: "./house elevation.png",
+      description: "Residential facade render showing elevation treatment.",
+      tags: ["Residential", "Elevation", "Render"]
+    },
+    {
+      title: "House Elevation 01",
+      category: "residential",
+      image: "./house elevation design 1.png",
+      description: "House elevation with simple and modern exterior detailing.",
+      tags: ["Residential", "House", "Elevation"]
+    },
+    {
+      title: "House Elevation 02",
+      category: "residential",
+      image: "./house elevation design (2).jpg",
+      description: "Residential exterior with clean geometry and proportion.",
+      tags: ["Residential", "Facade", "Home"]
+    },
+    {
+      title: "House Elevation 03",
+      category: "residential",
+      image: "./house elevation design (3).jpg",
+      description: "Home frontage concept with practical and elegant styling.",
+      tags: ["House", "Residential", "Exterior"]
+    },
+    {
+      title: "House Elevation 05",
+      category: "residential",
+      image: "./house elevation design (5).jpg",
+      description: "Contemporary residence elevation with refined layout.",
+      tags: ["Residence", "House", "Design"]
+    },
+    {
+      title: "House Elevation 06",
+      category: "residential",
+      image: "./house elevation design (6).jpg",
+      description: "Stylish residential elevation concept for urban housing.",
+      tags: ["Residential", "Urban", "Home"]
+    },
+    {
+      title: "House Elevation 07",
+      category: "residential",
+      image: "./house elevation design (7).jpg",
+      description: "Modern home elevation with simple and balanced character.",
+      tags: ["House", "Exterior", "Modern"]
+    },
+    {
+      title: "House Elevation 08",
+      category: "residential",
+      image: "./house elevation design (8).jpg",
+      description: "Residential facade showing strong composition and depth.",
+      tags: ["House", "Facade", "Residence"]
+    },
+    {
+      title: "House Elevation 10",
+      category: "residential",
+      image: "./house elevation design (10).jpg",
+      description: "Residential design focused on neat frontage and modern appeal.",
+      tags: ["Residential", "Elevation", "Exterior"]
+    },
+    {
+      title: "House Elevation 11",
+      category: "residential",
+      image: "./house elevation design (11).jpg",
+      description: "House exterior concept with a calm architectural language.",
+      tags: ["Home", "Residential", "Frontage"]
+    },
+    {
+      title: "House Elevation 17",
+      category: "residential",
+      image: "./house elevation design (17).jpg",
+      description: "Refined house elevation concept with balanced facade rhythm.",
+      tags: ["Residence", "Home", "Design"]
+    },
 
-      if(!items.length){
+    {
+      title: "Park Design 01",
+      category: "landscape",
+      image: "./park design (1).jpg",
+      description: "Landscape layout designed for movement, relaxation and visual balance.",
+      tags: ["Landscape", "Park", "Outdoor"]
+    },
+    {
+      title: "Park Design 01 PNG",
+      category: "landscape",
+      image: "./park design 1.png",
+      description: "Rendered landscape concept for public outdoor space.",
+      tags: ["Landscape", "Render", "Park"]
+    },
+    {
+      title: "Park Design 03",
+      category: "landscape",
+      image: "./park design 3.png",
+      description: "Rendered landscape layout with strong spatial structure.",
+      tags: ["Landscape", "Render", "Site"]
+    },
+    {
+      title: "Park Design 04",
+      category: "landscape",
+      image: "./park design 4.png",
+      description: "Park visualization showing neat site organization.",
+      tags: ["Landscape", "Park", "Visualization"]
+    },
+    {
+      title: "Park Design 05",
+      category: "landscape",
+      image: "./park design 5.png",
+      description: "Outdoor concept designed for visual calm and function.",
+      tags: ["Landscape", "Outdoor", "Green"]
+    },
+    {
+      title: "Park Design 06",
+      category: "landscape",
+      image: "./park design 6.png",
+      description: "Landscape render developed with modern site planning.",
+      tags: ["Landscape", "Planning", "Render"]
+    },
+    {
+      title: "Park Design 08",
+      category: "landscape",
+      image: "./park design 8.png",
+      description: "Park design concept focused on clarity and movement.",
+      tags: ["Landscape", "Movement", "Outdoor"]
+    },
+    {
+      title: "Park Design 09",
+      category: "landscape",
+      image: "./park design 9.png",
+      description: "Landscape view with contemporary planning language.",
+      tags: ["Landscape", "Park", "Concept"]
+    },
+    {
+      title: "Park Design 10",
+      category: "landscape",
+      image: "./park design 10.png",
+      description: "Landscape scheme with structured site composition.",
+      tags: ["Landscape", "Site", "Outdoor"]
+    },
+    {
+      title: "Park Design 11",
+      category: "landscape",
+      image: "./park design11.png",
+      description: "Public space render with organized paths and green areas.",
+      tags: ["Landscape", "Public", "Green"]
+    },
+    {
+      title: "Park Design 12",
+      category: "landscape",
+      image: "./park design 12.png",
+      description: "Outdoor planning concept with greenery and circulation focus.",
+      tags: ["Landscape", "Planning", "Park"]
+    },
+    {
+      title: "Park Design 13",
+      category: "landscape",
+      image: "./park design 13.png",
+      description: "Modern park visualization with organized zoning.",
+      tags: ["Landscape", "Public Space", "Design"]
+    },
+    {
+      title: "Park Design 14",
+      category: "landscape",
+      image: "./park design 14.png",
+      description: "Landscape render developed for calm and functional outdoor use.",
+      tags: ["Landscape", "Outdoor", "Render"]
+    },
+    {
+      title: "Park Design 16",
+      category: "landscape",
+      image: "./park design 16.png",
+      description: "Park concept focused on open movement and greenery.",
+      tags: ["Landscape", "Park", "Green"]
+    },
+    {
+      title: "Park Design 17",
+      category: "landscape",
+      image: "./park design17.png",
+      description: "Landscape concept with clean zoning and usable layout.",
+      tags: ["Landscape", "Site", "Planning"]
+    },
+    {
+      title: "Park Design 19",
+      category: "landscape",
+      image: "./park design 19.png",
+      description: "Landscape proposal created for public recreational experience.",
+      tags: ["Landscape", "Public", "Outdoor"]
+    },
+    {
+      title: "Park Design 21",
+      category: "landscape",
+      image: "./park design 21.png",
+      description: "Landscape visualization with modern pathways and planting zones.",
+      tags: ["Landscape", "Park", "Planning"]
+    },
+    {
+      title: "Park Design 22",
+      category: "landscape",
+      image: "./park design 22.png",
+      description: "Outdoor public space concept with neat zoning.",
+      tags: ["Landscape", "Outdoor", "Urban"]
+    },
+    {
+      title: "Park Design 23",
+      category: "landscape",
+      image: "./park design23.png",
+      description: "Refined park planning presentation with strong clarity.",
+      tags: ["Landscape", "Presentation", "Park"]
+    },
+    {
+      title: "Park Design 24",
+      category: "landscape",
+      image: "./park design 24.png",
+      description: "Creative landscape planning with premium visual presentation.",
+      tags: ["Landscape", "Creative", "Park"]
+    },
+
+    {
+      title: "New Hero 01",
+      category: "residential",
+      image: "./new hero-1.jpg",
+      description: "Residential concept render prepared as a featured hero visual.",
+      tags: ["Residential", "Render", "Hero"]
+    },
+    {
+      title: "New Hero 02",
+      category: "residential",
+      image: "./new hero 2.jpg",
+      description: "Featured home concept with strong architectural presence.",
+      tags: ["Residential", "Home", "Visual"]
+    },
+    {
+      title: "New Hero 03",
+      category: "residential",
+      image: "./new hero-3.jpeg",
+      description: "Modern architectural render with bold exterior identity.",
+      tags: ["Residential", "Exterior", "Concept"]
+    },
+    {
+      title: "New Hero 04",
+      category: "residential",
+      image: "./new hero-4.jpeg",
+      description: "Elegant home concept developed as presentation visual.",
+      tags: ["Residential", "House", "Render"]
+    },
+    {
+      title: "New Hero 05",
+      category: "residential",
+      image: "./new hero 5.jpeg",
+      description: "Premium house concept with a clean and modern frontage.",
+      tags: ["Residential", "Premium", "Frontage"]
+    },
+    {
+      title: "New Hero 06",
+      category: "residential",
+      image: "./new hero-6.png",
+      description: "Featured residential visual with refined architectural form.",
+      tags: ["Residential", "Render", "Modern"]
+    },
+    {
+      title: "New Hero 07",
+      category: "residential",
+      image: "./new hero-7.jpeg",
+      description: "Architectural concept image with balanced massing and style.",
+      tags: ["Residential", "Concept", "Home"]
+    },
+    {
+      title: "New Hero 08",
+      category: "residential",
+      image: "./new hero-8.png",
+      description: "Home exterior visual prepared in a premium presentation style.",
+      tags: ["Residential", "Exterior", "Visual"]
+    },
+    {
+      title: "New Hero 09",
+      category: "residential",
+      image: "./new hero-9.jpg",
+      description: "Residential hero image focused on modern facade language.",
+      tags: ["Residential", "Facade", "Hero"]
+    },
+    {
+      title: "New Hero 10",
+      category: "residential",
+      image: "./new hero 10.jpg",
+      description: "Featured house concept with elegant proportions and modern lines.",
+      tags: ["Residential", "House", "Presentation"]
+    },
+    {
+      title: "New Hero 11",
+      category: "residential",
+      image: "./new hero 11.jpg",
+      description: "Modern residential presentation render with bold visual depth.",
+      tags: ["Residential", "Render", "Frontage"]
+    },
+    {
+      title: "New Hero 12",
+      category: "residential",
+      image: "./new hero 12.jpg",
+      description: "Premium house concept render for portfolio showcase.",
+      tags: ["Residential", "Premium", "Render"]
+    },
+
+    {
+      title: "Masjid 01",
+      category: "institution",
+      image: "./Masjid (1).png",
+      description: "Institutional religious architecture with calm formal expression.",
+      tags: ["Institution", "Masjid", "Architecture"]
+    },
+    {
+      title: "Masjid 02",
+      category: "institution",
+      image: "./Masjid (2).png",
+      description: "Religious building concept with balanced geometry and identity.",
+      tags: ["Institution", "Religious", "Design"]
+    },
+    {
+      title: "Masjid 03",
+      category: "institution",
+      image: "./Masjid (3).png",
+      description: "Architectural concept for a masjid with clear visual hierarchy.",
+      tags: ["Institution", "Masjid", "Concept"]
+    },
+
+    {
+      title: "Right Side Wall",
+      category: "commercial",
+      image: "./right side wall.png",
+      description: "Feature wall or side elevation detail designed with visual depth.",
+      tags: ["Wall", "Detail", "Design"]
+    }
+  ];
+
+  const portfolioGrid = document.getElementById("portfolioGrid");
+  const filterButtons = document.getElementById("filterButtons");
+  const buttons = filterButtons.querySelectorAll("button");
+  const resultsCount = document.getElementById("resultsCount");
+  const searchInput = document.getElementById("searchInput");
+  const emptyState = document.getElementById("emptyState");
+  const totalProjects = document.getElementById("totalProjects");
+
+  const lightbox = document.getElementById("lightbox");
+  const lightboxImage = document.getElementById("lightboxImage");
+  const lightboxTitle = document.getElementById("lightboxTitle");
+  const lightboxDesc = document.getElementById("lightboxDesc");
+  const lightboxMeta = document.getElementById("lightboxMeta");
+  const lightboxClose = document.getElementById("lightboxClose");
+
+  let activeFilter = "all";
+
+  function formatCategory(category){
+    const map = {
+      residential: "Residential",
+      commercial: "Commercial",
+      office: "Office",
+      institution: "Institution",
+      landscape: "Landscape",
+      planning: "Planning"
+    };
+    return map[category] || category;
+  }
+
+  function createCard(item, index){
+    const card = document.createElement("article");
+    card.className = `card ${index % 5 === 0 ? "tall" : ""}`;
+
+    card.innerHTML = `
+      <div class="card-media">
+        <img src="${item.image}" alt="${item.title}" loading="lazy">
+      </div>
+
+      <div class="card-badge">${formatCategory(item.category)}</div>
+
+      <div class="overlay">
+        <div class="overlay-top">
+          <div>
+            <h3>${item.title}</h3>
+          </div>
+          <button class="view-btn" type="button" aria-label="View ${item.title}">↗</button>
+        </div>
+
+        <p>${item.description}</p>
+
+        <div class="card-meta">
+          ${(item.tags || []).map(tag => `<span>${tag}</span>`).join("")}
+        </div>
+      </div>
+    `;
+
+    const image = card.querySelector("img");
+    const viewBtn = card.querySelector(".view-btn");
+
+    image.addEventListener("click", () => openLightbox(item));
+    viewBtn.addEventListener("click", () => openLightbox(item));
+
+    image.addEventListener("error", () => {
+      card.remove();
+      updateVisibleCount();
+      if (!portfolioGrid.children.length) {
         emptyState.classList.add("show");
-      } else {
-        emptyState.classList.remove("show");
       }
+    });
 
-      items.forEach((item, index) => {
-        const card = document.createElement("article");
-        card.className = `card ${index % 5 === 0 ? "tall" : ""}`;
+    return card;
+  }
 
-        card.innerHTML = `
-          <div class="card-media">
-            <img src="${item.image}" alt="${item.title}" loading="lazy">
-          </div>
+  function updateVisibleCount(){
+    const visibleCards = portfolioGrid.querySelectorAll(".card").length;
+    resultsCount.textContent = `${visibleCards} project${visibleCards !== 1 ? "s" : ""}`;
+    totalProjects.textContent = portfolioItems.length;
+  }
 
-          <div class="card-badge">${formatCategory(item.category)}</div>
+  function renderPortfolio(items){
+    portfolioGrid.innerHTML = "";
 
-          <div class="overlay">
-            <div class="overlay-top">
-              <div>
-                <h3>${item.title}</h3>
-              </div>
-              <button class="view-btn" type="button" aria-label="View ${item.title}">↗</button>
-            </div>
-
-            <p>${item.description}</p>
-
-            <div class="card-meta">
-              ${(item.tags || []).map(tag => `<span>${tag}</span>`).join("")}
-            </div>
-          </div>
-        `;
-
-        const viewBtn = card.querySelector(".view-btn");
-        viewBtn.addEventListener("click", () => openLightbox(item));
-        card.querySelector("img").addEventListener("click", () => openLightbox(item));
-
-        portfolioGrid.appendChild(card);
-      });
-
-      resultsCount.textContent = `${items.length} project${items.length !== 1 ? "s" : ""}`;
+    if(!items.length){
+      emptyState.classList.add("show");
+      resultsCount.textContent = "0 projects";
       totalProjects.textContent = portfolioItems.length;
+      return;
+    } else {
+      emptyState.classList.remove("show");
     }
 
-    function formatCategory(category){
-      const map = {
-        residential: "Residential",
-        commercial: "Commercial",
-        office: "Office",
-        institution: "Institution",
-        landscape: "Landscape",
-        planning: "Planning"
-      };
-      return map[category] || category;
-    }
-
-    function filterAndSearch(){
-      const keyword = searchInput.value.trim().toLowerCase();
-
-      const filtered = portfolioItems.filter(item => {
-        const matchesCategory =
-          activeFilter === "all" || item.category === activeFilter;
-
-        const textPool = [
-          item.title,
-          item.category,
-          item.description,
-          ...(item.tags || [])
-        ].join(" ").toLowerCase();
-
-        const matchesSearch = textPool.includes(keyword);
-
-        return matchesCategory && matchesSearch;
-      });
-
-      renderPortfolio(filtered);
-    }
-
-    buttons.forEach(btn => {
-      btn.addEventListener("click", () => {
-        buttons.forEach(b => b.classList.remove("active"));
-        btn.classList.add("active");
-        activeFilter = btn.dataset.filter;
-        filterAndSearch();
-      });
+    items.forEach((item, index) => {
+      const card = createCard(item, index);
+      portfolioGrid.appendChild(card);
     });
 
-    searchInput.addEventListener("input", filterAndSearch);
+    updateVisibleCount();
+  }
 
-    function openLightbox(item){
-      lightboxImage.src = item.image;
-      lightboxImage.alt = item.title;
-      lightboxTitle.textContent = item.title;
-      lightboxDesc.textContent = item.description;
-      lightboxMeta.innerHTML = `
-        <span>${formatCategory(item.category)}</span>
-        ${(item.tags || []).map(tag => `<span>${tag}</span>`).join("")}
-      `;
-      lightbox.classList.add("show");
-      document.body.style.overflow = "hidden";
-    }
+  function filterAndSearch(){
+    const keyword = searchInput.value.trim().toLowerCase();
 
-    function closeLightbox(){
-      lightbox.classList.remove("show");
-      document.body.style.overflow = "";
-    }
+    const filtered = portfolioItems.filter(item => {
+      const matchesCategory =
+        activeFilter === "all" || item.category === activeFilter;
 
-    lightboxClose.addEventListener("click", closeLightbox);
+      const textPool = [
+        item.title,
+        item.category,
+        item.description,
+        ...(item.tags || [])
+      ].join(" ").toLowerCase();
 
-    lightbox.addEventListener("click", (e) => {
-      if(e.target === lightbox){
-        closeLightbox();
-      }
+      const matchesSearch = textPool.includes(keyword);
+
+      return matchesCategory && matchesSearch;
     });
 
-    document.addEventListener("keydown", (e) => {
-      if(e.key === "Escape"){
-        closeLightbox();
-      }
-    });
+    renderPortfolio(filtered);
+  }
 
-    renderPortfolio(portfolioItems);
-  </script>
+  buttons.forEach(btn => {
+    btn.addEventListener("click", () => {
+      buttons.forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      activeFilter = btn.dataset.filter;
+      filterAndSearch();
+    });
+  });
+
+  searchInput.addEventListener("input", filterAndSearch);
+
+  function openLightbox(item){
+    lightboxImage.src = item.image;
+    lightboxImage.alt = item.title;
+    lightboxTitle.textContent = item.title;
+    lightboxDesc.textContent = item.description;
+    lightboxMeta.innerHTML = `
+      <span>${formatCategory(item.category)}</span>
+      ${(item.tags || []).map(tag => `<span>${tag}</span>`).join("")}
+    `;
+    lightbox.classList.add("show");
+    document.body.style.overflow = "hidden";
+  }
+
+  function closeLightbox(){
+    lightbox.classList.remove("show");
+    document.body.style.overflow = "";
+    lightboxImage.src = "";
+    lightboxImage.alt = "";
+  }
+
+  lightboxClose.addEventListener("click", closeLightbox);
+
+  lightbox.addEventListener("click", (e) => {
+    if(e.target === lightbox){
+      closeLightbox();
+    }
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if(e.key === "Escape"){
+      closeLightbox();
+    }
+  });
+
+  renderPortfolio(portfolioItems);
+</script>
 </body>
 </html>
