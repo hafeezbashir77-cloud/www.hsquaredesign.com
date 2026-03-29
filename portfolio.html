@@ -10,15 +10,12 @@
       --bg:#050505;
       --panel:#0d0d0d;
       --panel-2:#141414;
-      --panel-3:#1b1b1b;
       --text:#f5f1ea;
       --muted:#a1a1a1;
       --soft-line:rgba(255,255,255,.08);
       --accent:#c6a77a;
-      --accent-soft:rgba(198,167,122,.16);
       --max:1400px;
       --shadow:0 24px 70px rgba(0,0,0,.38);
-      --radius:28px;
     }
 
     *{
@@ -197,41 +194,26 @@
 
     /* ===== HERO ===== */
     .hero{
-      padding:70px 0 28px;
+      padding:68px 0 26px;
     }
 
-    .hero-grid{
-      display:grid;
-      grid-template-columns:1.12fr .88fr;
-      gap:24px;
-      align-items:stretch;
-    }
-
-    .hero-main,
-    .hero-side{
+    .hero-box{
       border:1px solid var(--soft-line);
-      border-radius:32px;
+      border-radius:34px;
       background:linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.01));
       box-shadow:var(--shadow);
-      overflow:hidden;
+      padding:50px;
       position:relative;
+      overflow:hidden;
     }
 
-    .hero-main{
-      padding:46px;
-      min-height:430px;
-      display:flex;
-      flex-direction:column;
-      justify-content:space-between;
-    }
-
-    .hero-main::before{
+    .hero-box::before{
       content:"";
       position:absolute;
-      right:-90px;
-      bottom:-90px;
-      width:260px;
-      height:260px;
+      right:-100px;
+      bottom:-100px;
+      width:280px;
+      height:280px;
       border-radius:50%;
       background:radial-gradient(circle, rgba(198,167,122,.22), rgba(198,167,122,0));
       pointer-events:none;
@@ -245,113 +227,32 @@
       font-size:.76rem;
       letter-spacing:.18em;
       text-transform:uppercase;
-      margin-bottom:16px;
+      margin-bottom:18px;
     }
 
     .hero-kicker::before{
       content:"";
-      width:42px;
+      width:40px;
       height:1px;
       background:var(--accent);
     }
 
-    .hero-main h1{
-      font-size:80px;
-      line-height:.95;
+    .hero h1{
+      font-size:78px;
+      line-height:.94;
       letter-spacing:-2px;
       margin-bottom:18px;
     }
 
-    .hero-main p{
-      max-width:760px;
-      color:#c8c8c8;
+    .hero p{
+      max-width:780px;
+      color:#c9c9c9;
       font-size:18px;
-    }
-
-    .hero-tags{
-      display:flex;
-      flex-wrap:wrap;
-      gap:12px;
-      margin-top:26px;
-    }
-
-    .hero-tags span{
-      padding:11px 16px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,.08);
-      background:rgba(255,255,255,.03);
-      color:#ddd;
-      font-size:14px;
-    }
-
-    .hero-side{
-      display:grid;
-      grid-template-rows:1.1fr auto;
-      min-height:430px;
-    }
-
-    .featured-visual{
-      position:relative;
-      min-height:280px;
-      background:#101010;
-    }
-
-    .featured-visual img{
-      width:100%;
-      height:100%;
-      object-fit:cover;
-    }
-
-    .featured-visual::after{
-      content:"";
-      position:absolute;
-      inset:0;
-      background:linear-gradient(to top, rgba(0,0,0,.82), rgba(0,0,0,.16));
-    }
-
-    .featured-content{
-      padding:24px;
-      display:grid;
-      gap:10px;
-      border-top:1px solid rgba(255,255,255,.06);
-    }
-
-    .featured-label{
-      color:var(--accent);
-      text-transform:uppercase;
-      letter-spacing:.16em;
-      font-size:.72rem;
-    }
-
-    .featured-content h2{
-      font-size:30px;
-      line-height:1.1;
-    }
-
-    .featured-content p{
-      color:#c8c8c8;
-      font-size:14px;
-    }
-
-    .featured-meta{
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-      margin-top:4px;
-    }
-
-    .featured-meta span{
-      font-size:12px;
-      padding:7px 10px;
-      border-radius:999px;
-      background:rgba(255,255,255,.05);
-      border:1px solid rgba(255,255,255,.08);
-      color:#eee;
     }
 
     /* ===== CONTROLS ===== */
     .controls{
-      padding:0 0 26px;
+      padding:0 0 24px;
     }
 
     .controls-shell{
@@ -432,31 +333,27 @@
       color:#000;
     }
 
-    /* ===== GRID ===== */
+    /* ===== COLLAGE GRID ===== */
     .portfolio{
       padding:0 0 90px;
     }
 
     .grid{
       columns:3 320px;
-      column-gap:24px;
+      column-gap:22px;
     }
 
     .card{
       break-inside:avoid;
-      margin-bottom:24px;
+      margin-bottom:22px;
       position:relative;
-      border-radius:26px;
+      border-radius:28px;
       overflow:hidden;
       background:#111;
       border:1px solid rgba(255,255,255,.06);
       box-shadow:var(--shadow);
-      transition:.35s ease;
-    }
-
-    .card:hover{
-      transform:translateY(-6px);
-      border-color:rgba(198,167,122,.22);
+      cursor:pointer;
+      isolation:isolate;
     }
 
     .card img{
@@ -464,7 +361,7 @@
       height:auto;
       object-fit:cover;
       transition:transform .7s ease, filter .7s ease;
-      filter:grayscale(10%);
+      filter:grayscale(4%);
     }
 
     .card:hover img{
@@ -476,87 +373,40 @@
       content:"";
       position:absolute;
       inset:0;
-      background:linear-gradient(to top, rgba(0,0,0,.88), rgba(0,0,0,.18), rgba(0,0,0,.03));
+      background:linear-gradient(to top, rgba(0,0,0,.18), rgba(0,0,0,.02));
+      opacity:0;
+      transition:.3s ease;
       pointer-events:none;
     }
 
-    .card-badge{
+    .card:hover::after{
+      opacity:1;
+    }
+
+    .zoom-icon{
       position:absolute;
-      top:18px;
-      left:18px;
-      z-index:2;
-      padding:8px 12px;
-      border-radius:999px;
-      background:rgba(0,0,0,.42);
-      border:1px solid rgba(255,255,255,.13);
-      backdrop-filter:blur(10px);
-      color:#f2e3cc;
-      font-size:12px;
-      text-transform:uppercase;
-      letter-spacing:.08em;
-    }
-
-    .overlay{
-      position:absolute;
-      left:0;
-      right:0;
-      bottom:0;
-      z-index:2;
-      padding:22px;
-      display:flex;
-      flex-direction:column;
-      gap:10px;
-    }
-
-    .overlay-top{
-      display:flex;
-      justify-content:space-between;
-      align-items:flex-start;
-      gap:14px;
-    }
-
-    .overlay h3{
-      font-size:28px;
-      line-height:1.12;
-    }
-
-    .overlay p{
-      color:#d8d8d8;
-      font-size:14px;
-      line-height:1.7;
-    }
-
-    .card-meta{
-      display:flex;
-      flex-wrap:wrap;
-      gap:8px;
-    }
-
-    .card-meta span{
-      padding:6px 10px;
-      border-radius:999px;
-      background:rgba(255,255,255,.07);
-      border:1px solid rgba(255,255,255,.09);
-      color:#ececec;
-      font-size:12px;
-    }
-
-    .view-btn{
-      width:46px;
-      height:46px;
+      right:16px;
+      bottom:16px;
+      width:48px;
+      height:48px;
       border-radius:50%;
-      border:1px solid rgba(255,255,255,.14);
-      background:rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.18);
+      background:rgba(0,0,0,.36);
+      backdrop-filter:blur(10px);
+      display:grid;
+      place-items:center;
       color:#fff;
-      cursor:pointer;
-      transition:.25s ease;
-      flex-shrink:0;
+      font-size:18px;
+      z-index:2;
+      opacity:0;
+      transform:translateY(8px);
+      transition:.28s ease;
+      pointer-events:none;
     }
 
-    .view-btn:hover{
-      background:var(--accent);
-      color:#000;
-      border-color:var(--accent);
+    .card:hover .zoom-icon{
+      opacity:1;
+      transform:translateY(0);
     }
 
     .empty-state{
@@ -580,12 +430,11 @@
       margin-bottom:8px;
     }
 
-    /* ===== LIGHTBOX ===== */
-    .lightbox{
+    /* ===== FULL IMAGE VIEWER ===== */
+    .viewer{
       position:fixed;
       inset:0;
-      background:rgba(0,0,0,.86);
-      backdrop-filter:blur(10px);
+      background:rgba(0,0,0,.95);
       display:flex;
       align-items:center;
       justify-content:center;
@@ -593,78 +442,39 @@
       opacity:0;
       visibility:hidden;
       transition:.25s ease;
-      z-index:2000;
+      z-index:3000;
     }
 
-    .lightbox.show{
+    .viewer.show{
       opacity:1;
       visibility:visible;
     }
 
-    .lightbox-inner{
-      width:min(1100px, 100%);
-      max-height:90vh;
-      overflow:auto;
-      border-radius:28px;
-      background:#0f0f0f;
-      border:1px solid rgba(255,255,255,.1);
-      box-shadow:0 30px 100px rgba(0,0,0,.45);
-    }
-
-    .lightbox-image-wrap{
-      background:#000;
-    }
-
-    .lightbox-image{
-      width:100%;
-      max-height:72vh;
+    .viewer img{
+      max-width:100%;
+      max-height:100%;
+      width:auto;
+      height:auto;
       object-fit:contain;
-      display:block;
-      margin:auto;
+      box-shadow:0 20px 80px rgba(0,0,0,.45);
+      border-radius:10px;
     }
 
-    .lightbox-content{
-      padding:24px;
-    }
-
-    .lightbox-content h3{
-      font-size:32px;
-      margin-bottom:10px;
-    }
-
-    .lightbox-content p{
-      color:#d0d0d0;
-      margin-bottom:12px;
-    }
-
-    .lightbox-meta{
-      display:flex;
-      flex-wrap:wrap;
-      gap:10px;
-    }
-
-    .lightbox-meta span{
-      padding:8px 12px;
-      border-radius:999px;
-      background:rgba(255,255,255,.06);
-      border:1px solid rgba(255,255,255,.09);
-      color:#e7e7e7;
-      font-size:12px;
-    }
-
-    .lightbox-close{
+    .viewer-close{
       position:fixed;
       top:18px;
       right:18px;
-      width:54px;
-      height:54px;
+      width:56px;
+      height:56px;
       border-radius:50%;
-      border:1px solid rgba(255,255,255,.14);
+      border:1px solid rgba(255,255,255,.16);
       background:rgba(255,255,255,.08);
       color:#fff;
-      font-size:24px;
+      font-size:28px;
       cursor:pointer;
-      z-index:2001;
+      z-index:3001;
+      display:grid;
+      place-items:center;
     }
 
     footer{
@@ -673,12 +483,6 @@
       text-align:center;
       color:var(--muted);
       font-size:14px;
-    }
-
-    @media (max-width:1100px){
-      .hero-grid{
-        grid-template-columns:1fr;
-      }
     }
 
     @media (max-width:780px){
@@ -701,21 +505,16 @@
         padding:54px 0 22px;
       }
 
-      .hero-main{
+      .hero-box{
         padding:28px;
-        min-height:auto;
       }
 
-      .hero-main h1{
+      .hero h1{
         font-size:50px;
       }
 
-      .hero-main p{
+      .hero p{
         font-size:16px;
-      }
-
-      .featured-content h2{
-        font-size:24px;
       }
     }
 
@@ -743,17 +542,13 @@
         font-size:.9rem;
       }
 
-      .hero-main h1{
+      .hero h1{
         font-size:40px;
         letter-spacing:-1px;
       }
 
       .controls-shell{
         padding:16px;
-      }
-
-      .overlay h3{
-        font-size:24px;
       }
     }
   </style>
@@ -793,36 +588,15 @@
   </header>
 
   <section class="hero">
-    <div class="container hero-grid">
-      <div class="hero-main">
-        <div>
-          <div class="hero-kicker">Our Signature Projects</div>
-          <h1>Creative<br>Portfolio</h1>
-          <p>
-            A premium collection of residential, commercial, office, institutional
-            and landscape concepts crafted by H Square Design with clarity, luxury
-            and modern visual identity.
-          </p>
-
-          <div class="hero-tags">
-            <span>Luxury Architecture</span>
-            <span>Modern Interiors</span>
-            <span>Professional Concepts</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="hero-side">
-        <div class="featured-visual">
-          <img id="featuredImage" src="" alt="Featured Project">
-        </div>
-
-        <div class="featured-content">
-          <div class="featured-label">Featured Project</div>
-          <h2 id="featuredTitle">Featured Portfolio Item</h2>
-          <p id="featuredDesc">A curated visual selected from your latest portfolio collection.</p>
-          <div class="featured-meta" id="featuredMeta"></div>
-        </div>
+    <div class="container">
+      <div class="hero-box">
+        <div class="hero-kicker">Collage Showcase</div>
+        <h1>Portfolio</h1>
+        <p>
+          Explore a visual collage of architectural, interior, commercial,
+          residential and landscape concepts by H Square Design. Click any image
+          to view it in full size.
+        </p>
       </div>
     </div>
   </section>
@@ -867,18 +641,9 @@
     </div>
   </footer>
 
-  <div class="lightbox" id="lightbox">
-    <button class="lightbox-close" id="lightboxClose" aria-label="Close preview">×</button>
-    <div class="lightbox-inner">
-      <div class="lightbox-image-wrap">
-        <img src="" alt="" class="lightbox-image" id="lightboxImage">
-      </div>
-      <div class="lightbox-content">
-        <h3 id="lightboxTitle"></h3>
-        <p id="lightboxDesc"></p>
-        <div class="lightbox-meta" id="lightboxMeta"></div>
-      </div>
-    </div>
+  <div class="viewer" id="viewer">
+    <button class="viewer-close" id="viewerClose" aria-label="Close image">×</button>
+    <img src="" alt="" id="viewerImage">
   </div>
 
   <script>
@@ -1500,43 +1265,11 @@
     const searchInput = document.getElementById("searchInput");
     const emptyState = document.getElementById("emptyState");
 
-    const featuredImage = document.getElementById("featuredImage");
-    const featuredTitle = document.getElementById("featuredTitle");
-    const featuredDesc = document.getElementById("featuredDesc");
-    const featuredMeta = document.getElementById("featuredMeta");
-
-    const lightbox = document.getElementById("lightbox");
-    const lightboxImage = document.getElementById("lightboxImage");
-    const lightboxTitle = document.getElementById("lightboxTitle");
-    const lightboxDesc = document.getElementById("lightboxDesc");
-    const lightboxMeta = document.getElementById("lightboxMeta");
-    const lightboxClose = document.getElementById("lightboxClose");
+    const viewer = document.getElementById("viewer");
+    const viewerImage = document.getElementById("viewerImage");
+    const viewerClose = document.getElementById("viewerClose");
 
     let activeFilter = "all";
-
-    function formatCategory(category){
-      const map = {
-        residential: "Residential",
-        commercial: "Commercial",
-        office: "Office",
-        institution: "Institution",
-        landscape: "Landscape",
-        planning: "Planning"
-      };
-      return map[category] || category;
-    }
-
-    function setFeaturedItem(item){
-      if(!item) return;
-      featuredImage.src = item.image;
-      featuredImage.alt = item.title;
-      featuredTitle.textContent = item.title;
-      featuredDesc.textContent = item.description;
-      featuredMeta.innerHTML = `
-        <span>${formatCategory(item.category)}</span>
-        ${(item.tags || []).slice(0, 2).map(tag => `<span>${tag}</span>`).join("")}
-      `;
-    }
 
     function createCard(item){
       const card = document.createElement("article");
@@ -1544,29 +1277,19 @@
 
       card.innerHTML = `
         <img src="${item.image}" alt="${item.title}" loading="lazy">
-        <div class="card-badge">${formatCategory(item.category)}</div>
-
-        <div class="overlay">
-          <div class="overlay-top">
-            <div>
-              <h3>${item.title}</h3>
-            </div>
-            <button class="view-btn" type="button" aria-label="View ${item.title}">↗</button>
-          </div>
-
-          <p>${item.description}</p>
-
-          <div class="card-meta">
-            ${(item.tags || []).map(tag => `<span>${tag}</span>`).join("")}
-          </div>
-        </div>
+        <div class="zoom-icon">↗</div>
       `;
 
       const image = card.querySelector("img");
-      const viewBtn = card.querySelector(".view-btn");
 
-      image.addEventListener("click", () => openLightbox(item));
-      viewBtn.addEventListener("click", () => openLightbox(item));
+      const openViewer = () => {
+        viewerImage.src = item.image;
+        viewerImage.alt = item.title;
+        viewer.classList.add("show");
+        document.body.style.overflow = "hidden";
+      };
+
+      card.addEventListener("click", openViewer);
 
       image.addEventListener("error", () => {
         card.remove();
@@ -1600,7 +1323,6 @@
       });
 
       updateCount();
-      setFeaturedItem(items[0]);
     }
 
     function filterAndSearch(){
@@ -1633,37 +1355,24 @@
 
     searchInput.addEventListener("input", filterAndSearch);
 
-    function openLightbox(item){
-      lightboxImage.src = item.image;
-      lightboxImage.alt = item.title;
-      lightboxTitle.textContent = item.title;
-      lightboxDesc.textContent = item.description;
-      lightboxMeta.innerHTML = `
-        <span>${formatCategory(item.category)}</span>
-        ${(item.tags || []).map(tag => `<span>${tag}</span>`).join("")}
-      `;
-      lightbox.classList.add("show");
-      document.body.style.overflow = "hidden";
-    }
-
-    function closeLightbox(){
-      lightbox.classList.remove("show");
+    function closeViewer(){
+      viewer.classList.remove("show");
       document.body.style.overflow = "";
-      lightboxImage.src = "";
-      lightboxImage.alt = "";
+      viewerImage.src = "";
+      viewerImage.alt = "";
     }
 
-    lightboxClose.addEventListener("click", closeLightbox);
+    viewerClose.addEventListener("click", closeViewer);
 
-    lightbox.addEventListener("click", (e) => {
-      if(e.target === lightbox){
-        closeLightbox();
+    viewer.addEventListener("click", (e) => {
+      if(e.target === viewer){
+        closeViewer();
       }
     });
 
     document.addEventListener("keydown", (e) => {
       if(e.key === "Escape"){
-        closeLightbox();
+        closeViewer();
       }
     });
 
