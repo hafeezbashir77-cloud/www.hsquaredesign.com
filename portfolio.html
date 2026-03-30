@@ -1149,7 +1149,27 @@
         description: "Premium house concept render for portfolio showcase.",
         tags: ["Residential", "Premium", "Render"]
       },
-
+{
+  title: "Islamic Center 01",
+  category: "masjid",
+  image: "./Masjid/Islamic Center (1).png",
+  description: "Islamic center exterior concept.",
+  tags: ["Masjid", "Islamic Center"]
+},
+{
+  title: "Islamic Center 02",
+  category: "masjid",
+  image: "./Masjid/Islamic Center (2).png",
+  description: "Islamic center exterior concept.",
+  tags: ["Masjid", "Islamic Center"]
+},
+{
+  title: "Islamic Center 03",
+  category: "masjid",
+  image: "./Masjid/Islamic Center (3).png",
+  description: "Islamic center exterior concept.",
+  tags: ["Masjid", "Islamic Center"]
+},
       {
         title: "Park Design 01",
         category: "landscape",
@@ -1312,7 +1332,18 @@
     const viewerClose = document.getElementById("viewerClose");
 
     let activeFilter = "all";
-
+function formatCategory(category){
+  const map = {
+    residential: "Residential",
+    commercial: "Commercial",
+    office: "Office",
+    institution: "Institution",
+    masjid: "Masjid",
+    landscape: "Landscape",
+    planning: "Planning"
+  };
+  return map[category] || category;
+}
     function createCard(item){
       const card = document.createElement("article");
       card.className = "card";
